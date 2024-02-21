@@ -1,0 +1,126 @@
+{
+  "diarization": {
+    "SPEAKER_00": 84
+  },
+  "asr": {
+    " So where are the robots?": 1,
+    "We've been told for 40 years already that they're coming soon.": 1,
+    "Very soon they will be doing everything for us.": 1,
+    "They'll be cooking, cleaning, buying things, shopping.": 1,
+    " building, but they aren't here.": 1,
+    "Meanwhile, we have illegal immigrants doing all the work, but we don't have any robots.": 1,
+    "So what can we do about that?": 1,
+    "What can we say?": 1,
+    " So I want to give a little bit of a different perspective of how we can perhaps look at these things in a little bit of a different way.": 1,
+    " And this is an x-ray picture of a real beetle in a Swiss watch back from 88.": 1,
+    "You look at that and what was true then is certainly true today.": 1,
+    " We can still make the pieces, we can make the right pieces, we can make the circuitry of the right computational power, but we can't actually put them together to make something that will actually work and be as adaptive as these systems.": 1,
+    " Let's try to look at it from a different perspective.": 1,
+    "Let's summon the best designer, the mother of all designers.": 1,
+    "Let's see what evolution can do for us.": 1,
+    "We created a primordial soup.": 1,
+    " with lots of pieces of robots, with bars, with motors, with neurons, put them all together and put all this under kind of natural selection, under mutation, and rewarded things for how well they can move forward.": 1,
+    " Very simple task.": 1,
+    "And it's interesting to see what kind of things came out of that.": 1,
+    "So if you look, you can see a lot of different machines come out.": 1,
+    "They all move around.": 1,
+    "They all crawl in different ways.": 1,
+    " And you can see on the right that we actually made a couple of these things and they work in reality.": 1,
+    "These are not very fantastic robots, but they evolved to do exactly what we reward them for, for moving forward.": 1,
+    "So that was all done in simulation.": 1,
+    " But we can also do that on real machines.": 1,
+    "Here's a physical robot that we actually have a population of brains.": 1,
+    " competing or evolving on the machine it's like a rodeo show they all get a ride on the machine and they get rewarded for how how fast or how far they can make the machine move forward and you can see these robots are not ready to take over the world yet": 1,
+    " But you can, they gradually learn how to move forward and they do this autonomously.": 1,
+    "So in these two examples we had basically": 1,
+    " a machine, machines that learn how to work in simulation and also machines that learn how to walk in reality.": 1,
+    "But I want to show you a different approach.": 1,
+    "And this is this robot over here, which": 1,
+    " It has four legs, it has eight mortars, four in the knees and four in the hip.": 1,
+    "It has also two tilt sensors that tell the machine which way it's tilting.": 1,
+    " But this machine doesn't know what it looks like.": 1,
+    "You look at it and you see it has four legs.": 1,
+    "The machine doesn't know if it's a snake, if it's a tree.": 1,
+    "It doesn't have any idea what it looks like.": 1,
+    "But it's going to try to find that out.": 1,
+    "So initially it does some random motion.": 1,
+    " And then it tries to figure out what it might look like and you're seeing a lot of things passing through its minds a lot of self models that try to explain the relationship between actuation and sensing and then tries to do a second action": 1,
+    " that creates the most disagreement among predictions of these alternative models, like a scientist in a lab.": 1,
+    "Then it does that and tries to explain that and prune out its self-models.": 1,
+    "This is already the last cycle.": 1,
+    " and you can see it's pretty much figured out what itself looks like.": 1,
+    "Once it has a self-model, it can use that to derive a pattern of locomotion.": 1,
+    "What you're seeing here are a couple of machines, a pattern of locomotion.": 1,
+    "We were hoping that it's going to": 1,
+    " have a kind of evil spidery walk, but instead it created this pretty lame way of moving forward.": 1,
+    "But when you look at that...": 1,
+    " You have to remember that this machine did not do any physical trials on how to move forward, nor did it have a model of itself.": 1,
+    "It kind of figured out what it looks like and how to move forward, and then actually tried that.": 1,
+    " Oh, wow.": 1,
+    " So.": 1,
+    " We'll move forward to a different idea.": 1,
+    "So that was what happened when we had a couple of... That's what happened when we had a couple of... Okay, okay, okay.": 1,
+    " They don't like each other.": 1,
+    "So here's another, there's a different robot.": 1,
+    "That's what happens when the robots actually are rewarded for doing something.": 1,
+    "What happens if you don't reward them for anything?": 1,
+    "You just throw them in.": 1,
+    "So we have these cubes.": 1,
+    " Like the diagram showed here, the cube can swivel or flip on its side and we just throw a thousand of these cubes into a soup.": 1,
+    "This is in simulation and don't reward them for anything.": 1,
+    "We just let them flip.": 1,
+    " We put pump energy into this and see what happens in a couple of mutations.": 1,
+    "So initially nothing happens.": 1,
+    "They're flipping around there.": 1,
+    "But after a very short while, you can see these blue things on the right there begin to take over.": 1,
+    "They begin to self-replicate.": 1,
+    " So in absence of any reward, the intrinsic reward is self-replication.": 1,
+    "And we've actually built a couple of these, and this is part of a larger robot.": 1,
+    " made out of these cubes.": 1,
+    "It's an accelerated view where you can see the robot actually carrying out some of this replication process.": 1,
+    "So you feed it in with more material.": 1,
+    " cubes in this case and more energy and it can make another robot.": 1,
+    "So of course, this is a very crude machine, but we're working on micro scale version of these and hopefully the cubes will be like a powder that you pour in.": 1,
+    " Okay, so what can we learn?": 1,
+    "These robots are, of course, not very useful in themselves, but they might teach us something about how we can build better robots and perhaps how humans": 1,
+    " animals create self models and learn.": 1,
+    "And one of the things that I think is important is that we have to get away from this idea of designing the machines manually, but actually let them evolve and learn like children.": 1,
+    "And perhaps that's the way we'll get there.": 1,
+    "Thank you.": 1
+  },
+  "gender": {
+    "male": 51
+  },
+  "age": {
+    "46 - 65": 48,
+    "31 - 45": 3
+  },
+  "emotion": {
+    "happy": 28,
+    "neutral": 23
+  },
+  "positivity": {
+    "neutral": 50,
+    "positive": 1
+  },
+  "strength": {
+    "neutral": 33,
+    "strong": 18
+  },
+  "speaking_rate": {
+    "normal": 30,
+    "fast": 21
+  },
+  "hesitation": {
+    "no": 47,
+    "yes": 4
+  },
+  "engagement": {
+    "neutral": 40,
+    "engaged": 11
+  },
+  "politeness": {
+    "polite": 48,
+    "neutral": 3
+  }
+}
