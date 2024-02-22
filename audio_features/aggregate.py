@@ -22,20 +22,12 @@ tasks = {
     # TODO: add more classification tasks to be used here
 }
 
-if __name__ == "__main__":
-    args = parse_arguments()
-
-    with open(args.in_json) as f:
-        res = json.load(f)
-
-    print(len(res))
-
-    key = list(res.keys())[0]
+def run_aggregation(input_json):
+    key = list(input_json.keys())[0]
 
     selected_res = {}
 
-    for pred in res[key]:
-        print(pred)
+    for pred in input_json[key]:
         if pred['id'] not in selected_res:
             selected_res[pred['id']] = {'st': pred['startTime'], 'et': pred['endTime']}
         for task in tasks:
@@ -73,7 +65,18 @@ if __name__ == "__main__":
             mean_posteriors[task][label]['90p'] = np.percentile(mean_posteriors[task][label]['vals'], 90)
             # delete vals:
             del mean_posteriors[task][label]['vals']
-            
-    mean_posteriors['pauses'] = {'mean': np.mean(pauses), '10p': np.percentile(pauses, 10), '90p': np.percentile(pauses, 90)}
-    mean_posteriors['turn_durations'] = {'mean': np.mean(durations), '10p': np.percentile(durations, 10), '90p': np.percentile(durations, 90)}
-    print(mean_posteriors)
+
+    mean_posteriors['pauses'] = {'mean': np.mean(pauses), '10p': np.percentile(pauses, 10),
+                                 '90p': np.percentile(pauses, 90)}
+    mean_posteriors['turn_durations'] = {'mean': np.mean(durations), '10p': np.percentile(durations, 10),
+                                         '90p': np.percentile(durations, 90)}
+    return mean_posteriors
+
+
+if __name__ == "__main__":
+    args = parse_arguments()
+
+    with open(args.in_json) as f:
+        res = json.load(f)
+
+    mean_posteriors = run_aggregation(res)
