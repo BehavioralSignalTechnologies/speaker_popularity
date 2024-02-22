@@ -63,12 +63,13 @@ def run_aggregation(input_json):
         for label in mean_posteriors[task]:
             mean_posteriors[task][label]['mean'] = np.mean(mean_posteriors[task][label]['vals'])
             mean_posteriors[task][label]['90p'] = np.percentile(mean_posteriors[task][label]['vals'], 90)
+            mean_posteriors[task][label]['std'] = np.std(mean_posteriors[task][label]['vals'])
             # delete vals:
             del mean_posteriors[task][label]['vals']
 
-    mean_posteriors['pauses'] = {'mean': np.mean(pauses), '10p': np.percentile(pauses, 10),
+    mean_posteriors['pauses'] = {'mean': np.mean(pauses), 'std': np.std(pauses), '10p': np.percentile(pauses, 10),
                                  '90p': np.percentile(pauses, 90)}
-    mean_posteriors['turn_durations'] = {'mean': np.mean(durations), '10p': np.percentile(durations, 10),
+    mean_posteriors['turn_durations'] = {'mean': np.mean(durations), 'std': np.std(durations), '10p': np.percentile(durations, 10),
                                          '90p': np.percentile(durations, 90)}
     return mean_posteriors
 

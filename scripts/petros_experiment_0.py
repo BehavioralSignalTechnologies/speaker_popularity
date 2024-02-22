@@ -5,19 +5,23 @@ from sklearn.ensemble import RandomForestRegressor, RandomForestClassifier
 from sklearn.metrics import mean_squared_error, accuracy_score, f1_score
 
 features_metadata_df = pd.read_csv("../metadata/merged_metadata_popularity_features.csv")
-cols = ['log_views_norm', 'emotion_angry_mean',
-       'emotion_angry_90p', 'emotion_happy_mean', 'emotion_happy_90p',
-       'emotion_sad_mean', 'emotion_sad_90p', 'emotion_neutral_mean',
-       'emotion_neutral_90p', 'strength_weak_mean', 'strength_weak_90p',
-       'strength_neutral_mean', 'strength_neutral_90p', 'strength_strong_mean',
-       'strength_strong_90p', 'positivity_negative_mean',
-       'positivity_negative_90p', 'positivity_neutral_mean',
-       'positivity_neutral_90p', 'positivity_positive_mean',
-       'positivity_positive_90p', 'pauses_mean', 'pauses_10p', 'pauses_90p',
-       'turn_durations_mean', 'turn_durations_10p', 'turn_durations_90p']
+cols = ['emotion_angry_mean', 'emotion_angry_90p', 'emotion_angry_std',
+       'emotion_happy_mean', 'emotion_happy_90p', 'emotion_happy_std',
+       'emotion_sad_mean', 'emotion_sad_90p', 'emotion_sad_std',
+       'emotion_neutral_mean', 'emotion_neutral_90p', 'emotion_neutral_std',
+       'strength_weak_mean', 'strength_weak_90p', 'strength_weak_std',
+       'strength_neutral_mean', 'strength_neutral_90p', 'strength_neutral_std',
+       'strength_strong_mean', 'strength_strong_90p', 'strength_strong_std',
+       'positivity_negative_mean', 'positivity_negative_90p',
+       'positivity_negative_std', 'positivity_neutral_mean',
+       'positivity_neutral_90p', 'positivity_neutral_std',
+       'positivity_positive_mean', 'positivity_positive_90p',
+       'positivity_positive_std', 'pauses_mean', 'pauses_std', 'pauses_10p',
+       'pauses_90p', 'turn_durations_mean', 'turn_durations_std',
+       'turn_durations_10p', 'turn_durations_90p']
 
 
-X = features_metadata_df.dropna()[cols].drop('log_views_norm', axis=1)  # Features
+X = features_metadata_df.dropna()[cols]  # Features
 y = features_metadata_df.dropna()['log_views_norm']  # Target variable
 y_cat = features_metadata_df.dropna()['log_views_norm_cat']
 
