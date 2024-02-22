@@ -1,0 +1,3536 @@
+{
+  "/home/ubuntu/modeling/use_cases/domain-specific/ted_videos/2009-naturally-7-014-fallback-828004960e9809bc7ec2ade1821fe0aa-1200k.wav": [
+    {
+      "id": "0",
+      "startTime": "5.387",
+      "endTime": "7.757",
+      "task": "diarization",
+      "prediction": [
+        {
+          "label": "SPEAKER_00"
+        }
+      ],
+      "finalLabel": "SPEAKER_00"
+    },
+    {
+      "id": "0",
+      "startTime": "5.387",
+      "endTime": "7.757",
+      "task": "asr",
+      "prediction": [
+        {
+          "label": " Ba ba ba ba ba"
+        }
+      ],
+      "finalLabel": " Ba ba ba ba ba"
+    },
+    {
+      "id": "0",
+      "startTime": "5.387",
+      "endTime": "7.757",
+      "task": "gender",
+      "prediction": [
+        {
+          "label": "female",
+          "posterior": "0.5849",
+          "dominantInSegments": [
+            0
+          ]
+        },
+        {
+          "label": "male",
+          "posterior": "0.4151",
+          "dominantInSegments": [
+            1
+          ]
+        }
+      ],
+      "finalLabel": "female",
+      "level": "segment"
+    },
+    {
+      "id": "0",
+      "startTime": "5.387",
+      "endTime": "7.757",
+      "task": "age",
+      "prediction": [
+        {
+          "label": "31 - 45",
+          "posterior": "0.7732",
+          "dominantInSegments": [
+            0,
+            1
+          ]
+        },
+        {
+          "label": "23 - 30",
+          "posterior": "0.1194"
+        },
+        {
+          "label": "46 - 65",
+          "posterior": "0.0848"
+        },
+        {
+          "label": "18 - 22",
+          "posterior": "0.0226"
+        }
+      ],
+      "finalLabel": "31 - 45",
+      "level": "segment"
+    },
+    {
+      "id": "0",
+      "startTime": "5.387",
+      "endTime": "7.757",
+      "task": "emotion",
+      "prediction": [
+        {
+          "label": "neutral",
+          "posterior": "0.3236",
+          "dominantInSegments": [
+            1
+          ]
+        },
+        {
+          "label": "sad",
+          "posterior": "0.2911",
+          "dominantInSegments": [
+            0
+          ]
+        },
+        {
+          "label": "happy",
+          "posterior": "0.2279"
+        },
+        {
+          "label": "angry",
+          "posterior": "0.1573"
+        }
+      ],
+      "finalLabel": "neutral",
+      "level": "segment"
+    },
+    {
+      "id": "0",
+      "startTime": "5.387",
+      "endTime": "7.757",
+      "task": "positivity",
+      "prediction": [
+        {
+          "label": "negative",
+          "posterior": "0.4345",
+          "dominantInSegments": [
+            0
+          ]
+        },
+        {
+          "label": "neutral",
+          "posterior": "0.3497",
+          "dominantInSegments": [
+            1
+          ]
+        },
+        {
+          "label": "positive",
+          "posterior": "0.2157"
+        }
+      ],
+      "finalLabel": "negative",
+      "level": "segment"
+    },
+    {
+      "id": "0",
+      "startTime": "5.387",
+      "endTime": "7.757",
+      "task": "strength",
+      "prediction": [
+        {
+          "label": "neutral",
+          "posterior": "0.5561",
+          "dominantInSegments": [
+            0,
+            1
+          ]
+        },
+        {
+          "label": "strong",
+          "posterior": "0.2869"
+        },
+        {
+          "label": "weak",
+          "posterior": "0.157"
+        }
+      ],
+      "finalLabel": "neutral",
+      "level": "segment"
+    },
+    {
+      "id": "0",
+      "startTime": "5.387",
+      "endTime": "7.757",
+      "task": "speaking_rate",
+      "prediction": [
+        {
+          "label": "slow",
+          "posterior": "0.7743",
+          "dominantInSegments": [
+            0,
+            1
+          ]
+        },
+        {
+          "label": "normal",
+          "posterior": "0.1973"
+        },
+        {
+          "label": "fast",
+          "posterior": "0.0284"
+        },
+        {
+          "label": "very fast",
+          "posterior": "0.0"
+        },
+        {
+          "label": "very slow",
+          "posterior": "0.0"
+        }
+      ],
+      "finalLabel": "slow",
+      "level": "segment"
+    },
+    {
+      "id": "0",
+      "startTime": "5.387",
+      "endTime": "7.757",
+      "task": "hesitation",
+      "prediction": [
+        {
+          "label": "no",
+          "posterior": "0.7551",
+          "dominantInSegments": [
+            0,
+            1
+          ]
+        },
+        {
+          "label": "yes",
+          "posterior": "0.2449"
+        }
+      ],
+      "finalLabel": "no",
+      "level": "segment"
+    },
+    {
+      "id": "0",
+      "startTime": "5.387",
+      "endTime": "7.757",
+      "task": "engagement",
+      "prediction": [
+        {
+          "label": "neutral",
+          "posterior": "0.4905",
+          "dominantInSegments": [
+            1
+          ]
+        },
+        {
+          "label": "engaged",
+          "posterior": "0.379",
+          "dominantInSegments": [
+            0
+          ]
+        },
+        {
+          "label": "withdrawn",
+          "posterior": "0.1305"
+        }
+      ],
+      "finalLabel": "neutral",
+      "level": "segment"
+    },
+    {
+      "id": "0",
+      "startTime": "5.387",
+      "endTime": "7.757",
+      "task": "politeness",
+      "prediction": [
+        {
+          "label": "rude",
+          "posterior": "0.4621",
+          "dominantInSegments": [
+            0
+          ]
+        },
+        {
+          "label": "neutral",
+          "posterior": "0.3228",
+          "dominantInSegments": [
+            1
+          ]
+        },
+        {
+          "label": "polite",
+          "posterior": "0.2151"
+        }
+      ],
+      "finalLabel": "rude",
+      "level": "segment"
+    },
+    {
+      "id": "1",
+      "startTime": "9.738",
+      "endTime": "12.003",
+      "task": "diarization",
+      "prediction": [
+        {
+          "label": "SPEAKER_00"
+        }
+      ],
+      "finalLabel": "SPEAKER_00"
+    },
+    {
+      "id": "1",
+      "startTime": "9.738",
+      "endTime": "12.003",
+      "task": "asr",
+      "prediction": [
+        {
+          "label": " Bum, bum, bum, bum, bum"
+        }
+      ],
+      "finalLabel": " Bum, bum, bum, bum, bum"
+    },
+    {
+      "id": "1",
+      "startTime": "9.738",
+      "endTime": "12.003",
+      "task": "gender",
+      "prediction": [
+        {
+          "label": "female",
+          "posterior": "0.5655",
+          "dominantInSegments": [
+            1
+          ]
+        },
+        {
+          "label": "male",
+          "posterior": "0.4345",
+          "dominantInSegments": [
+            0
+          ]
+        }
+      ],
+      "finalLabel": "female",
+      "level": "segment"
+    },
+    {
+      "id": "1",
+      "startTime": "9.738",
+      "endTime": "12.003",
+      "task": "age",
+      "prediction": [
+        {
+          "label": "18 - 22",
+          "posterior": "0.4612",
+          "dominantInSegments": [
+            0
+          ]
+        },
+        {
+          "label": "31 - 45",
+          "posterior": "0.3964",
+          "dominantInSegments": [
+            1
+          ]
+        },
+        {
+          "label": "46 - 65",
+          "posterior": "0.1414"
+        },
+        {
+          "label": "23 - 30",
+          "posterior": "0.0009"
+        }
+      ],
+      "finalLabel": "18 - 22",
+      "level": "segment"
+    },
+    {
+      "id": "1",
+      "startTime": "9.738",
+      "endTime": "12.003",
+      "task": "emotion",
+      "prediction": [
+        {
+          "label": "happy",
+          "posterior": "0.4211",
+          "dominantInSegments": [
+            0
+          ]
+        },
+        {
+          "label": "neutral",
+          "posterior": "0.2409",
+          "dominantInSegments": [
+            1
+          ]
+        },
+        {
+          "label": "sad",
+          "posterior": "0.2198"
+        },
+        {
+          "label": "angry",
+          "posterior": "0.1182"
+        }
+      ],
+      "finalLabel": "happy",
+      "level": "segment"
+    },
+    {
+      "id": "1",
+      "startTime": "9.738",
+      "endTime": "12.003",
+      "task": "positivity",
+      "prediction": [
+        {
+          "label": "negative",
+          "posterior": "0.5462",
+          "dominantInSegments": [
+            0
+          ]
+        },
+        {
+          "label": "neutral",
+          "posterior": "0.2862",
+          "dominantInSegments": [
+            1
+          ]
+        },
+        {
+          "label": "positive",
+          "posterior": "0.1676"
+        }
+      ],
+      "finalLabel": "negative",
+      "level": "segment"
+    },
+    {
+      "id": "1",
+      "startTime": "9.738",
+      "endTime": "12.003",
+      "task": "strength",
+      "prediction": [
+        {
+          "label": "strong",
+          "posterior": "0.5512",
+          "dominantInSegments": [
+            0
+          ]
+        },
+        {
+          "label": "neutral",
+          "posterior": "0.3845",
+          "dominantInSegments": [
+            1
+          ]
+        },
+        {
+          "label": "weak",
+          "posterior": "0.0643"
+        }
+      ],
+      "finalLabel": "strong",
+      "level": "segment"
+    },
+    {
+      "id": "1",
+      "startTime": "9.738",
+      "endTime": "12.003",
+      "task": "speaking_rate",
+      "prediction": [
+        {
+          "label": "slow",
+          "posterior": "0.7001",
+          "dominantInSegments": [
+            0,
+            1
+          ]
+        },
+        {
+          "label": "normal",
+          "posterior": "0.2508"
+        },
+        {
+          "label": "fast",
+          "posterior": "0.049"
+        },
+        {
+          "label": "very fast",
+          "posterior": "0.0"
+        },
+        {
+          "label": "very slow",
+          "posterior": "0.0"
+        }
+      ],
+      "finalLabel": "slow",
+      "level": "segment"
+    },
+    {
+      "id": "1",
+      "startTime": "9.738",
+      "endTime": "12.003",
+      "task": "hesitation",
+      "prediction": [
+        {
+          "label": "no",
+          "posterior": "0.7386",
+          "dominantInSegments": [
+            0,
+            1
+          ]
+        },
+        {
+          "label": "yes",
+          "posterior": "0.2614"
+        }
+      ],
+      "finalLabel": "no",
+      "level": "segment"
+    },
+    {
+      "id": "1",
+      "startTime": "9.738",
+      "endTime": "12.003",
+      "task": "engagement",
+      "prediction": [
+        {
+          "label": "engaged",
+          "posterior": "0.5012",
+          "dominantInSegments": [
+            0
+          ]
+        },
+        {
+          "label": "neutral",
+          "posterior": "0.3924",
+          "dominantInSegments": [
+            1
+          ]
+        },
+        {
+          "label": "withdrawn",
+          "posterior": "0.1064"
+        }
+      ],
+      "finalLabel": "engaged",
+      "level": "segment"
+    },
+    {
+      "id": "1",
+      "startTime": "9.738",
+      "endTime": "12.003",
+      "task": "politeness",
+      "prediction": [
+        {
+          "label": "rude",
+          "posterior": "0.4122",
+          "dominantInSegments": [
+            0
+          ]
+        },
+        {
+          "label": "neutral",
+          "posterior": "0.3166",
+          "dominantInSegments": [
+            1
+          ]
+        },
+        {
+          "label": "polite",
+          "posterior": "0.2713"
+        }
+      ],
+      "finalLabel": "rude",
+      "level": "segment"
+    },
+    {
+      "id": "2",
+      "startTime": "14.721",
+      "endTime": "18.009",
+      "task": "diarization",
+      "prediction": [
+        {
+          "label": "SPEAKER_00"
+        }
+      ],
+      "finalLabel": "SPEAKER_00"
+    },
+    {
+      "id": "2",
+      "startTime": "14.721",
+      "endTime": "18.009",
+      "task": "asr",
+      "prediction": [
+        {
+          "label": " bop bop bop bop bop bop bop bop"
+        }
+      ],
+      "finalLabel": " bop bop bop bop bop bop bop bop"
+    },
+    {
+      "id": "2",
+      "startTime": "14.721",
+      "endTime": "18.009",
+      "task": "gender",
+      "prediction": [
+        {
+          "label": "female",
+          "posterior": "0.9569",
+          "dominantInSegments": [
+            0,
+            1
+          ]
+        },
+        {
+          "label": "male",
+          "posterior": "0.0431"
+        }
+      ],
+      "finalLabel": "female",
+      "level": "segment"
+    },
+    {
+      "id": "2",
+      "startTime": "14.721",
+      "endTime": "18.009",
+      "task": "age",
+      "prediction": [
+        {
+          "label": "31 - 45",
+          "posterior": "0.9591",
+          "dominantInSegments": [
+            0,
+            1
+          ]
+        },
+        {
+          "label": "23 - 30",
+          "posterior": "0.0266"
+        },
+        {
+          "label": "46 - 65",
+          "posterior": "0.0141"
+        },
+        {
+          "label": "18 - 22",
+          "posterior": "0.0001"
+        }
+      ],
+      "finalLabel": "31 - 45",
+      "level": "segment"
+    },
+    {
+      "id": "2",
+      "startTime": "14.721",
+      "endTime": "18.009",
+      "task": "emotion",
+      "prediction": [
+        {
+          "label": "happy",
+          "posterior": "0.3715",
+          "dominantInSegments": [
+            1
+          ]
+        },
+        {
+          "label": "angry",
+          "posterior": "0.2736",
+          "dominantInSegments": [
+            0
+          ]
+        },
+        {
+          "label": "neutral",
+          "posterior": "0.1963"
+        },
+        {
+          "label": "sad",
+          "posterior": "0.1587"
+        }
+      ],
+      "finalLabel": "happy",
+      "level": "segment"
+    },
+    {
+      "id": "2",
+      "startTime": "14.721",
+      "endTime": "18.009",
+      "task": "positivity",
+      "prediction": [
+        {
+          "label": "negative",
+          "posterior": "0.6519",
+          "dominantInSegments": [
+            0,
+            1
+          ]
+        },
+        {
+          "label": "positive",
+          "posterior": "0.185"
+        },
+        {
+          "label": "neutral",
+          "posterior": "0.1632"
+        }
+      ],
+      "finalLabel": "negative",
+      "level": "segment"
+    },
+    {
+      "id": "2",
+      "startTime": "14.721",
+      "endTime": "18.009",
+      "task": "strength",
+      "prediction": [
+        {
+          "label": "strong",
+          "posterior": "0.7303",
+          "dominantInSegments": [
+            0,
+            1
+          ]
+        },
+        {
+          "label": "neutral",
+          "posterior": "0.2601"
+        },
+        {
+          "label": "weak",
+          "posterior": "0.0095"
+        }
+      ],
+      "finalLabel": "strong",
+      "level": "segment"
+    },
+    {
+      "id": "2",
+      "startTime": "14.721",
+      "endTime": "18.009",
+      "task": "speaking_rate",
+      "prediction": [
+        {
+          "label": "slow",
+          "posterior": "0.5324",
+          "dominantInSegments": [
+            1
+          ]
+        },
+        {
+          "label": "normal",
+          "posterior": "0.3911",
+          "dominantInSegments": [
+            0
+          ]
+        },
+        {
+          "label": "fast",
+          "posterior": "0.0765"
+        },
+        {
+          "label": "very fast",
+          "posterior": "0.0"
+        },
+        {
+          "label": "very slow",
+          "posterior": "0.0"
+        }
+      ],
+      "finalLabel": "slow",
+      "level": "segment"
+    },
+    {
+      "id": "2",
+      "startTime": "14.721",
+      "endTime": "18.009",
+      "task": "hesitation",
+      "prediction": [
+        {
+          "label": "no",
+          "posterior": "0.8429",
+          "dominantInSegments": [
+            0,
+            1
+          ]
+        },
+        {
+          "label": "yes",
+          "posterior": "0.1571"
+        }
+      ],
+      "finalLabel": "no",
+      "level": "segment"
+    },
+    {
+      "id": "2",
+      "startTime": "14.721",
+      "endTime": "18.009",
+      "task": "engagement",
+      "prediction": [
+        {
+          "label": "engaged",
+          "posterior": "0.7593",
+          "dominantInSegments": [
+            0,
+            1
+          ]
+        },
+        {
+          "label": "neutral",
+          "posterior": "0.1891"
+        },
+        {
+          "label": "withdrawn",
+          "posterior": "0.0516"
+        }
+      ],
+      "finalLabel": "engaged",
+      "level": "segment"
+    },
+    {
+      "id": "2",
+      "startTime": "14.721",
+      "endTime": "18.009",
+      "task": "politeness",
+      "prediction": [
+        {
+          "label": "rude",
+          "posterior": "0.5944",
+          "dominantInSegments": [
+            0,
+            1
+          ]
+        },
+        {
+          "label": "polite",
+          "posterior": "0.2272"
+        },
+        {
+          "label": "neutral",
+          "posterior": "0.1784"
+        }
+      ],
+      "finalLabel": "rude",
+      "level": "segment"
+    },
+    {
+      "id": "3",
+      "startTime": "19.702",
+      "endTime": "21.687",
+      "task": "diarization",
+      "prediction": [
+        {
+          "label": "SPEAKER_00"
+        }
+      ],
+      "finalLabel": "SPEAKER_00"
+    },
+    {
+      "id": "3",
+      "startTime": "19.702",
+      "endTime": "21.687",
+      "task": "asr",
+      "prediction": [
+        {
+          "label": " BWAH BWAH BWAH BWAH BWAH"
+        }
+      ],
+      "finalLabel": " BWAH BWAH BWAH BWAH BWAH"
+    },
+    {
+      "id": "4",
+      "startTime": "24.731",
+      "endTime": "30.116",
+      "task": "diarization",
+      "prediction": [
+        {
+          "label": "SPEAKER_00"
+        }
+      ],
+      "finalLabel": "SPEAKER_00"
+    },
+    {
+      "id": "4",
+      "startTime": "24.731",
+      "endTime": "30.116",
+      "task": "asr",
+      "prediction": [
+        {
+          "label": " Bop bop bop bop bop bop bop bop bop bop bop"
+        }
+      ],
+      "finalLabel": " Bop bop bop bop bop bop bop bop bop bop bop"
+    },
+    {
+      "id": "4",
+      "startTime": "24.731",
+      "endTime": "30.116",
+      "task": "gender",
+      "prediction": [
+        {
+          "label": "female",
+          "posterior": "0.6918",
+          "dominantInSegments": [
+            0,
+            1,
+            2
+          ]
+        },
+        {
+          "label": "male",
+          "posterior": "0.3082"
+        }
+      ],
+      "finalLabel": "female",
+      "level": "segment"
+    },
+    {
+      "id": "4",
+      "startTime": "24.731",
+      "endTime": "30.116",
+      "task": "age",
+      "prediction": [
+        {
+          "label": "46 - 65",
+          "posterior": "0.6517",
+          "dominantInSegments": [
+            0,
+            2
+          ]
+        },
+        {
+          "label": "31 - 45",
+          "posterior": "0.1647",
+          "dominantInSegments": [
+            1
+          ]
+        },
+        {
+          "label": "23 - 30",
+          "posterior": "0.1589"
+        },
+        {
+          "label": "18 - 22",
+          "posterior": "0.0247"
+        }
+      ],
+      "finalLabel": "46 - 65",
+      "level": "segment"
+    },
+    {
+      "id": "4",
+      "startTime": "24.731",
+      "endTime": "30.116",
+      "task": "emotion",
+      "prediction": [
+        {
+          "label": "neutral",
+          "posterior": "0.3103",
+          "dominantInSegments": [
+            0,
+            1
+          ]
+        },
+        {
+          "label": "happy",
+          "posterior": "0.2675",
+          "dominantInSegments": [
+            2
+          ]
+        },
+        {
+          "label": "sad",
+          "posterior": "0.2501"
+        },
+        {
+          "label": "angry",
+          "posterior": "0.172"
+        }
+      ],
+      "finalLabel": "neutral",
+      "level": "segment"
+    },
+    {
+      "id": "4",
+      "startTime": "24.731",
+      "endTime": "30.116",
+      "task": "positivity",
+      "prediction": [
+        {
+          "label": "negative",
+          "posterior": "0.4374",
+          "dominantInSegments": [
+            0,
+            2
+          ]
+        },
+        {
+          "label": "neutral",
+          "posterior": "0.3367",
+          "dominantInSegments": [
+            1
+          ]
+        },
+        {
+          "label": "positive",
+          "posterior": "0.2259"
+        }
+      ],
+      "finalLabel": "negative",
+      "level": "segment"
+    },
+    {
+      "id": "4",
+      "startTime": "24.731",
+      "endTime": "30.116",
+      "task": "strength",
+      "prediction": [
+        {
+          "label": "strong",
+          "posterior": "0.48",
+          "dominantInSegments": [
+            2
+          ]
+        },
+        {
+          "label": "neutral",
+          "posterior": "0.4361",
+          "dominantInSegments": [
+            0,
+            1
+          ]
+        },
+        {
+          "label": "weak",
+          "posterior": "0.0839"
+        }
+      ],
+      "finalLabel": "strong",
+      "level": "segment"
+    },
+    {
+      "id": "4",
+      "startTime": "24.731",
+      "endTime": "30.116",
+      "task": "speaking_rate",
+      "prediction": [
+        {
+          "label": "slow",
+          "posterior": "0.7209",
+          "dominantInSegments": [
+            0,
+            1,
+            2
+          ]
+        },
+        {
+          "label": "normal",
+          "posterior": "0.2495"
+        },
+        {
+          "label": "fast",
+          "posterior": "0.0295"
+        },
+        {
+          "label": "very fast",
+          "posterior": "0.0"
+        },
+        {
+          "label": "very slow",
+          "posterior": "0.0"
+        }
+      ],
+      "finalLabel": "slow",
+      "level": "segment"
+    },
+    {
+      "id": "4",
+      "startTime": "24.731",
+      "endTime": "30.116",
+      "task": "hesitation",
+      "prediction": [
+        {
+          "label": "no",
+          "posterior": "0.8516",
+          "dominantInSegments": [
+            0,
+            1,
+            2
+          ]
+        },
+        {
+          "label": "yes",
+          "posterior": "0.1484"
+        }
+      ],
+      "finalLabel": "no",
+      "level": "segment"
+    },
+    {
+      "id": "4",
+      "startTime": "24.731",
+      "endTime": "30.116",
+      "task": "engagement",
+      "prediction": [
+        {
+          "label": "engaged",
+          "posterior": "0.5794",
+          "dominantInSegments": [
+            0,
+            1,
+            2
+          ]
+        },
+        {
+          "label": "neutral",
+          "posterior": "0.3116"
+        },
+        {
+          "label": "withdrawn",
+          "posterior": "0.109"
+        }
+      ],
+      "finalLabel": "engaged",
+      "level": "segment"
+    },
+    {
+      "id": "4",
+      "startTime": "24.731",
+      "endTime": "30.116",
+      "task": "politeness",
+      "prediction": [
+        {
+          "label": "rude",
+          "posterior": "0.4631",
+          "dominantInSegments": [
+            0,
+            1,
+            2
+          ]
+        },
+        {
+          "label": "polite",
+          "posterior": "0.2844"
+        },
+        {
+          "label": "neutral",
+          "posterior": "0.2525"
+        }
+      ],
+      "finalLabel": "rude",
+      "level": "segment"
+    },
+    {
+      "id": "5",
+      "startTime": "39.203",
+      "endTime": "41.465",
+      "task": "diarization",
+      "prediction": [
+        {
+          "label": "SPEAKER_00"
+        }
+      ],
+      "finalLabel": "SPEAKER_00"
+    },
+    {
+      "id": "5",
+      "startTime": "39.203",
+      "endTime": "41.465",
+      "task": "asr",
+      "prediction": [
+        {
+          "label": " Bop bop bop bop bop bop bop bop bop"
+        }
+      ],
+      "finalLabel": " Bop bop bop bop bop bop bop bop bop"
+    },
+    {
+      "id": "5",
+      "startTime": "39.203",
+      "endTime": "41.465",
+      "task": "gender",
+      "prediction": [
+        {
+          "label": "female",
+          "posterior": "0.8105",
+          "dominantInSegments": [
+            0,
+            1
+          ]
+        },
+        {
+          "label": "male",
+          "posterior": "0.1895"
+        }
+      ],
+      "finalLabel": "female",
+      "level": "segment"
+    },
+    {
+      "id": "5",
+      "startTime": "39.203",
+      "endTime": "41.465",
+      "task": "age",
+      "prediction": [
+        {
+          "label": "23 - 30",
+          "posterior": "0.4309",
+          "dominantInSegments": [
+            1
+          ]
+        },
+        {
+          "label": "46 - 65",
+          "posterior": "0.4227",
+          "dominantInSegments": [
+            0
+          ]
+        },
+        {
+          "label": "18 - 22",
+          "posterior": "0.0797"
+        },
+        {
+          "label": "31 - 45",
+          "posterior": "0.0667"
+        }
+      ],
+      "finalLabel": "23 - 30",
+      "level": "segment"
+    },
+    {
+      "id": "5",
+      "startTime": "39.203",
+      "endTime": "41.465",
+      "task": "emotion",
+      "prediction": [
+        {
+          "label": "happy",
+          "posterior": "0.4363",
+          "dominantInSegments": [
+            0
+          ]
+        },
+        {
+          "label": "neutral",
+          "posterior": "0.3843",
+          "dominantInSegments": [
+            1
+          ]
+        },
+        {
+          "label": "sad",
+          "posterior": "0.0906"
+        },
+        {
+          "label": "angry",
+          "posterior": "0.0888"
+        }
+      ],
+      "finalLabel": "happy",
+      "level": "segment"
+    },
+    {
+      "id": "5",
+      "startTime": "39.203",
+      "endTime": "41.465",
+      "task": "positivity",
+      "prediction": [
+        {
+          "label": "neutral",
+          "posterior": "0.3537",
+          "dominantInSegments": [
+            1
+          ]
+        },
+        {
+          "label": "negative",
+          "posterior": "0.3507",
+          "dominantInSegments": [
+            0
+          ]
+        },
+        {
+          "label": "positive",
+          "posterior": "0.2958"
+        }
+      ],
+      "finalLabel": "neutral",
+      "level": "segment"
+    },
+    {
+      "id": "5",
+      "startTime": "39.203",
+      "endTime": "41.465",
+      "task": "strength",
+      "prediction": [
+        {
+          "label": "strong",
+          "posterior": "0.4657",
+          "dominantInSegments": [
+            0
+          ]
+        },
+        {
+          "label": "neutral",
+          "posterior": "0.4621",
+          "dominantInSegments": [
+            1
+          ]
+        },
+        {
+          "label": "weak",
+          "posterior": "0.0724"
+        }
+      ],
+      "finalLabel": "strong",
+      "level": "segment"
+    },
+    {
+      "id": "5",
+      "startTime": "39.203",
+      "endTime": "41.465",
+      "task": "speaking_rate",
+      "prediction": [
+        {
+          "label": "normal",
+          "posterior": "0.4648",
+          "dominantInSegments": [
+            0,
+            1
+          ]
+        },
+        {
+          "label": "slow",
+          "posterior": "0.415"
+        },
+        {
+          "label": "fast",
+          "posterior": "0.1202"
+        },
+        {
+          "label": "very fast",
+          "posterior": "0.0"
+        },
+        {
+          "label": "very slow",
+          "posterior": "0.0"
+        }
+      ],
+      "finalLabel": "normal",
+      "level": "segment"
+    },
+    {
+      "id": "5",
+      "startTime": "39.203",
+      "endTime": "41.465",
+      "task": "hesitation",
+      "prediction": [
+        {
+          "label": "no",
+          "posterior": "0.8145",
+          "dominantInSegments": [
+            0,
+            1
+          ]
+        },
+        {
+          "label": "yes",
+          "posterior": "0.1855"
+        }
+      ],
+      "finalLabel": "no",
+      "level": "segment"
+    },
+    {
+      "id": "5",
+      "startTime": "39.203",
+      "endTime": "41.465",
+      "task": "engagement",
+      "prediction": [
+        {
+          "label": "engaged",
+          "posterior": "0.6223",
+          "dominantInSegments": [
+            0,
+            1
+          ]
+        },
+        {
+          "label": "neutral",
+          "posterior": "0.2732"
+        },
+        {
+          "label": "withdrawn",
+          "posterior": "0.1046"
+        }
+      ],
+      "finalLabel": "engaged",
+      "level": "segment"
+    },
+    {
+      "id": "5",
+      "startTime": "39.203",
+      "endTime": "41.465",
+      "task": "politeness",
+      "prediction": [
+        {
+          "label": "rude",
+          "posterior": "0.5268",
+          "dominantInSegments": [
+            0,
+            1
+          ]
+        },
+        {
+          "label": "polite",
+          "posterior": "0.254"
+        },
+        {
+          "label": "neutral",
+          "posterior": "0.2192"
+        }
+      ],
+      "finalLabel": "rude",
+      "level": "segment"
+    },
+    {
+      "id": "6",
+      "startTime": "74.417",
+      "endTime": "78.121",
+      "task": "diarization",
+      "prediction": [
+        {
+          "label": "SPEAKER_00"
+        }
+      ],
+      "finalLabel": "SPEAKER_00"
+    },
+    {
+      "id": "6",
+      "startTime": "74.417",
+      "endTime": "78.121",
+      "task": "asr",
+      "prediction": [
+        {
+          "label": " I think I'm ready to do my thing I think I'm ready to take my chances"
+        }
+      ],
+      "finalLabel": " I think I'm ready to do my thing I think I'm ready to take my chances"
+    },
+    {
+      "id": "6",
+      "startTime": "74.417",
+      "endTime": "78.121",
+      "task": "gender",
+      "prediction": [
+        {
+          "label": "female",
+          "posterior": "0.9601",
+          "dominantInSegments": [
+            0,
+            1
+          ]
+        },
+        {
+          "label": "male",
+          "posterior": "0.0399"
+        }
+      ],
+      "finalLabel": "female",
+      "level": "segment"
+    },
+    {
+      "id": "6",
+      "startTime": "74.417",
+      "endTime": "78.121",
+      "task": "age",
+      "prediction": [
+        {
+          "label": "46 - 65",
+          "posterior": "0.8029",
+          "dominantInSegments": [
+            0,
+            1
+          ]
+        },
+        {
+          "label": "31 - 45",
+          "posterior": "0.1935"
+        },
+        {
+          "label": "23 - 30",
+          "posterior": "0.0034"
+        },
+        {
+          "label": "18 - 22",
+          "posterior": "0.0003"
+        }
+      ],
+      "finalLabel": "46 - 65",
+      "level": "segment"
+    },
+    {
+      "id": "6",
+      "startTime": "74.417",
+      "endTime": "78.121",
+      "task": "emotion",
+      "prediction": [
+        {
+          "label": "happy",
+          "posterior": "0.639",
+          "dominantInSegments": [
+            0,
+            1
+          ]
+        },
+        {
+          "label": "angry",
+          "posterior": "0.2084"
+        },
+        {
+          "label": "neutral",
+          "posterior": "0.1112"
+        },
+        {
+          "label": "sad",
+          "posterior": "0.0413"
+        }
+      ],
+      "finalLabel": "happy",
+      "level": "segment"
+    },
+    {
+      "id": "6",
+      "startTime": "74.417",
+      "endTime": "78.121",
+      "task": "positivity",
+      "prediction": [
+        {
+          "label": "positive",
+          "posterior": "0.4927",
+          "dominantInSegments": [
+            1
+          ]
+        },
+        {
+          "label": "negative",
+          "posterior": "0.2883",
+          "dominantInSegments": [
+            0
+          ]
+        },
+        {
+          "label": "neutral",
+          "posterior": "0.219"
+        }
+      ],
+      "finalLabel": "positive",
+      "level": "segment"
+    },
+    {
+      "id": "6",
+      "startTime": "74.417",
+      "endTime": "78.121",
+      "task": "strength",
+      "prediction": [
+        {
+          "label": "strong",
+          "posterior": "0.7648",
+          "dominantInSegments": [
+            0,
+            1
+          ]
+        },
+        {
+          "label": "neutral",
+          "posterior": "0.1731"
+        },
+        {
+          "label": "weak",
+          "posterior": "0.062"
+        }
+      ],
+      "finalLabel": "strong",
+      "level": "segment"
+    },
+    {
+      "id": "6",
+      "startTime": "74.417",
+      "endTime": "78.121",
+      "task": "speaking_rate",
+      "prediction": [
+        {
+          "label": "slow",
+          "posterior": "0.6397",
+          "dominantInSegments": [
+            0,
+            1
+          ]
+        },
+        {
+          "label": "normal",
+          "posterior": "0.3021"
+        },
+        {
+          "label": "fast",
+          "posterior": "0.0582"
+        },
+        {
+          "label": "very fast",
+          "posterior": "0.0"
+        },
+        {
+          "label": "very slow",
+          "posterior": "0.0"
+        }
+      ],
+      "finalLabel": "slow",
+      "level": "segment"
+    },
+    {
+      "id": "6",
+      "startTime": "74.417",
+      "endTime": "78.121",
+      "task": "hesitation",
+      "prediction": [
+        {
+          "label": "no",
+          "posterior": "0.8986",
+          "dominantInSegments": [
+            0,
+            1
+          ]
+        },
+        {
+          "label": "yes",
+          "posterior": "0.1013"
+        }
+      ],
+      "finalLabel": "no",
+      "level": "segment"
+    },
+    {
+      "id": "6",
+      "startTime": "74.417",
+      "endTime": "78.121",
+      "task": "engagement",
+      "prediction": [
+        {
+          "label": "engaged",
+          "posterior": "0.8551",
+          "dominantInSegments": [
+            0,
+            1
+          ]
+        },
+        {
+          "label": "neutral",
+          "posterior": "0.0998"
+        },
+        {
+          "label": "withdrawn",
+          "posterior": "0.045"
+        }
+      ],
+      "finalLabel": "engaged",
+      "level": "segment"
+    },
+    {
+      "id": "6",
+      "startTime": "74.417",
+      "endTime": "78.121",
+      "task": "politeness",
+      "prediction": [
+        {
+          "label": "rude",
+          "posterior": "0.5005",
+          "dominantInSegments": [
+            0,
+            1
+          ]
+        },
+        {
+          "label": "polite",
+          "posterior": "0.2675"
+        },
+        {
+          "label": "neutral",
+          "posterior": "0.2319"
+        }
+      ],
+      "finalLabel": "rude",
+      "level": "segment"
+    },
+    {
+      "id": "7",
+      "startTime": "83.492",
+      "endTime": "86.244",
+      "task": "diarization",
+      "prediction": [
+        {
+          "label": "SPEAKER_00"
+        }
+      ],
+      "finalLabel": "SPEAKER_00"
+    },
+    {
+      "id": "7",
+      "startTime": "83.492",
+      "endTime": "86.244",
+      "task": "asr",
+      "prediction": [
+        {
+          "label": " I gotta get up, get up, get up, get up."
+        }
+      ],
+      "finalLabel": " I gotta get up, get up, get up, get up."
+    },
+    {
+      "id": "7",
+      "startTime": "83.492",
+      "endTime": "86.244",
+      "task": "gender",
+      "prediction": [
+        {
+          "label": "female",
+          "posterior": "0.5876",
+          "dominantInSegments": [
+            1
+          ]
+        },
+        {
+          "label": "male",
+          "posterior": "0.4124",
+          "dominantInSegments": [
+            0
+          ]
+        }
+      ],
+      "finalLabel": "female",
+      "level": "segment"
+    },
+    {
+      "id": "7",
+      "startTime": "83.492",
+      "endTime": "86.244",
+      "task": "age",
+      "prediction": [
+        {
+          "label": "31 - 45",
+          "posterior": "0.8105",
+          "dominantInSegments": [
+            0,
+            1
+          ]
+        },
+        {
+          "label": "46 - 65",
+          "posterior": "0.1571"
+        },
+        {
+          "label": "18 - 22",
+          "posterior": "0.0181"
+        },
+        {
+          "label": "23 - 30",
+          "posterior": "0.0143"
+        }
+      ],
+      "finalLabel": "31 - 45",
+      "level": "segment"
+    },
+    {
+      "id": "7",
+      "startTime": "83.492",
+      "endTime": "86.244",
+      "task": "emotion",
+      "prediction": [
+        {
+          "label": "happy",
+          "posterior": "0.4839",
+          "dominantInSegments": [
+            0,
+            1
+          ]
+        },
+        {
+          "label": "neutral",
+          "posterior": "0.2629"
+        },
+        {
+          "label": "angry",
+          "posterior": "0.1565"
+        },
+        {
+          "label": "sad",
+          "posterior": "0.0969"
+        }
+      ],
+      "finalLabel": "happy",
+      "level": "segment"
+    },
+    {
+      "id": "7",
+      "startTime": "83.492",
+      "endTime": "86.244",
+      "task": "positivity",
+      "prediction": [
+        {
+          "label": "positive",
+          "posterior": "0.4551",
+          "dominantInSegments": [
+            0,
+            1
+          ]
+        },
+        {
+          "label": "neutral",
+          "posterior": "0.3501"
+        },
+        {
+          "label": "negative",
+          "posterior": "0.1948"
+        }
+      ],
+      "finalLabel": "positive",
+      "level": "segment"
+    },
+    {
+      "id": "7",
+      "startTime": "83.492",
+      "endTime": "86.244",
+      "task": "strength",
+      "prediction": [
+        {
+          "label": "strong",
+          "posterior": "0.4764",
+          "dominantInSegments": [
+            0,
+            1
+          ]
+        },
+        {
+          "label": "neutral",
+          "posterior": "0.4244"
+        },
+        {
+          "label": "weak",
+          "posterior": "0.0991"
+        }
+      ],
+      "finalLabel": "strong",
+      "level": "segment"
+    },
+    {
+      "id": "7",
+      "startTime": "83.492",
+      "endTime": "86.244",
+      "task": "speaking_rate",
+      "prediction": [
+        {
+          "label": "slow",
+          "posterior": "0.6528",
+          "dominantInSegments": [
+            0,
+            1
+          ]
+        },
+        {
+          "label": "normal",
+          "posterior": "0.2717"
+        },
+        {
+          "label": "fast",
+          "posterior": "0.0754"
+        },
+        {
+          "label": "very fast",
+          "posterior": "0.0"
+        },
+        {
+          "label": "very slow",
+          "posterior": "0.0"
+        }
+      ],
+      "finalLabel": "slow",
+      "level": "segment"
+    },
+    {
+      "id": "7",
+      "startTime": "83.492",
+      "endTime": "86.244",
+      "task": "hesitation",
+      "prediction": [
+        {
+          "label": "no",
+          "posterior": "0.9032",
+          "dominantInSegments": [
+            0,
+            1
+          ]
+        },
+        {
+          "label": "yes",
+          "posterior": "0.0968"
+        }
+      ],
+      "finalLabel": "no",
+      "level": "segment"
+    },
+    {
+      "id": "7",
+      "startTime": "83.492",
+      "endTime": "86.244",
+      "task": "engagement",
+      "prediction": [
+        {
+          "label": "engaged",
+          "posterior": "0.5839",
+          "dominantInSegments": [
+            0,
+            1
+          ]
+        },
+        {
+          "label": "neutral",
+          "posterior": "0.3214"
+        },
+        {
+          "label": "withdrawn",
+          "posterior": "0.0946"
+        }
+      ],
+      "finalLabel": "engaged",
+      "level": "segment"
+    },
+    {
+      "id": "7",
+      "startTime": "83.492",
+      "endTime": "86.244",
+      "task": "politeness",
+      "prediction": [
+        {
+          "label": "rude",
+          "posterior": "0.4064",
+          "dominantInSegments": [
+            0,
+            1
+          ]
+        },
+        {
+          "label": "neutral",
+          "posterior": "0.3329"
+        },
+        {
+          "label": "polite",
+          "posterior": "0.2606"
+        }
+      ],
+      "finalLabel": "rude",
+      "level": "segment"
+    },
+    {
+      "id": "8",
+      "startTime": "94.855",
+      "endTime": "95.435",
+      "task": "diarization",
+      "prediction": [
+        {
+          "label": "SPEAKER_00"
+        }
+      ],
+      "finalLabel": "SPEAKER_00"
+    },
+    {
+      "id": "8",
+      "startTime": "94.855",
+      "endTime": "95.435",
+      "task": "asr",
+      "prediction": [
+        {
+          "label": " see what you said"
+        }
+      ],
+      "finalLabel": " see what you said"
+    },
+    {
+      "id": "9",
+      "startTime": "107.418",
+      "endTime": "110.941",
+      "task": "diarization",
+      "prediction": [
+        {
+          "label": "UNKNOWN"
+        }
+      ],
+      "finalLabel": "UNKNOWN"
+    },
+    {
+      "id": "9",
+      "startTime": "107.418",
+      "endTime": "110.941",
+      "task": "asr",
+      "prediction": [
+        {
+          "label": " It was time to make a party, so we booked up a dime."
+        }
+      ],
+      "finalLabel": " It was time to make a party, so we booked up a dime."
+    },
+    {
+      "id": "9",
+      "startTime": "107.418",
+      "endTime": "110.941",
+      "task": "gender",
+      "prediction": [
+        {
+          "label": "female",
+          "posterior": "0.5646",
+          "dominantInSegments": [
+            0
+          ]
+        },
+        {
+          "label": "male",
+          "posterior": "0.4354",
+          "dominantInSegments": [
+            1
+          ]
+        }
+      ],
+      "finalLabel": "female",
+      "level": "segment"
+    },
+    {
+      "id": "9",
+      "startTime": "107.418",
+      "endTime": "110.941",
+      "task": "age",
+      "prediction": [
+        {
+          "label": "46 - 65",
+          "posterior": "0.8089",
+          "dominantInSegments": [
+            0,
+            1
+          ]
+        },
+        {
+          "label": "31 - 45",
+          "posterior": "0.1899"
+        },
+        {
+          "label": "18 - 22",
+          "posterior": "0.0007"
+        },
+        {
+          "label": "23 - 30",
+          "posterior": "0.0005"
+        }
+      ],
+      "finalLabel": "46 - 65",
+      "level": "segment"
+    },
+    {
+      "id": "9",
+      "startTime": "107.418",
+      "endTime": "110.941",
+      "task": "emotion",
+      "prediction": [
+        {
+          "label": "happy",
+          "posterior": "0.5358",
+          "dominantInSegments": [
+            0,
+            1
+          ]
+        },
+        {
+          "label": "angry",
+          "posterior": "0.3175"
+        },
+        {
+          "label": "neutral",
+          "posterior": "0.1183"
+        },
+        {
+          "label": "sad",
+          "posterior": "0.0282"
+        }
+      ],
+      "finalLabel": "happy",
+      "level": "segment"
+    },
+    {
+      "id": "9",
+      "startTime": "107.418",
+      "endTime": "110.941",
+      "task": "positivity",
+      "prediction": [
+        {
+          "label": "negative",
+          "posterior": "0.4253",
+          "dominantInSegments": [
+            0,
+            1
+          ]
+        },
+        {
+          "label": "positive",
+          "posterior": "0.3028"
+        },
+        {
+          "label": "neutral",
+          "posterior": "0.2718"
+        }
+      ],
+      "finalLabel": "negative",
+      "level": "segment"
+    },
+    {
+      "id": "9",
+      "startTime": "107.418",
+      "endTime": "110.941",
+      "task": "strength",
+      "prediction": [
+        {
+          "label": "strong",
+          "posterior": "0.8806",
+          "dominantInSegments": [
+            0,
+            1
+          ]
+        },
+        {
+          "label": "neutral",
+          "posterior": "0.1175"
+        },
+        {
+          "label": "weak",
+          "posterior": "0.0019"
+        }
+      ],
+      "finalLabel": "strong",
+      "level": "segment"
+    },
+    {
+      "id": "9",
+      "startTime": "107.418",
+      "endTime": "110.941",
+      "task": "speaking_rate",
+      "prediction": [
+        {
+          "label": "normal",
+          "posterior": "0.4458",
+          "dominantInSegments": [
+            1
+          ]
+        },
+        {
+          "label": "slow",
+          "posterior": "0.413",
+          "dominantInSegments": [
+            0
+          ]
+        },
+        {
+          "label": "fast",
+          "posterior": "0.1411"
+        },
+        {
+          "label": "very fast",
+          "posterior": "0.0"
+        },
+        {
+          "label": "very slow",
+          "posterior": "0.0"
+        }
+      ],
+      "finalLabel": "normal",
+      "level": "segment"
+    },
+    {
+      "id": "9",
+      "startTime": "107.418",
+      "endTime": "110.941",
+      "task": "hesitation",
+      "prediction": [
+        {
+          "label": "no",
+          "posterior": "0.8522",
+          "dominantInSegments": [
+            0,
+            1
+          ]
+        },
+        {
+          "label": "yes",
+          "posterior": "0.1478"
+        }
+      ],
+      "finalLabel": "no",
+      "level": "segment"
+    },
+    {
+      "id": "9",
+      "startTime": "107.418",
+      "endTime": "110.941",
+      "task": "engagement",
+      "prediction": [
+        {
+          "label": "engaged",
+          "posterior": "0.8567",
+          "dominantInSegments": [
+            0,
+            1
+          ]
+        },
+        {
+          "label": "neutral",
+          "posterior": "0.1045"
+        },
+        {
+          "label": "withdrawn",
+          "posterior": "0.0388"
+        }
+      ],
+      "finalLabel": "engaged",
+      "level": "segment"
+    },
+    {
+      "id": "9",
+      "startTime": "107.418",
+      "endTime": "110.941",
+      "task": "politeness",
+      "prediction": [
+        {
+          "label": "rude",
+          "posterior": "0.5201",
+          "dominantInSegments": [
+            0,
+            1
+          ]
+        },
+        {
+          "label": "polite",
+          "posterior": "0.3006"
+        },
+        {
+          "label": "neutral",
+          "posterior": "0.1792"
+        }
+      ],
+      "finalLabel": "rude",
+      "level": "segment"
+    },
+    {
+      "id": "10",
+      "startTime": "111.121",
+      "endTime": "114.845",
+      "task": "diarization",
+      "prediction": [
+        {
+          "label": "SPEAKER_00"
+        }
+      ],
+      "finalLabel": "SPEAKER_00"
+    },
+    {
+      "id": "10",
+      "startTime": "111.121",
+      "endTime": "114.845",
+      "task": "asr",
+      "prediction": [
+        {
+          "label": "Made a deal with John Miller, the booze, it's a thousand."
+        }
+      ],
+      "finalLabel": "Made a deal with John Miller, the booze, it's a thousand."
+    },
+    {
+      "id": "10",
+      "startTime": "111.121",
+      "endTime": "114.845",
+      "task": "gender",
+      "prediction": [
+        {
+          "label": "female",
+          "posterior": "0.8199",
+          "dominantInSegments": [
+            0,
+            1
+          ]
+        },
+        {
+          "label": "male",
+          "posterior": "0.1801"
+        }
+      ],
+      "finalLabel": "female",
+      "level": "segment"
+    },
+    {
+      "id": "10",
+      "startTime": "111.121",
+      "endTime": "114.845",
+      "task": "age",
+      "prediction": [
+        {
+          "label": "31 - 45",
+          "posterior": "0.7481",
+          "dominantInSegments": [
+            0,
+            1
+          ]
+        },
+        {
+          "label": "46 - 65",
+          "posterior": "0.2506"
+        },
+        {
+          "label": "18 - 22",
+          "posterior": "0.0013"
+        },
+        {
+          "label": "23 - 30",
+          "posterior": "0.0001"
+        }
+      ],
+      "finalLabel": "31 - 45",
+      "level": "segment"
+    },
+    {
+      "id": "10",
+      "startTime": "111.121",
+      "endTime": "114.845",
+      "task": "emotion",
+      "prediction": [
+        {
+          "label": "happy",
+          "posterior": "0.6329",
+          "dominantInSegments": [
+            0,
+            1
+          ]
+        },
+        {
+          "label": "angry",
+          "posterior": "0.2241"
+        },
+        {
+          "label": "neutral",
+          "posterior": "0.0955"
+        },
+        {
+          "label": "sad",
+          "posterior": "0.0475"
+        }
+      ],
+      "finalLabel": "happy",
+      "level": "segment"
+    },
+    {
+      "id": "10",
+      "startTime": "111.121",
+      "endTime": "114.845",
+      "task": "positivity",
+      "prediction": [
+        {
+          "label": "negative",
+          "posterior": "0.4244",
+          "dominantInSegments": [
+            1
+          ]
+        },
+        {
+          "label": "positive",
+          "posterior": "0.3674",
+          "dominantInSegments": [
+            0
+          ]
+        },
+        {
+          "label": "neutral",
+          "posterior": "0.2081"
+        }
+      ],
+      "finalLabel": "negative",
+      "level": "segment"
+    },
+    {
+      "id": "10",
+      "startTime": "111.121",
+      "endTime": "114.845",
+      "task": "strength",
+      "prediction": [
+        {
+          "label": "strong",
+          "posterior": "0.8901",
+          "dominantInSegments": [
+            0,
+            1
+          ]
+        },
+        {
+          "label": "neutral",
+          "posterior": "0.1084"
+        },
+        {
+          "label": "weak",
+          "posterior": "0.0015"
+        }
+      ],
+      "finalLabel": "strong",
+      "level": "segment"
+    },
+    {
+      "id": "10",
+      "startTime": "111.121",
+      "endTime": "114.845",
+      "task": "speaking_rate",
+      "prediction": [
+        {
+          "label": "normal",
+          "posterior": "0.4685",
+          "dominantInSegments": [
+            0,
+            1
+          ]
+        },
+        {
+          "label": "fast",
+          "posterior": "0.2909"
+        },
+        {
+          "label": "slow",
+          "posterior": "0.2405"
+        },
+        {
+          "label": "very fast",
+          "posterior": "0.0"
+        },
+        {
+          "label": "very slow",
+          "posterior": "0.0"
+        }
+      ],
+      "finalLabel": "normal",
+      "level": "segment"
+    },
+    {
+      "id": "10",
+      "startTime": "111.121",
+      "endTime": "114.845",
+      "task": "hesitation",
+      "prediction": [
+        {
+          "label": "no",
+          "posterior": "0.9109",
+          "dominantInSegments": [
+            0,
+            1
+          ]
+        },
+        {
+          "label": "yes",
+          "posterior": "0.089"
+        }
+      ],
+      "finalLabel": "no",
+      "level": "segment"
+    },
+    {
+      "id": "10",
+      "startTime": "111.121",
+      "endTime": "114.845",
+      "task": "engagement",
+      "prediction": [
+        {
+          "label": "engaged",
+          "posterior": "0.911",
+          "dominantInSegments": [
+            0,
+            1
+          ]
+        },
+        {
+          "label": "neutral",
+          "posterior": "0.0763"
+        },
+        {
+          "label": "withdrawn",
+          "posterior": "0.0127"
+        }
+      ],
+      "finalLabel": "engaged",
+      "level": "segment"
+    },
+    {
+      "id": "10",
+      "startTime": "111.121",
+      "endTime": "114.845",
+      "task": "politeness",
+      "prediction": [
+        {
+          "label": "rude",
+          "posterior": "0.4711",
+          "dominantInSegments": [
+            0,
+            1
+          ]
+        },
+        {
+          "label": "polite",
+          "posterior": "0.3059"
+        },
+        {
+          "label": "neutral",
+          "posterior": "0.2229"
+        }
+      ],
+      "finalLabel": "rude",
+      "level": "segment"
+    },
+    {
+      "id": "11",
+      "startTime": "122.992",
+      "endTime": "128.74",
+      "task": "diarization",
+      "prediction": [
+        {
+          "label": "SPEAKER_00"
+        }
+      ],
+      "finalLabel": "SPEAKER_00"
+    },
+    {
+      "id": "11",
+      "startTime": "122.992",
+      "endTime": "128.74",
+      "task": "asr",
+      "prediction": [
+        {
+          "label": " See what they would say if you roamed to Berlin Took the tour, you're a lier A vocal, yeah, we would've called the album What is it?"
+        }
+      ],
+      "finalLabel": " See what they would say if you roamed to Berlin Took the tour, you're a lier A vocal, yeah, we would've called the album What is it?"
+    },
+    {
+      "id": "11",
+      "startTime": "122.992",
+      "endTime": "128.74",
+      "task": "gender",
+      "prediction": [
+        {
+          "label": "female",
+          "posterior": "0.9696",
+          "dominantInSegments": [
+            0,
+            1,
+            2
+          ]
+        },
+        {
+          "label": "male",
+          "posterior": "0.0304"
+        }
+      ],
+      "finalLabel": "female",
+      "level": "segment"
+    },
+    {
+      "id": "11",
+      "startTime": "122.992",
+      "endTime": "128.74",
+      "task": "age",
+      "prediction": [
+        {
+          "label": "46 - 65",
+          "posterior": "0.6407",
+          "dominantInSegments": [
+            0,
+            2
+          ]
+        },
+        {
+          "label": "31 - 45",
+          "posterior": "0.3557",
+          "dominantInSegments": [
+            1
+          ]
+        },
+        {
+          "label": "23 - 30",
+          "posterior": "0.0033"
+        },
+        {
+          "label": "18 - 22",
+          "posterior": "0.0004"
+        }
+      ],
+      "finalLabel": "46 - 65",
+      "level": "segment"
+    },
+    {
+      "id": "11",
+      "startTime": "122.992",
+      "endTime": "128.74",
+      "task": "emotion",
+      "prediction": [
+        {
+          "label": "happy",
+          "posterior": "0.6881",
+          "dominantInSegments": [
+            0,
+            1,
+            2
+          ]
+        },
+        {
+          "label": "angry",
+          "posterior": "0.218"
+        },
+        {
+          "label": "neutral",
+          "posterior": "0.0772"
+        },
+        {
+          "label": "sad",
+          "posterior": "0.0167"
+        }
+      ],
+      "finalLabel": "happy",
+      "level": "segment"
+    },
+    {
+      "id": "11",
+      "startTime": "122.992",
+      "endTime": "128.74",
+      "task": "positivity",
+      "prediction": [
+        {
+          "label": "negative",
+          "posterior": "0.4261",
+          "dominantInSegments": [
+            0,
+            1,
+            2
+          ]
+        },
+        {
+          "label": "neutral",
+          "posterior": "0.301"
+        },
+        {
+          "label": "positive",
+          "posterior": "0.2729"
+        }
+      ],
+      "finalLabel": "negative",
+      "level": "segment"
+    },
+    {
+      "id": "11",
+      "startTime": "122.992",
+      "endTime": "128.74",
+      "task": "strength",
+      "prediction": [
+        {
+          "label": "strong",
+          "posterior": "0.9602",
+          "dominantInSegments": [
+            0,
+            1,
+            2
+          ]
+        },
+        {
+          "label": "neutral",
+          "posterior": "0.0397"
+        },
+        {
+          "label": "weak",
+          "posterior": "0.0002"
+        }
+      ],
+      "finalLabel": "strong",
+      "level": "segment"
+    },
+    {
+      "id": "11",
+      "startTime": "122.992",
+      "endTime": "128.74",
+      "task": "speaking_rate",
+      "prediction": [
+        {
+          "label": "normal",
+          "posterior": "0.5472",
+          "dominantInSegments": [
+            0,
+            1,
+            2
+          ]
+        },
+        {
+          "label": "fast",
+          "posterior": "0.2435"
+        },
+        {
+          "label": "slow",
+          "posterior": "0.2093"
+        },
+        {
+          "label": "very fast",
+          "posterior": "0.0"
+        },
+        {
+          "label": "very slow",
+          "posterior": "0.0"
+        }
+      ],
+      "finalLabel": "normal",
+      "level": "segment"
+    },
+    {
+      "id": "11",
+      "startTime": "122.992",
+      "endTime": "128.74",
+      "task": "hesitation",
+      "prediction": [
+        {
+          "label": "no",
+          "posterior": "0.8642",
+          "dominantInSegments": [
+            0,
+            1,
+            2
+          ]
+        },
+        {
+          "label": "yes",
+          "posterior": "0.1358"
+        }
+      ],
+      "finalLabel": "no",
+      "level": "segment"
+    },
+    {
+      "id": "11",
+      "startTime": "122.992",
+      "endTime": "128.74",
+      "task": "engagement",
+      "prediction": [
+        {
+          "label": "engaged",
+          "posterior": "0.9397",
+          "dominantInSegments": [
+            0,
+            1,
+            2
+          ]
+        },
+        {
+          "label": "neutral",
+          "posterior": "0.0541"
+        },
+        {
+          "label": "withdrawn",
+          "posterior": "0.0061"
+        }
+      ],
+      "finalLabel": "engaged",
+      "level": "segment"
+    },
+    {
+      "id": "11",
+      "startTime": "122.992",
+      "endTime": "128.74",
+      "task": "politeness",
+      "prediction": [
+        {
+          "label": "rude",
+          "posterior": "0.4657",
+          "dominantInSegments": [
+            0,
+            1,
+            2
+          ]
+        },
+        {
+          "label": "polite",
+          "posterior": "0.3113"
+        },
+        {
+          "label": "neutral",
+          "posterior": "0.2229"
+        }
+      ],
+      "finalLabel": "rude",
+      "level": "segment"
+    },
+    {
+      "id": "12",
+      "startTime": "128.78",
+      "endTime": "129.08",
+      "task": "diarization",
+      "prediction": [
+        {
+          "label": "SPEAKER_00"
+        }
+      ],
+      "finalLabel": "SPEAKER_00"
+    },
+    {
+      "id": "12",
+      "startTime": "128.78",
+      "endTime": "129.08",
+      "task": "asr",
+      "prediction": [
+        {
+          "label": "What's up?"
+        }
+      ],
+      "finalLabel": "What's up?"
+    },
+    {
+      "id": "13",
+      "startTime": "129.241",
+      "endTime": "131.023",
+      "task": "diarization",
+      "prediction": [
+        {
+          "label": "SPEAKER_00"
+        }
+      ],
+      "finalLabel": "SPEAKER_00"
+    },
+    {
+      "id": "13",
+      "startTime": "129.241",
+      "endTime": "131.023",
+      "task": "asr",
+      "prediction": [
+        {
+          "label": "Conor said the vocal number, what is it?"
+        }
+      ],
+      "finalLabel": "Conor said the vocal number, what is it?"
+    },
+    {
+      "id": "14",
+      "startTime": "131.043",
+      "endTime": "136.29",
+      "task": "diarization",
+      "prediction": [
+        {
+          "label": "SPEAKER_00"
+        }
+      ],
+      "finalLabel": "SPEAKER_00"
+    },
+    {
+      "id": "14",
+      "startTime": "131.043",
+      "endTime": "136.29",
+      "task": "asr",
+      "prediction": [
+        {
+          "label": "Now it's Kepsey and Drew Stooped out for a new day Read the alarm, had them on Skype or a two-way"
+        }
+      ],
+      "finalLabel": "Now it's Kepsey and Drew Stooped out for a new day Read the alarm, had them on Skype or a two-way"
+    },
+    {
+      "id": "14",
+      "startTime": "131.043",
+      "endTime": "136.29",
+      "task": "gender",
+      "prediction": [
+        {
+          "label": "female",
+          "posterior": "0.6577",
+          "dominantInSegments": [
+            0,
+            2
+          ]
+        },
+        {
+          "label": "male",
+          "posterior": "0.3423",
+          "dominantInSegments": [
+            1
+          ]
+        }
+      ],
+      "finalLabel": "female",
+      "level": "segment"
+    },
+    {
+      "id": "14",
+      "startTime": "131.043",
+      "endTime": "136.29",
+      "task": "age",
+      "prediction": [
+        {
+          "label": "46 - 65",
+          "posterior": "0.7636",
+          "dominantInSegments": [
+            0,
+            1
+          ]
+        },
+        {
+          "label": "18 - 22",
+          "posterior": "0.1915",
+          "dominantInSegments": [
+            2
+          ]
+        },
+        {
+          "label": "31 - 45",
+          "posterior": "0.0448"
+        },
+        {
+          "label": "23 - 30",
+          "posterior": "0.0001"
+        }
+      ],
+      "finalLabel": "46 - 65",
+      "level": "segment"
+    },
+    {
+      "id": "14",
+      "startTime": "131.043",
+      "endTime": "136.29",
+      "task": "emotion",
+      "prediction": [
+        {
+          "label": "angry",
+          "posterior": "0.4674",
+          "dominantInSegments": [
+            0,
+            1,
+            2
+          ]
+        },
+        {
+          "label": "happy",
+          "posterior": "0.3406"
+        },
+        {
+          "label": "neutral",
+          "posterior": "0.1595"
+        },
+        {
+          "label": "sad",
+          "posterior": "0.0325"
+        }
+      ],
+      "finalLabel": "angry",
+      "level": "segment"
+    },
+    {
+      "id": "14",
+      "startTime": "131.043",
+      "endTime": "136.29",
+      "task": "positivity",
+      "prediction": [
+        {
+          "label": "negative",
+          "posterior": "0.4629",
+          "dominantInSegments": [
+            0,
+            1,
+            2
+          ]
+        },
+        {
+          "label": "positive",
+          "posterior": "0.3202"
+        },
+        {
+          "label": "neutral",
+          "posterior": "0.2169"
+        }
+      ],
+      "finalLabel": "negative",
+      "level": "segment"
+    },
+    {
+      "id": "14",
+      "startTime": "131.043",
+      "endTime": "136.29",
+      "task": "strength",
+      "prediction": [
+        {
+          "label": "strong",
+          "posterior": "0.9413",
+          "dominantInSegments": [
+            0,
+            1,
+            2
+          ]
+        },
+        {
+          "label": "neutral",
+          "posterior": "0.056"
+        },
+        {
+          "label": "weak",
+          "posterior": "0.0027"
+        }
+      ],
+      "finalLabel": "strong",
+      "level": "segment"
+    },
+    {
+      "id": "14",
+      "startTime": "131.043",
+      "endTime": "136.29",
+      "task": "speaking_rate",
+      "prediction": [
+        {
+          "label": "normal",
+          "posterior": "0.4759",
+          "dominantInSegments": [
+            1,
+            2
+          ]
+        },
+        {
+          "label": "slow",
+          "posterior": "0.3826",
+          "dominantInSegments": [
+            0
+          ]
+        },
+        {
+          "label": "fast",
+          "posterior": "0.1415"
+        },
+        {
+          "label": "very fast",
+          "posterior": "0.0"
+        },
+        {
+          "label": "very slow",
+          "posterior": "0.0"
+        }
+      ],
+      "finalLabel": "normal",
+      "level": "segment"
+    },
+    {
+      "id": "14",
+      "startTime": "131.043",
+      "endTime": "136.29",
+      "task": "hesitation",
+      "prediction": [
+        {
+          "label": "no",
+          "posterior": "0.8747",
+          "dominantInSegments": [
+            0,
+            1,
+            2
+          ]
+        },
+        {
+          "label": "yes",
+          "posterior": "0.1253"
+        }
+      ],
+      "finalLabel": "no",
+      "level": "segment"
+    },
+    {
+      "id": "14",
+      "startTime": "131.043",
+      "endTime": "136.29",
+      "task": "engagement",
+      "prediction": [
+        {
+          "label": "engaged",
+          "posterior": "0.8966",
+          "dominantInSegments": [
+            0,
+            1,
+            2
+          ]
+        },
+        {
+          "label": "neutral",
+          "posterior": "0.0831"
+        },
+        {
+          "label": "withdrawn",
+          "posterior": "0.0203"
+        }
+      ],
+      "finalLabel": "engaged",
+      "level": "segment"
+    },
+    {
+      "id": "14",
+      "startTime": "131.043",
+      "endTime": "136.29",
+      "task": "politeness",
+      "prediction": [
+        {
+          "label": "rude",
+          "posterior": "0.4479",
+          "dominantInSegments": [
+            0,
+            1
+          ]
+        },
+        {
+          "label": "polite",
+          "posterior": "0.2876",
+          "dominantInSegments": [
+            2
+          ]
+        },
+        {
+          "label": "neutral",
+          "posterior": "0.2646"
+        }
+      ],
+      "finalLabel": "rude",
+      "level": "segment"
+    },
+    {
+      "id": "15",
+      "startTime": "136.991",
+      "endTime": "137.766",
+      "task": "diarization",
+      "prediction": [
+        {
+          "label": "SPEAKER_00"
+        }
+      ],
+      "finalLabel": "SPEAKER_00"
+    },
+    {
+      "id": "15",
+      "startTime": "136.991",
+      "endTime": "137.766",
+      "task": "asr",
+      "prediction": [
+        {
+          "label": " It's a lot of work."
+        }
+      ],
+      "finalLabel": " It's a lot of work."
+    },
+    {
+      "id": "16",
+      "startTime": "143.033",
+      "endTime": "143.274",
+      "task": "diarization",
+      "prediction": [
+        {
+          "label": "UNKNOWN"
+        }
+      ],
+      "finalLabel": "UNKNOWN"
+    },
+    {
+      "id": "16",
+      "startTime": "143.033",
+      "endTime": "143.274",
+      "task": "asr",
+      "prediction": [
+        {
+          "label": " Come on."
+        }
+      ],
+      "finalLabel": " Come on."
+    },
+    {
+      "id": "17",
+      "startTime": "164.98",
+      "endTime": "166.396",
+      "task": "diarization",
+      "prediction": [
+        {
+          "label": "UNKNOWN"
+        }
+      ],
+      "finalLabel": "UNKNOWN"
+    },
+    {
+      "id": "17",
+      "startTime": "164.98",
+      "endTime": "166.396",
+      "task": "asr",
+      "prediction": [
+        {
+          "label": " Just say no to the rest"
+        }
+      ],
+      "finalLabel": " Just say no to the rest"
+    },
+    {
+      "id": "18",
+      "startTime": "168.861",
+      "endTime": "169.364",
+      "task": "diarization",
+      "prediction": [
+        {
+          "label": "SPEAKER_00"
+        }
+      ],
+      "finalLabel": "SPEAKER_00"
+    },
+    {
+      "id": "18",
+      "startTime": "168.861",
+      "endTime": "169.364",
+      "task": "asr",
+      "prediction": [
+        {
+          "label": " Well, here we go."
+        }
+      ],
+      "finalLabel": " Well, here we go."
+    },
+    {
+      "id": "19",
+      "startTime": "177.079",
+      "endTime": "181.183",
+      "task": "diarization",
+      "prediction": [
+        {
+          "label": "SPEAKER_00"
+        }
+      ],
+      "finalLabel": "SPEAKER_00"
+    },
+    {
+      "id": "19",
+      "startTime": "177.079",
+      "endTime": "181.183",
+      "task": "asr",
+      "prediction": [
+        {
+          "label": " Fly baby up to the sky, spread my wings and fly"
+        }
+      ],
+      "finalLabel": " Fly baby up to the sky, spread my wings and fly"
+    },
+    {
+      "id": "19",
+      "startTime": "177.079",
+      "endTime": "181.183",
+      "task": "gender",
+      "prediction": [
+        {
+          "label": "female",
+          "posterior": "0.8294",
+          "dominantInSegments": [
+            0,
+            1,
+            2
+          ]
+        },
+        {
+          "label": "male",
+          "posterior": "0.1706"
+        }
+      ],
+      "finalLabel": "female",
+      "level": "segment"
+    },
+    {
+      "id": "19",
+      "startTime": "177.079",
+      "endTime": "181.183",
+      "task": "age",
+      "prediction": [
+        {
+          "label": "46 - 65",
+          "posterior": "0.834",
+          "dominantInSegments": [
+            0,
+            1,
+            2
+          ]
+        },
+        {
+          "label": "31 - 45",
+          "posterior": "0.1042"
+        },
+        {
+          "label": "18 - 22",
+          "posterior": "0.0591"
+        },
+        {
+          "label": "23 - 30",
+          "posterior": "0.0027"
+        }
+      ],
+      "finalLabel": "46 - 65",
+      "level": "segment"
+    },
+    {
+      "id": "19",
+      "startTime": "177.079",
+      "endTime": "181.183",
+      "task": "emotion",
+      "prediction": [
+        {
+          "label": "happy",
+          "posterior": "0.7",
+          "dominantInSegments": [
+            0,
+            1,
+            2
+          ]
+        },
+        {
+          "label": "angry",
+          "posterior": "0.1283"
+        },
+        {
+          "label": "neutral",
+          "posterior": "0.1154"
+        },
+        {
+          "label": "sad",
+          "posterior": "0.0563"
+        }
+      ],
+      "finalLabel": "happy",
+      "level": "segment"
+    },
+    {
+      "id": "19",
+      "startTime": "177.079",
+      "endTime": "181.183",
+      "task": "positivity",
+      "prediction": [
+        {
+          "label": "positive",
+          "posterior": "0.5835",
+          "dominantInSegments": [
+            0,
+            1,
+            2
+          ]
+        },
+        {
+          "label": "neutral",
+          "posterior": "0.2231"
+        },
+        {
+          "label": "negative",
+          "posterior": "0.1935"
+        }
+      ],
+      "finalLabel": "positive",
+      "level": "segment"
+    },
+    {
+      "id": "19",
+      "startTime": "177.079",
+      "endTime": "181.183",
+      "task": "strength",
+      "prediction": [
+        {
+          "label": "strong",
+          "posterior": "0.7271",
+          "dominantInSegments": [
+            0,
+            1,
+            2
+          ]
+        },
+        {
+          "label": "neutral",
+          "posterior": "0.1748"
+        },
+        {
+          "label": "weak",
+          "posterior": "0.098"
+        }
+      ],
+      "finalLabel": "strong",
+      "level": "segment"
+    },
+    {
+      "id": "19",
+      "startTime": "177.079",
+      "endTime": "181.183",
+      "task": "speaking_rate",
+      "prediction": [
+        {
+          "label": "slow",
+          "posterior": "0.8731",
+          "dominantInSegments": [
+            0,
+            1,
+            2
+          ]
+        },
+        {
+          "label": "normal",
+          "posterior": "0.1181"
+        },
+        {
+          "label": "fast",
+          "posterior": "0.0088"
+        },
+        {
+          "label": "very fast",
+          "posterior": "0.0"
+        },
+        {
+          "label": "very slow",
+          "posterior": "0.0"
+        }
+      ],
+      "finalLabel": "slow",
+      "level": "segment"
+    },
+    {
+      "id": "19",
+      "startTime": "177.079",
+      "endTime": "181.183",
+      "task": "hesitation",
+      "prediction": [
+        {
+          "label": "no",
+          "posterior": "0.8037",
+          "dominantInSegments": [
+            0,
+            1,
+            2
+          ]
+        },
+        {
+          "label": "yes",
+          "posterior": "0.1963"
+        }
+      ],
+      "finalLabel": "no",
+      "level": "segment"
+    },
+    {
+      "id": "19",
+      "startTime": "177.079",
+      "endTime": "181.183",
+      "task": "engagement",
+      "prediction": [
+        {
+          "label": "engaged",
+          "posterior": "0.619",
+          "dominantInSegments": [
+            0,
+            1,
+            2
+          ]
+        },
+        {
+          "label": "neutral",
+          "posterior": "0.1966"
+        },
+        {
+          "label": "withdrawn",
+          "posterior": "0.1843"
+        }
+      ],
+      "finalLabel": "engaged",
+      "level": "segment"
+    },
+    {
+      "id": "19",
+      "startTime": "177.079",
+      "endTime": "181.183",
+      "task": "politeness",
+      "prediction": [
+        {
+          "label": "rude",
+          "posterior": "0.4512",
+          "dominantInSegments": [
+            0,
+            1,
+            2
+          ]
+        },
+        {
+          "label": "neutral",
+          "posterior": "0.3064"
+        },
+        {
+          "label": "polite",
+          "posterior": "0.2423"
+        }
+      ],
+      "finalLabel": "rude",
+      "level": "segment"
+    },
+    {
+      "id": "20",
+      "startTime": "198.18",
+      "endTime": "199.263",
+      "task": "diarization",
+      "prediction": [
+        {
+          "label": "SPEAKER_00"
+        }
+      ],
+      "finalLabel": "SPEAKER_00"
+    },
+    {
+      "id": "20",
+      "startTime": "198.18",
+      "endTime": "199.263",
+      "task": "asr",
+      "prediction": [
+        {
+          "label": " We ready to fly!"
+        }
+      ],
+      "finalLabel": " We ready to fly!"
+    },
+    {
+      "id": "21",
+      "startTime": "217.11",
+      "endTime": "217.746",
+      "task": "diarization",
+      "prediction": [
+        {
+          "label": "SPEAKER_00"
+        }
+      ],
+      "finalLabel": "SPEAKER_00"
+    },
+    {
+      "id": "21",
+      "startTime": "217.11",
+      "endTime": "217.746",
+      "task": "asr",
+      "prediction": [
+        {
+          "label": " Thank you very much."
+        }
+      ],
+      "finalLabel": " Thank you very much."
+    }
+  ]
+}
