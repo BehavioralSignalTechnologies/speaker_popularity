@@ -46,8 +46,16 @@ if __name__ == "__main__":
     # get average strength and emotion:
     # mean posteriors:
     mean_posteriors = {}
-
+    pauses = []
+    durations = []
+    count_utts = 0
     for utterance in selected_res:
+        count_utts += 1
+        if count_utts > 1:
+            pauses.append(float(selected_res[utterance]['st']) - float(selected_res[prev_utterance]['et']))
+        durations.append(float(selected_res[utterance]['et']) - float(selected_res[utterance]['st']))
+        prev_utterance = utterance
+
         for task in tasks:
             if task not in mean_posteriors:
                 mean_posteriors[task] = {}
@@ -65,12 +73,7 @@ if __name__ == "__main__":
             mean_posteriors[task][label]['90p'] = np.percentile(mean_posteriors[task][label]['vals'], 90)
             # delete vals:
             del mean_posteriors[task][label]['vals']
-
+            
+    mean_posteriors['pauses'] = {'mean': np.mean(pauses), '10p': np.percentile(pauses, 10), '90p': np.percentile(pauses, 90)}
+    mean_posteriors['turn_durations'] = {'mean': np.mean(durations), '10p': np.percentile(durations, 10), '90p': np.percentile(durations, 90)}
     print(mean_posteriors)
-
-    # compute pauses duration:
-    pauses = []
-    for i in range(len(selected_res) - 1):
-        print(i)
-        pauses.append(selected_res[i+1]['st'] - selected_res[i]['et'])
-    print(pauses)
