@@ -79,13 +79,22 @@ merged_df['views_comments'] = merged_df['views'] / merged_df['comments']
 # print(merged_df["published_date_datetime"].dt.year.value_counts())
 
 # merged_df['views_norm'] = merged_df['views'] / merged_df[merged_df["views"]]
+import numpy as np
+age_dict ={
+    "18 - 22": 0,
+    "23 - 30": 1,
+    "31 - 45": 2,
+    "46 - 65": 3,
+    np.nan: 'nan',
+}
+merged_df["age"] = merged_df["age"].apply(lambda x: age_dict[x])
 print_dict = {}
-corr_list = ["views", "comments", "speaker_id", "languages", "wc", "wpm", "duration", "comments_views",
-             "views_comments","emotion_angry","emotion_happy","emotion_neutral","emotion_sad","positivity_neutral","positivity_negative","positivity_positive","strength_strong","strength_neutral","strength_weak"]
+corr_list = ["log_views_norm", "comments", "speaker_id", "languages", "wc", "wpm", "duration", "comments_views",
+             "views_comments","age","speaker_turns","emotion_angry","emotion_happy","emotion_neutral","emotion_sad","positivity_neutral","positivity_negative","positivity_positive","strength_strong","strength_neutral","strength_weak"]
 
 print_dict["/"] = corr_list
 for c in corr_list:
-    temp_dict = get_rating_correlations(merged_df, c, 0.3)
+    temp_dict = get_rating_correlations(merged_df, c, 0.2)
     for k, v in temp_dict.items():
         print_dict.setdefault(k, []).extend(v)
 print(tabulate.tabulate(print_dict, headers='keys', tablefmt='rst'))
