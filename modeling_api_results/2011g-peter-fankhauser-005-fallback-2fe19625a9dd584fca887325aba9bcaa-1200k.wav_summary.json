@@ -1,0 +1,86 @@
+{
+  "diarization": {
+    "SPEAKER_00": 43,
+    "UNKNOWN": 1
+  },
+  "asr": {
+    " Thank you.": 2,
+    " Let me introduce to you ReZero.": 1,
+    "This little fella was developed by a group of ten undergraduate students at the Autonomous Systems Laboratory at ETH Zurich.": 1,
+    "Our robot belongs to a family of robots called ballbots.": 1,
+    " Instead of wheels, a ball-bot is balancing and moving on one single ball.": 1,
+    "The main characteristics of such a system is that there's one sole contact point to the ground.": 1,
+    "This means that the robot is inherently unstable.": 1,
+    " It's like when I'm trying to stand on one foot.": 1,
+    " You might ask yourself, what's the usefulness of a robot that's unstable?": 1,
+    "And I will explain that in a second.": 1,
+    "Let me first explain how ReZero actually keeps his balance.": 1,
+    "ReZero keeps his balance by constantly measuring his pitch angle with a sensor.": 1,
+    " He then counteracts and avoids toppling over by turning the motors appropriately.": 1,
+    "This happens 160 times per second, and if anything faced during this process, Residue would immediately fall to the ground.": 1,
+    " To move and to balance, ReZero needs to turn the ball.": 1,
+    "The ball is driven by three special wheels that allow ReZero to move into any direction and also move around his own axis at the same time.": 1,
+    " Due to its instability, Riziro is always in motion.": 1,
+    "Now here's the trick.": 1,
+    "It's indeed exactly this instability that allows a robot to move very dynamic.": 1,
+    " Let's play a little.": 1,
+    "You may have wondered what happens if I give the robot a little push.": 1,
+    " In this mode he's trying to maintain his position.": 1,
+    " For the next demo, I'd like you to introduce to my colleagues Michael on the computer and Thomas who's helping me on stage.": 1,
+    " In the next mode ReZero is passive and we can move him around.": 1,
+    " With almost no force I can control his position and his velocity.": 1,
+    " We can also make him spin.": 1,
+    " In the next mode, we can get you here to follow a person.": 1,
+    " He's now keeping a constant distance to Thomas.": 1,
+    " This works with a laser sensor that's mounted on top of ReZero.": 1,
+    " With the same method, we can also get him to circle a person.": 1,
+    " We call this the orbiting mode.": 1,
+    " you": 1,
+    " All right.": 1,
+    "Thank you, Thomas.": 1,
+    " Now, what's the use of this technology?": 1,
+    " For now, it's an experiment.": 1,
+    "But let me show you some possible future applications.": 1,
+    " ReZero could be used in exhibitions or parks.": 1,
+    "With its screen it could inform people or show them around in a fun and entertaining way.": 1,
+    " In a hospital, this device could be used to carry around medical equipment.": 1,
+    "Due to the ball-bot system, it has a very small footprint and it's also easy to move around.": 1,
+    "And of course, who wouldn't like to take a ride on one of these?": 1,
+    " These are more practical applications, but there's also a certain beauty within this technology.": 1
+  },
+  "gender": {
+    "male": 29
+  },
+  "age": {
+    "46 - 65": 27,
+    "31 - 45": 2
+  },
+  "emotion": {
+    "neutral": 20,
+    "happy": 8,
+    "angry": 1
+  },
+  "positivity": {
+    "neutral": 28,
+    "positive": 1
+  },
+  "strength": {
+    "neutral": 16,
+    "strong": 13
+  },
+  "speaking_rate": {
+    "normal": 18,
+    "fast": 11
+  },
+  "hesitation": {
+    "no": 29
+  },
+  "engagement": {
+    "neutral": 15,
+    "engaged": 14
+  },
+  "politeness": {
+    "polite": 27,
+    "neutral": 2
+  }
+}
