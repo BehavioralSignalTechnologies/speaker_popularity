@@ -1,3 +1,5 @@
+from collections import Counter
+
 import pandas as pd
 import xgboost as xgb
 from sklearn.model_selection import train_test_split, cross_val_score
@@ -5,6 +7,9 @@ from sklearn.ensemble import RandomForestRegressor, RandomForestClassifier
 from sklearn.metrics import mean_squared_error, accuracy_score, f1_score
 
 features_metadata_df = pd.read_csv("../metadata/merged_metadata_popularity_features.csv")
+target_col = 'log_comments_per_view_norm'  # log_views_norm, log_comments_norm, log_comments_per_view_norm
+target_col_cat = 'log_comments_per_view_norm_binary'  # log_views_norm_cat, log_comments_norm_cat, log_comments_per_view_norm_cat
+
 cols = ['emotion_angry_mean', 'emotion_angry_90p', 'emotion_angry_std',
        'emotion_happy_mean', 'emotion_happy_90p', 'emotion_happy_std',
        'emotion_sad_mean', 'emotion_sad_90p', 'emotion_sad_std',
@@ -22,10 +27,12 @@ cols = ['emotion_angry_mean', 'emotion_angry_90p', 'emotion_angry_std',
 
 
 X = features_metadata_df.dropna()[cols]  # Features
-y = features_metadata_df.dropna()['log_views_norm']  # Target variable
-y_cat = features_metadata_df.dropna()['log_views_norm_cat']
+y = features_metadata_df.dropna()[target_col]  # Target variable
+y_cat = features_metadata_df.dropna()[target_col_cat]
+print(Counter(y_cat).most_common())
 
 X_train, X_test, y_train, y_test, y_train_cat, y_test_cat = train_test_split(X, y, y_cat, test_size=0.2, random_state=42)
+
 
 regressor = RandomForestRegressor(random_state=42)
 regressor.fit(X_train, y_train)
@@ -37,31 +44,18 @@ print(f"Mean Squared Error: {mse}")
 scores = cross_val_score(regressor, X, y, cv=5, scoring='neg_mean_squared_error')
 print(f"Cross-validated MSE: {-scores.mean()}")
 
-# classifier = RandomForestClassifier(random_state=42)
-# classifier.fit(X_train, y_train_cat)
 
 
-from sklearn.preprocessing import LabelEncoder
-
-# Initialize the LabelEncoder
-label_encoder = LabelEncoder()
-
-# Fit and transform the labels to numerical values
-y_cat_encoded = label_encoder.fit_transform(y_cat)
-y_train_cat_encoded = label_encoder.fit_transform(y_train_cat)
-y_test_cat_encoded = label_encoder.fit_transform(y_test_cat)
-
-classifier = xgb.XGBClassifier(eval_metric='mlogloss')
-classifier.fit(X_train, y_train_cat_encoded)
+classifier = RandomForestClassifier()
+classifier.fit(X_train, y_train_cat)
 
 y_pred = classifier.predict(X_test)
-accuracy = accuracy_score(y_test_cat_encoded, y_pred)
-f1 = f1_score(y_test_cat_encoded, y_pred, average="weighted")
+accuracy = accuracy_score(y_test_cat, y_pred)
+f1 = f1_score(y_test_cat, y_pred, average="weighted")
 print(f"Accuracy: {accuracy}, F1: {f1}")
 
-scores = cross_val_score(classifier, X, y_cat_encoded, cv=5, scoring='f1_weighted')
+scores = cross_val_score(classifier, X, y_cat, cv=5, scoring='f1_weighted')
 print(f"Cross-validated F1: {scores.mean()}")
-
 
 
 
@@ -70,7 +64,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 
 # Assuming 'y_test' contains the true class labels and 'y_pred' contains the predicted class labels
-cm = confusion_matrix(y_test_cat_encoded, y_pred)
+cm = confusion_matrix(y_test_cat, y_pred)
 
 # Plotting the confusion matrix as a heatmap
 plt.figure(figsize=(10, 7))
