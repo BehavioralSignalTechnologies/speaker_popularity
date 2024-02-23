@@ -16,11 +16,11 @@ if __name__ == '__main__':
         with open(json_summary_file, 'r') as f:
             json_summary = json.load(f)
         try:
-            df["speaker_turns"] = json_summary["diarization"]["SPEAKER_00"]
+            df.at[idx, "speaker_turns"] = json_summary["diarization"]["SPEAKER_00"]
         except KeyError:
             continue
-        df["gender"] = max(json_summary["gender"], key=json_summary["gender"].get)
-        df["age"] = max(json_summary["age"], key=json_summary["age"].get)
+        df.at[idx, "gender"] = max(json_summary["gender"], key=json_summary["gender"].get)
+        df.at[idx, "age"] = max(json_summary["age"], key=json_summary["age"].get)
         for t in tasks:
             task_dict = json_summary[t]
             label_total = sum(task_dict.values())
@@ -28,4 +28,4 @@ if __name__ == '__main__':
                 task_label = f"{t}_{key}"
                 task_value = round(value / label_total, 2)
                 df.at[idx, task_label] = task_value
-    df.to_csv("../metadata/merged_metadata_popularity_summaries.csv")
+    df.to_csv("../metadata/merged_metadata_popularity_summaries.csv", index=False)
