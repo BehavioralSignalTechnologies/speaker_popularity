@@ -1,0 +1,93 @@
+{
+  "diarization": {
+    "SPEAKER_00": 55
+  },
+  "asr": {
+    " To understand the world that we live in, we tell stories.": 1,
+    " And while remixing and sharing have come to define the web as we know it, all of us can now be part of that story through simple tools that allow us to make things online.": 1,
+    " But video has been left out.": 1,
+    "It arrived on the web in a small box, and there it has remained, completely disconnected from the data and the content all around it.": 1,
+    " In fact, in over a decade on the web, the only thing that has changed about video is the size of the box and the quality of the picture.": 1,
+    " Popcorn changes, all of that.": 1,
+    " It's an online tool that allows anyone to combine video with content pulled live directly from the web.": 1,
+    "Videos created with popcorn behave like the web itself.": 1,
+    "Dynamic, full of links, and completely remixable.": 1,
+    " and finally allowed to break free from the frame.": 1,
+    " I want to give you a demo of a prototype that we're working on that we'll launch later this fall.": 1,
+    "It'll be completely free, and it will work in any browser.": 1,
+    " So every popcorn production begins with a video.": 1,
+    "And so I've made a short 20-second clip using a newscaster template that we use in workshops.": 1,
+    "So let's watch it.": 1,
+    "We'll go back, and I'll show you how we made it.": 1,
+    " Hi, and welcome to my newscast.": 1,
+    "I've added my location with a Google Map, and it's live, so try moving it around.": 1,
+    " You can add pop-ups with live links and custom icons, or pull in content from any web service, like Flickr, or add articles and blog posts with links out to the full content.": 1,
+    " So let's go back and I'll show you what you saw.": 1,
+    "There was a lot there.": 1,
+    " So this is the timeline.": 1,
+    "And if you've ever edited video, you're familiar with this.": 1,
+    "But instead of clips in the timeline, what you're looking at is web events pulled into the video.": 1,
+    " Now in this popcorn production, we've got the title card.": 1,
+    "We've got a Google map that shows up picture in picture.": 1,
+    "Then popcorn lets it push outside the frame and take over the whole screen.": 1,
+    " There are two pop-ups bringing you some other information, and a final article with a link out to the original article.": 1,
+    "Let's go to this Google Map, and I'll show you how you can edit it.": 1,
+    " All you do, go into the timeline, double-click the item.": 1,
+    "I've set it to Toronto, because that's where I'm from.": 1,
+    "Let's set it to something else.": 1,
+    " Popcorn immediately goes out onto the web, talks to Google, grabs the map, and puts it in the display.": 1,
+    "It's exactly the same for the people who watch your production.": 1,
+    "And it's live.": 1,
+    "It's not an image.": 1,
+    "So you click on it, zoom in, right down to Street View if you want to.": 1,
+    " Now in the video I mentioned adding a live feed, which we can do right now.": 1,
+    "So let's add a live feed from Flickr.": 1,
+    "Go over to the right-hand side, grab Flickr from the list of options, drag it into the timeline, and put it where you'd like it to go.": 1,
+    " And it immediately goes out to Flickr and starts pulling in images based on the tags.": 1,
+    "Now, my developers really like ponies, and so they've set that as the default tag.": 1,
+    "Let's try something else.": 1,
+    " maybe something a bit more relevant to today.": 1,
+    " And here are live images being pulled straight from the feed.": 1,
+    "If you come and watch this a week from now, this will be completely different, dynamic just like the web.": 1,
+    "And just like the web, everything is source.": 1,
+    "So click your link, and you go straight to Flickr and see the source image.": 1,
+    " Everything you've seen today is built with the basic building blocks of the web, HTML, CSS, and JavaScript.": 1,
+    "It means it's completely remixable.": 1,
+    "It also means there's no proprietary software.": 1,
+    "All you need is a web browser.": 1,
+    " So imagine if every video that we watched on the web worked like the web, completely remixable, linked to its source content, and interactive for everyone who views it.": 1,
+    " I think popcorn could change the way that we tell stories on the web and the way we understand the world we live in.": 1,
+    "Thank you.": 1
+  },
+  "gender": {
+    "male": 37
+  },
+  "age": {
+    "46 - 65": 21,
+    "18 - 22": 16
+  },
+  "emotion": {
+    "neutral": 37
+  },
+  "positivity": {
+    "neutral": 37
+  },
+  "strength": {
+    "neutral": 29,
+    "weak": 8
+  },
+  "speaking_rate": {
+    "fast": 22,
+    "normal": 15
+  },
+  "hesitation": {
+    "no": 37
+  },
+  "engagement": {
+    "neutral": 37
+  },
+  "politeness": {
+    "polite": 36,
+    "neutral": 1
+  }
+}

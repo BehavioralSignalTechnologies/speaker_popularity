@@ -1,0 +1,124 @@
+{
+  "diarization": {
+    "SPEAKER_00": 80
+  },
+  "asr": {
+    " I have a confession to make.": 1,
+    " As a scientist and engineer, I've focused on efficiency for many years.": 1,
+    " But efficiency can be a cult.": 1,
+    "And today, I'd like to tell you about a journey that moved me out of the cult and back to a far richer reality.": 1,
+    " A few years ago, after finishing my PhD in London, I moved to Boston.": 1,
+    "I lived in Boston and worked in Cambridge.": 1,
+    " I bought a racing bicycle that summer and I bicycle every day to work.": 1,
+    "To find my way, I use my phone.": 1,
+    "He sent me over Mass Ave, Massachusetts Avenue, the shortest road from Boston to Cambridge.": 1,
+    " But after a month that I was cycling every day on the car park Massave, I took a different road one day.": 1,
+    "I'm not entirely sure.": 1,
+    " why I took a different road that day, a detour.": 1,
+    "I just remember a feeling of surprise.": 1,
+    " Surprised at finding a street with no cars, as opposed to the nearby mass of full of cars.": 1,
+    "Surprised at finding a street draped by the leaves and surrounded by trees.": 1,
+    " But after the feeling of surprise, I felt shame.": 1,
+    "How could I have been so blind?": 1,
+    "For an entire month, I was trapped in my mobile app,": 1,
+    " that the journey to work became one thing only, the shortest path.": 1,
+    " In this single journey, there was no thought of enjoying the road.": 1,
+    " No pleasure in connecting with nature.": 1,
+    "No possibility of looking people in the eyes.": 1,
+    "And why?": 1,
+    "Because I was saving a minute out of my commute.": 1,
+    " No, let me ask you, am I alone here?": 1,
+    "How many of you have never used a mapping app for finding directions?": 1,
+    " Most of you, if not all, have.": 1,
+    "And don't get me wrong, mapping apps are the greatest game changers for encouraging people to explore the city.": 1,
+    "You take your phone out and you know immediately where to go.": 1,
+    " However, the apple also assumes there are only a handful of directions to destination.": 1,
+    " It has the power to make those handful of directions the definitive direction to that destination.": 1,
+    " After that experience, I changed.": 1,
+    "I changed my research from traditional data mining to understanding how people experience the city.": 1,
+    " I use computer science tools to replicate social science experiments at scale, at web scale.": 1,
+    " I became captivated by the beauty and genius of traditional social science experiments done by Jane Jacob, Stanley Milgram, Kevin Lynch.": 1,
+    " The result of that research has been the creation of new maps, maps where you'd only find the shortest path, the blue one, but also the most enjoyable path, the red one.": 1,
+    " How was that possible?": 1,
+    " Einstein once said, logic will get you from A to B. Imagination will take you everywhere.": 1,
+    "So with a bit of imagination, we needed to understand which parts of the city people find beautiful.": 1,
+    " at the University of Cambridge with colleagues, we thought about this simple experiment.": 1,
+    "If I were to show you these two urban scenes and I would ask you which one is more beautiful, which one would you say?": 1,
+    " Don't be shy.": 1,
+    "Who says A?": 1,
+    "Who says B?": 1,
+    "Brilliant.": 1,
+    "Based on that idea,": 1,
+    " We built a crowd-sourcing platform, a web game.": 1,
+    "Players are shown pairs of urban scenes and they are asked to choose which one is more beautiful.": 1,
+    " quiet and happy.": 1,
+    "Based on thousands of user votes, then we are able to see where consensus emerges.": 1,
+    "We're able to see which are the urban scenes that make people happy.": 1,
+    " After that work, I joined Yahoo Labs and I teamed up with Luca and Rossano.": 1,
+    "And together we aggregated those winning locations in London to build a new map of the city.": 1,
+    " A cartography waited for human emotions.": 1,
+    " On this cartography, you're not only able to see and connect from point A to point B the shortest segments, but you're also able to see the happy segment, the beautiful path, the quiet path.": 1,
+    " In tests, participants found the happy, the beautiful, the quiet path far more enjoyable than the shortest one.": 1,
+    "And that just by adding a few minutes to travel time.": 1,
+    " Participants also love to attach memories to places.": 1,
+    "Shared memories, that's where the old BBC building was.": 1,
+    "And personal memories, that's where I gave my first kiss.": 1,
+    " They also recalled how some path smelled and sounded.": 1,
+    "So what if we had a mapping tool that would return the most enjoyable roots based not only on aesthetics, but also based on smell?": 1,
+    " sounds and memories.": 1,
+    "That's where our research is going right now.": 1,
+    "More generally, my research, what tries to do is to avoid the danger of the single path.": 1,
+    " to avoid robbing people of fully experiencing the city in which they live.": 1,
+    "Walk the path through the park, not through the car park, and you have an entirely different path.": 1,
+    " Walk the path full of people you love and not full of cars.": 1,
+    "And you have an entirely different path.": 1,
+    "It's that simple.": 1,
+    " I would like to end with this thought.": 1,
+    "Do you remember The Truman Show?": 1,
+    "It's a media satire in which a real person doesn't know he's living in a fabricated world.": 1,
+    " Perhaps we live in a world fabricated for efficiency.": 1,
+    " Look at some of your daily habits.": 1,
+    "And as Truman did in a movie, escape the fabricated world.": 1,
+    "Why?": 1,
+    " Well, if you think that adventure is dangerous, try routine.": 1,
+    "It's deadly.": 1,
+    "Thank you.": 1
+  },
+  "gender": {
+    "male": 61
+  },
+  "age": {
+    "46 - 65": 52,
+    "31 - 45": 8,
+    "18 - 22": 1
+  },
+  "emotion": {
+    "happy": 34,
+    "neutral": 27
+  },
+  "positivity": {
+    "neutral": 59,
+    "positive": 2
+  },
+  "strength": {
+    "neutral": 43,
+    "strong": 18
+  },
+  "speaking_rate": {
+    "normal": 57,
+    "slow": 3,
+    "fast": 1
+  },
+  "hesitation": {
+    "no": 58,
+    "yes": 3
+  },
+  "engagement": {
+    "neutral": 55,
+    "engaged": 6
+  },
+  "politeness": {
+    "polite": 44,
+    "neutral": 17
+  }
+}

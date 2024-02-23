@@ -1,0 +1,123 @@
+{
+  "diarization": {
+    "SPEAKER_00": 84
+  },
+  "asr": {
+    " Okay, so motor racing is a funny old business.": 1,
+    "We make a new car every year and then we spend the rest of the season trying to understand what it is we've built to make it better, to make it faster.": 1,
+    " and then the next year we start again.": 1,
+    "Now the car you see in front of you is quite complicated.": 1,
+    " The chassis is made up of about 11,000 components.": 1,
+    "The engine, another 6,000.": 1,
+    "The electronics, about 8,500.": 1,
+    "So there's about 25,000 things there that can go wrong.": 1,
+    " So motor racing is very much about attention to detail.": 1,
+    " The other thing about Formula One in particular is we're always changing the car.": 1,
+    "We're always trying to make it faster.": 1,
+    "So every two weeks, we will be making about 5,000 new components to fit to the car.": 1,
+    " five to ten percent of the race car will be different every two weeks of the year.": 1,
+    " So how do we do that?": 1,
+    "Well, we start our life with the racing car.": 1,
+    "We have a lot of sensors on the car to measure things.": 1,
+    " On the race car in front of you here, there are about 120 sensors when it goes into a race.": 1,
+    "It's measuring all sorts of things around the car.": 1,
+    " That data is logged.": 1,
+    "We're logging about 500 different parameters within the data systems, about 13,000 health parameters and events to say when things are not working the way they should do.": 1,
+    " And we're sending that data back to the garage using telemetry at a rate of 2 to 4 megabits per second.": 1,
+    " So during a two-hour race, each car will be sending 750 million numbers.": 1,
+    "That's twice as many numbers as words that each of us speaks in our lifetime.": 1,
+    "It's a huge amount of data.": 1,
+    " But it's not enough just to have data and measure it.": 1,
+    "You need to be able to do something with it.": 1,
+    "So we spend a lot of time and effort in turning the data into stories to be able to tell, what's the state of the engine?": 1,
+    "How are the tires degrading?": 1,
+    " What's the situation with fuel consumption?": 1,
+    "So all of this is taking data, turning it into knowledge that we can act upon.": 1,
+    " OK, so let's have a little bit of data.": 1,
+    "But let's pick a bit of data from another three-month-old patient.": 1,
+    "This is a child.": 1,
+    " And what you're seeing here is real data.": 1,
+    "And on the far right-hand side, where everything starts getting a little bit catastrophic, that is the patient going into cardiac arrest.": 1,
+    "It was deemed to be an unpredictable event.": 1,
+    " This was a heart attack that no one could see coming.": 1,
+    "But when we look at the information there, we can see that things are starting to become a little fuzzy about five minutes or so before the cardiac arrest.": 1,
+    " We can see small changes in things like the heart rate moving.": 1,
+    "These are all undetected by normal thresholds which would be applied to data.": 1,
+    "So the question is, why couldn't we see it?": 1,
+    "Was this a predictable event?": 1,
+    " Can we look more at the patterns in the data to be able to do things better?": 1,
+    " So this is a child about the same age as the racing car on stage, three months old.": 1,
+    " It's a patient with a heart problem.": 1,
+    "Now, when you look at some of the data on the screen above, things like heart rate, pulse oxygen, respiration rates,": 1,
+    " They're all unusual for a normal child, but they're quite normal for the child there.": 1,
+    " And so one of the challenges you have in health care is how can I look at the patient in front of me, have something which is specific for her, and be able to detect when things start to change, when things start to deteriorate.": 1,
+    " Because like a racing car, any patient, when things start to go bad, you have a short time to make a difference.": 1,
+    " So what we did is we took a data system, which we run every two weeks of the year in Formula One, and we installed it on the hospital computers at Birmingham Children's Hospital.": 1,
+    " We stream data from the bedside instruments in their pediatric intensive care so that we could both look at the data in real time and, more importantly, to store the data so that we could start to learn from it.": 1,
+    " And then we applied an application on top, which would allow us to tease out the patterns in the data in real time so we could see what was happening, so we could determine when things started to change.": 1,
+    " Now, in motor racing, we're all a little bit ambitious, audacious, a little bit arrogant sometimes.": 1,
+    "So we decided we would also look at the children as they were being transported to intensive care.": 1,
+    " Why should we wait until they arrived in the hospital before we started to look?": 1,
+    "And so we installed a real-time link between the ambulance and the hospital, just using normal 3G telephony.": 1,
+    " to send that data so that the ambulance became an extra bed in intensive care.": 1,
+    " And then we started looking at the data.": 1,
+    " So the wiggly lines at the top, all the colors, this is the normal sort of data you would see on a monitor, heart rate, pulse, oxygen within the blood, and respiration.": 1,
+    " The lines on the bottom, the blue and the red, these are the interesting ones.": 1,
+    "The red line is showing an automated version of the early warning score that Birmingham Children's Hospital were already running.": 1,
+    "They've been running that since 2008.": 1,
+    " and already have stopped cardiac arrests and distress within the hospital.": 1,
+    " The blue line is an indication of when patterns start to change.": 1,
+    "And immediately before we even started putting in clinical interpretation, we can see that the data is speaking to us.": 1,
+    "It's telling us that something is going wrong.": 1,
+    " The plot with the red and the green blobs, this is plotting different components of the data against each other.": 1,
+    "The green is us learning what is normal for that child.": 1,
+    "We call it the cloud of normality.": 1,
+    " And when things start to change, when conditions start to deteriorate, we move into the red line.": 1,
+    " There's no rocket science here.": 1,
+    "It is displaying data that exists already in a different way to amplify it, to provide cues to the doctors, to the nurses, so they can see what's happening.": 1,
+    " in the same way that a good racing driver relies on cues to decide when to apply the brakes, when to turn into a corner.": 1,
+    "We need to help our physicians and our nurses to see when things are starting to go wrong.": 1,
+    " So we have a very ambitious program.": 1,
+    "We think that the race is on to do something differently.": 1,
+    "We are thinking big.": 1,
+    "It's the right thing to do.": 1,
+    " an approach which, if it's successful, there's no reason why it should stay within a hospital.": 1,
+    "It can go beyond the walls.": 1,
+    "With wireless connectivity these days, there is no reason": 1,
+    " why patients, doctors and nurses always have to be in the same place at the same time.": 1,
+    " And meanwhile, we'll take our little three-month-old baby, keep taking it to the track, keeping it safe, and making it faster and better.": 1,
+    "Thank you very much.": 1
+  },
+  "gender": {
+    "male": 62
+  },
+  "age": {
+    "46 - 65": 62
+  },
+  "emotion": {
+    "neutral": 62
+  },
+  "positivity": {
+    "neutral": 61,
+    "positive": 1
+  },
+  "strength": {
+    "neutral": 61,
+    "strong": 1
+  },
+  "speaking_rate": {
+    "normal": 57,
+    "fast": 5
+  },
+  "hesitation": {
+    "no": 62
+  },
+  "engagement": {
+    "neutral": 61,
+    "engaged": 1
+  },
+  "politeness": {
+    "polite": 41,
+    "neutral": 21
+  }
+}

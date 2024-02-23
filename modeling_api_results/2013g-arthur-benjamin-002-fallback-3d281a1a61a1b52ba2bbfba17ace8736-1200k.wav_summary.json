@@ -1,0 +1,122 @@
+{
+  "diarization": {
+    "SPEAKER_00": 77
+  },
+  "asr": {
+    " So why do we learn mathematics?": 1,
+    "Essentially for three reasons.": 1,
+    "Calculation, application, and last and unfortunately least in terms of the time we give it, inspiration.": 1,
+    " Mathematics is the science of patterns and we study it to learn how to think logically, critically, and creatively.": 1,
+    " But too much of the mathematics that we learn in school is not effectively motivated.": 1,
+    "And when our students ask, why are we learning this?": 1,
+    "And they often hear that they'll need it in an upcoming math class or on a future test.": 1,
+    " But wouldn't it be great if every once in a while we did mathematics simply because it was fun or beautiful or because it excited the mind?": 1,
+    " Now I know many people have not had the opportunity to see how this can happen, so let me give you a quick example with my favorite collection of numbers, the Fibonacci numbers.": 1,
+    " Yeah, I already have Fibonacci fans here, that's great.": 1,
+    "Now these numbers can be appreciated in many different ways.": 1,
+    "From the standpoint of calculation, they're as easy to understand as 1 plus 1, which is 2.": 1,
+    " Then 1 plus 2 is 3, 2 plus 3 is 5, 3 plus 5 is 8, and so on.": 1,
+    " The person we call Fibonacci was actually named Leonardo of Pisa, and these numbers appear in his book, Libera Baci, which taught the Western world the methods of arithmetic that we use today.": 1,
+    " In terms of applications, Fibonacci numbers appear in nature surprisingly often.": 1,
+    "The number of petals on a flower is typically a Fibonacci number.": 1,
+    " or the number of spirals on a sunflower or a pineapple tends to be a Fibonacci number as well.": 1,
+    "In fact, there are many more applications of Fibonacci numbers, but what I find most inspirational about them": 1,
+    " are the beautiful number patterns they display.": 1,
+    "Let me show you one of my favorites.": 1,
+    "Suppose you like to square numbers, and frankly, who doesn't?": 1,
+    " Let me show, let's look at the squares of the first few Fibonacci numbers, okay?": 1,
+    "So one squared is one, two squared is four, three squared is nine, five squared is 25, and so on.": 1,
+    " Now, it's no surprise that when you add consecutive Fibonacci numbers, you get the next Fibonacci number, right?": 1,
+    "That's how they're created.": 1,
+    "But you wouldn't expect anything special to happen when you add the squares together.": 1,
+    " But check this out, 1 plus 1 gives us 2, and 1 plus 4 gives us 5, and 4 plus 9 is 13, 9 plus 25 is 34, and yes, the pattern continues.": 1,
+    " In fact, here's another one.": 1,
+    "Suppose you wanted to look at adding up the squares of the first few Fibonacci numbers.": 1,
+    "Let's see what we get there.": 1,
+    "So 1 plus 1 plus 4 is 6.": 1,
+    " Add 9 to that, we get 15.": 1,
+    "Add 25, we get 40.": 1,
+    "Add 64, we get 104.": 1,
+    "Now look at those numbers.": 1,
+    " Those are not Fibonacci numbers, but if you look at them closely, you'll see the Fibonacci numbers buried inside of them.": 1,
+    " You see it?": 1,
+    "I'll show it to you.": 1,
+    "Six is two times three.": 1,
+    "Fifteen is three times five.": 1,
+    "Forty is five times eight.": 1,
+    "Two, three, five, eight.": 1,
+    "Who do we appreciate?": 1,
+    "Fibonacci, of course.": 1,
+    " Now, as much fun as it is to discover these patterns, it's even more satisfying to understand why they are true.": 1,
+    "Let's look at that last equation.": 1,
+    "Why should the squares of 1, 1, 2, 3, 5, and 8": 1,
+    " Add up to 8 times 13.": 1,
+    "I'll show you by drawing a simple picture.": 1,
+    "We'll start with a one by one square.": 1,
+    " and next to that put another one by one square.": 1,
+    "Together they form a one by two rectangle.": 1,
+    "Beneath that I'll put a two by two square and next to that a three by three square.": 1,
+    " beneath that a five by five square, and then an eight by eight square, creating one giant rectangle, right?": 1,
+    "Now let me ask you a simple question.": 1,
+    "What is the area of the rectangle?": 1,
+    " Well, on the one hand, it's the sum of the areas of the squares inside it, right?": 1,
+    "Just as we created it.": 1,
+    "It's 1 squared plus 1 squared plus 2 squared plus 3 squared plus 5 squared plus 8 squared, right?": 1,
+    " That's the area.": 1,
+    "On the other hand, because it's a rectangle, the area is equal to its height times its base.": 1,
+    "And the height is clearly 8.": 1,
+    " And the base is 5 plus 8, which is the next Fibonacci number 13.": 1,
+    "Right?": 1,
+    "So the area is also 8 times 13.": 1,
+    " Since we've correctly calculated the area two different ways, they have to be the same number.": 1,
+    "And that's why the squares of 1, 1, 2, 3, 5, and 8": 1,
+    " add up to 8 times 13.": 1,
+    "Now, if we continue this process, we'll generate rectangles of the form 13 by 21, 21 by 34, and so on.": 1,
+    " Now check this out.": 1,
+    "If you divide 13 by 8, you get 1.625.": 1,
+    "And if you divide the larger number by the smaller number, then these ratios get closer and closer to about 1.618.": 1,
+    " known to many people as the Golden Ratio, a number which has fascinated mathematicians, scientists, and artists for centuries.": 1,
+    " Now, I show all this to you because, like so much of mathematics, there's a beautiful side to it that I fear does not get enough attention in our schools.": 1,
+    " We spend lots of time learning about calculation, but let's not forget about application, including perhaps the most important application of all, learning how to think.": 1,
+    "If I could summarize this in one sentence, it would be this.": 1,
+    " Mathematics is not just solving for X, it's also figuring out Y. Thank you very much.": 1
+  },
+  "gender": {
+    "male": 38,
+    "female": 8
+  },
+  "age": {
+    "46 - 65": 25,
+    "31 - 45": 21
+  },
+  "emotion": {
+    "neutral": 39,
+    "happy": 4,
+    "angry": 3
+  },
+  "positivity": {
+    "neutral": 29,
+    "negative": 16,
+    "positive": 1
+  },
+  "strength": {
+    "strong": 37,
+    "neutral": 9
+  },
+  "speaking_rate": {
+    "normal": 37,
+    "fast": 7,
+    "slow": 2
+  },
+  "hesitation": {
+    "no": 46
+  },
+  "engagement": {
+    "engaged": 38,
+    "neutral": 8
+  },
+  "politeness": {
+    "polite": 42,
+    "neutral": 4
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "/home/ubuntu/modeling/use_cases/domain-specific/ted_videos/2012x-bruno-maisonnier-003-fallback-bda1b61f52085686f20c6f8c0244dc9f-1200k.wav": [
+    {
+      "id": "0",
+      "startTime": "158.691",
+      "endTime": "158.772",
+      "task": "diarization",
+      "prediction": [
+        {
+          "label": "UNKNOWN"
+        }
+      ],
+      "finalLabel": "UNKNOWN"
+    },
+    {
+      "id": "0",
+      "startTime": "158.691",
+      "endTime": "158.772",
+      "task": "asr",
+      "prediction": [
+        {
+          "label": " you"
+        }
+      ],
+      "finalLabel": " you"
+    }
+  ]
+}

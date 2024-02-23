@@ -1,0 +1,82 @@
+{
+  "diarization": {
+    "SPEAKER_00": 39
+  },
+  "asr": {
+    " I was born and raised in Sierra Leone.": 1,
+    " a small and very beautiful country in West Africa.": 1,
+    "A country rich both in physical resources and creative talent.": 1,
+    " However, Sierra Leone is infamous for a decade-long rebel war in the 90s when entire villages were burnt down.": 1,
+    "An estimated 8,000 men, women and children had their arms and legs amputated during this time.": 1,
+    " As my family and I ran for safety when I was about 12 from one of those attacks, I resolved that I would do everything I could to ensure that my own children": 1,
+    " will not go through the same experiences we had.": 1,
+    "The world, in fact, be part of a Sierra Leone where war and amputation were no longer a strategy for gaining power.": 1,
+    " As I watched people who I knew, loved ones, recover from this devastation, one thing that deeply troubled me": 1,
+    " was that many of the amputees in the country will not use their prosthesis.": 1,
+    "The reason I've come to find out was that their prosthetic sockets were painful because they did not fit well.": 1,
+    " The prosthetic socket is the part in which the amputee inserts their residual limb.": 1,
+    " and which connects to the prosthetic ankle.": 1,
+    "Even in the developed world, it takes a period of three weeks to often years for a patient to get a comfortable socket, if ever.": 1,
+    " prosthetics still use conventional processes like molding and casting to create single material prosthetic sockets.": 1,
+    " Such sockets often leave intolerable amounts of pressure on the limbs of the patient, leaving them with pressure sores and blisters.": 1,
+    " It does not matter how powerful your prosthetic ankle is.": 1,
+    " If your prosthetic socket is uncomfortable, you will not use your leg and that is just simply unacceptable in our age.": 1,
+    " So indeed, when I met Professor Yuhara about two and a half years ago, and he asked me if I knew how to solve this problem, I said, no, not yet.": 1,
+    "But I would love to figure it out.": 1,
+    " And so for my PhD at the MIT Media Lab, I design custom prosthetic sockets quickly and cheaply that are more comfortable than conventional prosthesis.": 1,
+    " I use magnetic resonance imaging to capture the actual shape of the patient's anatomy, then use finite element modeling to better predict the internal stresses and strains on the normal forces.": 1,
+    " and then create a prosthetic socket for manufacture.": 1,
+    " We use a 3D printer to create a multi-material prosthetic socket": 1,
+    " which relieves pressure when needed on the anatomy of the patient.": 1,
+    " In short, we're using data to make novel sockets quickly and cheaply.": 1,
+    " In a recent trial we just wrapped up at the Media Lab, one of our patients, a US veteran who's been an amputee for about 20 years and won dozens of legs,": 1,
+    " instead of one of our printed parts.": 1,
+    "It's so soft, it's like walking on pillows.": 1,
+    "And it's effing sexy.": 1,
+    " Disability.": 1,
+    " in our age should not prevent anyone from living meaningful lives.": 1,
+    " My hope and desire is that the tools and processes we develop in our research group can be used to bring highly functional prosthesis to those who need them.": 1,
+    " For me.": 1,
+    " A place to begin healing the souls of those affected by war and disease.": 1,
+    " is by creating comfortable and affordable interfaces for their bodies.": 1,
+    "Whether it's in Sierra Leone or in Boston, I hope.": 1,
+    " This not only restores, but indeed transforms their sense of human potential.": 1,
+    "Thank you very much.": 1
+  },
+  "gender": {
+    "male": 33
+  },
+  "age": {
+    "31 - 45": 31,
+    "46 - 65": 2
+  },
+  "emotion": {
+    "happy": 28,
+    "angry": 4,
+    "neutral": 1
+  },
+  "positivity": {
+    "neutral": 20,
+    "positive": 8,
+    "negative": 5
+  },
+  "strength": {
+    "strong": 32,
+    "neutral": 1
+  },
+  "speaking_rate": {
+    "normal": 32,
+    "fast": 1
+  },
+  "hesitation": {
+    "no": 33
+  },
+  "engagement": {
+    "engaged": 31,
+    "neutral": 2
+  },
+  "politeness": {
+    "polite": 17,
+    "neutral": 16
+  }
+}
