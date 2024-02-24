@@ -7,8 +7,8 @@ from sklearn.ensemble import RandomForestRegressor, RandomForestClassifier
 from sklearn.metrics import mean_squared_error, accuracy_score, f1_score
 
 features_metadata_df = pd.read_csv("../metadata/merged_metadata_popularity_features.csv")
-target_col = 'log_comments_per_view_norm'  # log_views_norm, log_comments_norm, log_comments_per_view_norm
-target_col_cat = 'log_comments_per_view_norm_binary'  # log_views_norm_cat, log_comments_norm_cat, log_comments_per_view_norm_cat
+target_col = 'log_views_norm'  # log_views_norm, log_comments_norm, log_comments_per_view_norm
+target_col_cat = 'log_views_norm_cat'  # log_views_norm_cat, log_comments_norm_cat, log_comments_per_view_norm_cat
 
 cols = ['emotion_angry_mean', 'emotion_angry_90p', 'emotion_angry_std',
        'emotion_happy_mean', 'emotion_happy_90p', 'emotion_happy_std',

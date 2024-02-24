@@ -1,4 +1,6 @@
+import ast
 import datetime
+from collections import Counter
 from functools import partial
 
 import numpy as np
@@ -24,15 +26,14 @@ views_mapping_3 = partial(map_to_label,
                           ranges=[[-np.inf, -0.5], [-0.5, 0.5], [0.5, np.inf]],
                           labels=["low", "medium", "high"])
 
-mapping_2 = partial(map_to_label,
-                    ranges=[[-np.inf, 0], [0, np.inf]],
-                    labels=["low", "high"])
-
 comments_mapping_3 = partial(map_to_label,
                              ranges=[[-np.inf, -0.5], [-0.5, 0.5], [0.5, np.inf]],
                              labels=["low", "medium", "high"])
 
+
 if __name__ == '__main__':
+
+
     df = pd.read_csv("../metadata/merged_metadata.csv")
     df['film_date'] = df['film_date'].apply(lambda x: datetime.datetime.fromtimestamp(int(x)))
     df['published_date'] = df['published_date'].apply(
@@ -49,13 +50,15 @@ if __name__ == '__main__':
     # Num_speakers == 1
     df = df.loc[df['num_speaker'] == 1, :]
 
+    # Replace nan occupation with ""
+    df['speaker_occupation']: pd.Series = df['speaker_occupation'].fillna("")
+
     # Generate views target set
     log_views = np.log(df['views'])
     views = df['views']
     df['log_views_norm'] = (log_views - log_views.mean()) / log_views.std()
     df['views_norm'] = (views - views.mean()) / views.std()
     df['log_views_norm_cat'] = df['log_views_norm'].apply(views_mapping_3)
-    df['log_views_norm_binary'] = df['log_views_norm'].apply(mapping_2)
 
     # Generate comments target set
     log_comments = np.log(df['comments'])
@@ -63,16 +66,43 @@ if __name__ == '__main__':
     df['log_comments_norm'] = (log_comments - log_comments.mean()) / log_comments.std()
     df['comments_norm'] = (comments - comments.mean()) / comments.std()
     df['log_comments_norm_cat'] = df['log_comments_norm'].apply(views_mapping_3)
-    df['log_comments_norm_binary'] = df['log_comments_norm'].apply(mapping_2)
 
     # Generate comments/views set
     comments_per_view = df['comments'] / df['views']
     df['comments_per_view_norm'] = (comments_per_view - comments_per_view.mean()) / comments_per_view.std()
 
     log_comments_per_view = np.log(comments_per_view)
-    df['log_comments_per_view_norm'] = (
-                                                   log_comments_per_view - log_comments_per_view.mean()) / log_comments_per_view.std()
+    df['log_comments_per_view_norm'] = (log_comments_per_view - log_comments_per_view.mean()) / log_comments_per_view.std()
     df['log_comments_per_view_norm_cat'] = df['log_comments_per_view_norm'].apply(comments_mapping_3)
-    df['log_comments_per_view_norm_binary'] = df['log_comments_per_view_norm'].apply(mapping_2)
 
+
+    def calculate_sentiment(ratings: list) -> float:
+        """
+        Returns a value from -1, 1 indicating negative/positive sentiment, by counting the positive and negative tags
+
+        :param ratings: Ratings related to video ([{'name': 'Funny', 'count': 100}, {'name': 'Beautiful', 'count':10}, ...})
+        :return: The sentiment
+        """
+        positive_ratings = {'Courageous', 'Beautiful', 'Fascinating', 'Funny', 'Informative', 'Ingenious', 'Inspiring',
+                         'Jaw-dropping', 'Persuasive'}
+        negative_ratings = {'Confusing', 'Longwinded', 'OK', 'Obnoxious', 'Unconvincing'}
+
+        positive_count = np.sum([tag['count'] for tag in ratings if tag['name'] in positive_ratings])
+        negative_count = np.sum([tag['count'] for tag in ratings if tag['name'] in negative_ratings])
+
+        return (positive_count - negative_count) / (positive_count + negative_count)
+
+
+    df['sentiment'] = df['ratings'].apply(ast.literal_eval).apply(calculate_sentiment)
+
+    def normalize_rating(ratings, name):
+        rating_count = [t['count'] for t in ast.literal_eval(ratings) if t['name'] == name][0]
+        return rating_count / np.sum([t['count'] for t in ast.literal_eval(ratings)])
+
+    df['funny'] = df['ratings'].apply(lambda ratings: normalize_rating(ratings, 'funny'))
+    df['log_funny'] = np.log(df['funny']+1)
+    df['log_funny_norm'] = (df['log_funny'] - df['log_funny'].mean()) / df['log_funny'].std()
+    df['log_funny_norm_cat'] = df['log_funny_norm'].apply(views_mapping_3)
+
+    print(df)
     df.to_csv("../metadata/merged_metadata_popularity.csv", index=False)
