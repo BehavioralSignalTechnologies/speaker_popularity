@@ -1,15 +1,25 @@
 import os
 import sys
 
+import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
 import json
+
+import tqdm
+
 sys.path.append("..")
 from audio_features.aggregate import run_aggregation, run_embedding_aggregation
 
 merged_metadata_df = pd.read_csv("../metadata/merged_metadata_popularity.csv")
+
+
+def get_acoustic_features(result):
+    filename = result['filename']
+    res = np.load(f"../mfccs/{filename}.npz")
+    return res['arr_0'], res['arr_1']
 
 def get_related_result(row):
     for entry in os.listdir('../modeling_api_results_embeddings'):
@@ -26,7 +36,7 @@ def get_related_result(row):
 
 features_metadata = []
 
-for idx, row in merged_metadata_df.iterrows():
+for idx, row in tqdm.tqdm(merged_metadata_df.iterrows(), total=len(merged_metadata_df)):
     # Modeling api result
     result = get_related_result(row)
 
@@ -37,8 +47,9 @@ for idx, row in merged_metadata_df.iterrows():
     try:
         mean_posteriors = run_aggregation(result)
         mean_embeddings = run_embedding_aggregation(result)
+        mfccs_mean, mfccs_std = get_acoustic_features(row)
     except Exception as e:
-        print(result, "will not be included!")
+        print(row, "will not be included!")
         continue
 
     # Flatten features
@@ -53,6 +64,8 @@ for idx, row in merged_metadata_df.iterrows():
 
     mean_posteriors_flattened['features_embedding_mean'] = mean_embeddings['mean'].tolist()
     mean_posteriors_flattened['features_embedding_std'] = mean_embeddings['std'].tolist()
+    mean_posteriors_flattened['mfccs_mean'] = mfccs_mean.tolist()
+    mean_posteriors_flattened['mfccs_std'] = mfccs_std.tolist()
     entry = {idx: value for idx, value in row.items()}
     entry.update(mean_posteriors_flattened)
     features_metadata.append(entry)

@@ -36,16 +36,21 @@ def get_train_test_sets(df, target_col_cat):
             'turn_durations_10p', 'turn_durations_90p']
     X_post = df[post_cols]  # Features
 
+
+    X_mfccs_mean = df['mfccs_mean'].apply(ast.literal_eval).tolist()  # Features
+    X_mfccs_std = df['mfccs_std'].apply(ast.literal_eval).tolist()  # Features
+    X_mfccs = np.concatenate([X_mfccs_mean, X_mfccs_std], axis=-1)
+
     y_cat = df[target_col_cat]
     print(Counter(y_cat).most_common())
 
-    X_emb_train, X_emb_test, X_post_train, X_post_test, y_train_cat, y_test_cat = train_test_split(X_emb, X_post, y_cat, test_size=0.2, random_state=42)
-    return X_emb, X_post, y_cat, X_emb_train, X_emb_test, X_post_train, X_post_test, y_train_cat, y_test_cat
+    X_emb_train, X_emb_test, X_post_train, X_post_test, X_mfccs_train, X_mfccs_test, y_train_cat, y_test_cat = train_test_split(X_emb, X_post, X_mfccs, y_cat, test_size=0.2, random_state=42)
+    return X_emb, X_post, X_mfccs, y_cat, X_emb_train, X_emb_test, X_post_train, X_post_test, X_mfccs_train, X_mfccs_test, y_train_cat, y_test_cat
 
 
 
 def train_test(df, target_col_cat='log_views_norm_cat', visualize=False):
-    X_emb, X_post, y_cat, X_emb_train, X_emb_test, X_post_train, X_post_test, y_train_cat, y_test_cat = get_train_test_sets(df, target_col_cat)
+    X_emb, X_post, X_mfccs, y_cat, X_emb_train, X_emb_test, X_post_train, X_post_test, X_mfccs_train, X_mfccs_test, y_train_cat, y_test_cat = get_train_test_sets(df, target_col_cat)
 
     # Embeddings classifier
     emb_classifier = SVC(C=200)
@@ -60,6 +65,11 @@ def train_test(df, target_col_cat='log_views_norm_cat', visualize=False):
     post_classifier = RandomForestClassifier()
     post_scores = cross_val_score(post_classifier, X_post, y_cat, cv=5, scoring='f1_weighted')
     print(f"Posteriors Cross-validated F1: {post_scores.mean()}")
+
+    # MFCC classifier
+    mfcc_classifier = SVC(C=200)
+    mfcc_scores = cross_val_score(mfcc_classifier, X_mfccs, y_cat, cv=5, scoring='f1_weighted')
+    print(f"MFCC Cross-validated F1: {mfcc_scores.mean()}")
 
     # Dummy classifier
     dummy_clf = DummyClassifier(strategy='stratified')
@@ -80,34 +90,38 @@ def train_test(df, target_col_cat='log_views_norm_cat', visualize=False):
         plt.title('Confusion Matrix')
         plt.show()
 
-    return emb_scores.mean(), post_scores.mean(), dummy_scores.mean()
+    return emb_scores.mean(), post_scores.mean(), mfcc_scores.mean(), dummy_scores.mean()
 
 if __name__ == "__main__":
-    # positive_ratings = {'Courageous', 'Beautiful', 'Fascinating', 'Funny', 'Informative', 'Ingenious', 'Inspiring',
-    #                     'Jaw-dropping', 'Persuasive'}
-    # negative_ratings = {'Confusing', 'Longwinded', 'OK', 'Obnoxious', 'Unconvincing'}
+    positive_ratings = {'Courageous', 'Beautiful', 'Fascinating', 'Funny', 'Informative', 'Ingenious', 'Inspiring',
+                        'Jaw-dropping', 'Persuasive'}
+    negative_ratings = {'Confusing', 'Longwinded', 'OK', 'Obnoxious', 'Unconvincing'}
     df = pd.read_csv("../metadata/merged_metadata_popularity_features.csv")
-    # cols = {'views', 'comments_per_view', *positive_ratings, *negative_ratings, 'negative_ratings'}
-    # scores = {'target': [], 'type': [], 'score': []}
-    # for col in cols:
-    #     print("="*16)
-    #     print(f"Predicting: {col}")
-    #     emb_cross_val_f1, post_cross_val_f1, baseline_cross_val_f1 = train_test(df, f"log_{col}_norm_cat")
-    #
-    #     scores['target'].append(col)
-    #     scores['type'].append('embeddings')
-    #     scores['score'].append(emb_cross_val_f1)
-    #
-    #     scores['target'].append(col)
-    #     scores['type'].append('random baseline')
-    #     scores['score'].append(baseline_cross_val_f1)
-    #
-    #     scores['target'].append(col)
-    #     scores['type'].append('posteriors')
-    #     scores['score'].append(post_cross_val_f1)
-    #
-    # df = pd.DataFrame(scores)
-    # sorted_scores = df.sort_values(by="score")
-    # px.bar(sorted_scores, x="target", y="score", color="type", barmode='overlay').show()
+    cols = {'views', 'comments_per_view', *positive_ratings, *negative_ratings, 'negative_ratings'}
+    scores = {'target': [], 'type': [], 'score': []}
+    for col in cols:
+        print("="*16)
+        print(f"Predicting: {col}")
+        emb_cross_val_f1, post_cross_val_f1, mfcc_cross_val_f1, baseline_cross_val_f1 = train_test(df, f"log_{col}_norm_cat")
+
+        scores['target'].append(col)
+        scores['type'].append('embeddings')
+        scores['score'].append(emb_cross_val_f1)
+
+        scores['target'].append(col)
+        scores['type'].append('random baseline')
+        scores['score'].append(baseline_cross_val_f1)
+
+        scores['target'].append(col)
+        scores['type'].append('posteriors')
+        scores['score'].append(post_cross_val_f1)
+
+        scores['target'].append(col)
+        scores['type'].append('mfcc')
+        scores['score'].append(mfcc_cross_val_f1)
+
+    df = pd.DataFrame(scores)
+    sorted_scores = df.sort_values(by="score")
+    px.bar(sorted_scores, x="target", y="score", color="type", barmode='overlay').show()
 
     train_test(df, f"log_Informative_norm_cat", visualize=True)
