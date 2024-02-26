@@ -76,6 +76,11 @@ if __name__ == '__main__':
     df['log_comments_per_view_norm_cat'] = df['log_comments_per_view_norm'].apply(comments_mapping_3)
 
 
+    # Add sentiment
+    positive_ratings = {'Courageous', 'Beautiful', 'Fascinating', 'Funny', 'Informative', 'Ingenious', 'Inspiring',
+                        'Jaw-dropping', 'Persuasive'}
+    negative_ratings = {'Confusing', 'Longwinded', 'OK', 'Obnoxious', 'Unconvincing'}
+
     def calculate_sentiment(ratings: list) -> float:
         """
         Returns a value from -1, 1 indicating negative/positive sentiment, by counting the positive and negative tags
@@ -83,9 +88,6 @@ if __name__ == '__main__':
         :param ratings: Ratings related to video ([{'name': 'Funny', 'count': 100}, {'name': 'Beautiful', 'count':10}, ...})
         :return: The sentiment
         """
-        positive_ratings = {'Courageous', 'Beautiful', 'Fascinating', 'Funny', 'Informative', 'Ingenious', 'Inspiring',
-                         'Jaw-dropping', 'Persuasive'}
-        negative_ratings = {'Confusing', 'Longwinded', 'OK', 'Obnoxious', 'Unconvincing'}
 
         positive_count = np.sum([tag['count'] for tag in ratings if tag['name'] in positive_ratings])
         negative_count = np.sum([tag['count'] for tag in ratings if tag['name'] in negative_ratings])
@@ -95,14 +97,33 @@ if __name__ == '__main__':
 
     df['sentiment'] = df['ratings'].apply(ast.literal_eval).apply(calculate_sentiment)
 
+
+    # Add normalized ratings
     def normalize_rating(ratings, name):
         rating_count = [t['count'] for t in ast.literal_eval(ratings) if t['name'] == name][0]
         return rating_count / np.sum([t['count'] for t in ast.literal_eval(ratings)])
 
-    df['funny'] = df['ratings'].apply(lambda ratings: normalize_rating(ratings, 'funny'))
-    df['log_funny'] = np.log(df['funny']+1)
-    df['log_funny_norm'] = (df['log_funny'] - df['log_funny'].mean()) / df['log_funny'].std()
-    df['log_funny_norm_cat'] = df['log_funny_norm'].apply(views_mapping_3)
+    for rat in {*positive_ratings, *negative_ratings}:
+        df[rat] = df['ratings'].apply(lambda ratings: normalize_rating(ratings, rat))
+        df[f'log_{rat}'] = np.log(df[f'{rat}']+0.001)
+        df[f'log_{rat}_norm'] = (df[f'log_{rat}'] - df[f'log_{rat}'].mean()) / df[f'log_{rat}'].std()
+        df[f'log_{rat}_norm_cat'] = df[f'log_{rat}_norm'].apply(views_mapping_3)
+
+
+    # Add total negative ratings
+    negative_count = []
+    for idx, row in df.iterrows():
+        ratings = ast.literal_eval(row['ratings'])
+        neg_sum = 0
+        for rat in ratings:
+            if rat['name'] in negative_ratings:
+                neg_sum += rat['count']
+        negative_count.append(neg_sum)
+
+    df['negative_ratings'] = np.array(negative_count)
+    df['log_negative_ratings'] = np.log(df['negative_ratings']+0.001)
+    df['log_negative_ratings_norm'] = (df['log_negative_ratings'] - df['log_negative_ratings'].mean()) / df['log_negative_ratings'].std()
+    df['log_negative_ratings_norm_cat'] = df['log_negative_ratings_norm'].apply(views_mapping_3)
 
     print(df)
     df.to_csv("../metadata/merged_metadata_popularity.csv", index=False)
