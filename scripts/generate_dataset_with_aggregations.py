@@ -7,18 +7,17 @@ import seaborn as sns
 
 import json
 sys.path.append("..")
-from audio_features.aggregate import run_aggregation
-
+from audio_features.aggregate import run_aggregation, run_embedding_aggregation
 
 merged_metadata_df = pd.read_csv("../metadata/merged_metadata_popularity.csv")
 
 def get_related_result(row):
-    for entry in os.listdir('../modeling_api_results'):
+    for entry in os.listdir('../modeling_api_results_embeddings'):
         if not entry.endswith(".wav.json"):
             continue
 
         if entry.split(".wav.json")[0] == row['filename'].split(".wav")[0]:
-            with open(os.path.join('../modeling_api_results', entry)) as f:
+            with open(os.path.join('../modeling_api_results_embeddings', entry)) as f:
                 return json.load(f)
 
     print(f"File {row['url']} not found in modeling_api_results")
@@ -37,6 +36,7 @@ for idx, row in merged_metadata_df.iterrows():
     # Aggregate with Thodoris script
     try:
         mean_posteriors = run_aggregation(result)
+        mean_embeddings = run_embedding_aggregation(result)
     except Exception as e:
         print(result, "will not be included!")
         continue
@@ -51,6 +51,7 @@ for idx, row in merged_metadata_df.iterrows():
             else:
                 mean_posteriors_flattened[f"{task}_{cls}"] = mean_posteriors[task][cls]
 
+    mean_posteriors_flattened['features_embedding'] = mean_embeddings['mean'].tolist()
     entry = {idx: value for idx, value in row.items()}
     entry.update(mean_posteriors_flattened)
     features_metadata.append(entry)

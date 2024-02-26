@@ -1,3 +1,4 @@
+import ast
 import json
 import os 
 import librosa
@@ -14,13 +15,40 @@ def parse_arguments():
     args = parser.parse_args()
     return args
 
-
 tasks = {
     'emotion': ['angry', 'happy', 'sad', 'neutral'],
     'strength': ['weak', 'neutral', 'strong'],
     'positivity': ['negative', 'neutral', 'positive'],
     # TODO: add more classification tasks to be used here
 }
+
+def run_embedding_aggregation(input_json):
+    key = list(input_json.keys())[0]
+
+    selected_res = {}
+
+    for pred in input_json[key]:
+        if pred['id'] not in selected_res:
+            selected_res[pred['id']] = {'st': pred['startTime'], 'et': pred['endTime']}
+        if pred["task"] == 'features':
+            if pred['id'] in selected_res:
+                selected_res[pred['id']]['features'] = np.array(ast.literal_eval(pred['embedding']))
+
+    # get average strength and emotion:
+    # mean posteriors:
+    mean_embeddings = {'vals': [], 'durations': []}
+    for utterance in selected_res:
+        if 'features' in selected_res[utterance]:
+            mean_embeddings['vals'].append(selected_res[utterance]['features'])
+            mean_embeddings['durations'].append(float(selected_res[utterance]['et']) - float(selected_res[utterance]['st']))
+
+    # calculate mean embedding:
+    mean_embeddings['mean'] = np.average(mean_embeddings['vals'], weights=mean_embeddings['durations'], axis=0)
+    # delete vals:
+    del mean_embeddings['vals']
+    del mean_embeddings['durations']
+
+    return mean_embeddings
 
 def run_aggregation(input_json):
     key = list(input_json.keys())[0]
