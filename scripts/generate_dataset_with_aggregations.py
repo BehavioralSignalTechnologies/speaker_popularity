@@ -51,7 +51,8 @@ for idx, row in merged_metadata_df.iterrows():
             else:
                 mean_posteriors_flattened[f"{task}_{cls}"] = mean_posteriors[task][cls]
 
-    mean_posteriors_flattened['features_embedding'] = mean_embeddings['mean'].tolist()
+    mean_posteriors_flattened['features_embedding_mean'] = mean_embeddings['mean'].tolist()
+    mean_posteriors_flattened['features_embedding_std'] = mean_embeddings['std'].tolist()
     entry = {idx: value for idx, value in row.items()}
     entry.update(mean_posteriors_flattened)
     features_metadata.append(entry)

@@ -43,7 +43,22 @@ def run_embedding_aggregation(input_json):
             mean_embeddings['durations'].append(float(selected_res[utterance]['et']) - float(selected_res[utterance]['st']))
 
     # calculate mean embedding:
-    mean_embeddings['mean'] = np.average(mean_embeddings['vals'], weights=mean_embeddings['durations'], axis=0)
+    def weighted_avg_and_std(values: np.ndarray, weights):
+        """
+        Return the weighted average and standard deviation.
+
+        They weights are in effect first normalized so that they
+        sum to 1 (and so they must not all be 0).
+
+        values, weights -- NumPy ndarrays with the same shape.
+        """
+        average = np.average(values, weights=weights, axis=0)
+        # Fast and numerically precise:
+        variance = np.average((values - average) ** 2, weights=weights, axis=0)
+        return (average, np.sqrt(variance))
+
+    mean_embeddings['mean'], mean_embeddings['std'] = weighted_avg_and_std(np.array(mean_embeddings['vals']), mean_embeddings['durations'])
+
     # delete vals:
     del mean_embeddings['vals']
     del mean_embeddings['durations']

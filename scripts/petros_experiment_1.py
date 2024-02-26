@@ -16,8 +16,9 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 
 def get_train_test_sets(df, target_col_cat):
-    X_emb = df['features_embedding'].apply(ast.literal_eval).tolist()  # Features
-    X_emb = np.array(X_emb)
+    X_emb_mean = df['features_embedding_mean'].apply(ast.literal_eval).tolist()  # Features
+    X_emb_std = df['features_embedding_std'].apply(ast.literal_eval).tolist()  # Features
+    X_emb = np.concatenate([X_emb_mean, X_emb_std], axis=-1)
 
     post_cols = ['emotion_angry_mean', 'emotion_angry_90p', 'emotion_angry_std',
             'emotion_happy_mean', 'emotion_happy_90p', 'emotion_happy_std',
@@ -47,7 +48,7 @@ def train_test(df, target_col_cat='log_views_norm_cat', visualize=False):
     X_emb, X_post, y_cat, X_emb_train, X_emb_test, X_post_train, X_post_test, y_train_cat, y_test_cat = get_train_test_sets(df, target_col_cat)
 
     # Embeddings classifier
-    emb_classifier = RandomForestClassifier()
+    emb_classifier = SVC(C=200)
     # emb_classifier.fit(X_emb_train, y_train_cat)
     # y_pred = emb_classifier.predict(X_emb_test)
     # accuracy = accuracy_score(y_test_cat, y_pred)
@@ -82,31 +83,31 @@ def train_test(df, target_col_cat='log_views_norm_cat', visualize=False):
     return emb_scores.mean(), post_scores.mean(), dummy_scores.mean()
 
 if __name__ == "__main__":
-    positive_ratings = {'Courageous', 'Beautiful', 'Fascinating', 'Funny', 'Informative', 'Ingenious', 'Inspiring',
-                        'Jaw-dropping', 'Persuasive'}
-    negative_ratings = {'Confusing', 'Longwinded', 'OK', 'Obnoxious', 'Unconvincing'}
+    # positive_ratings = {'Courageous', 'Beautiful', 'Fascinating', 'Funny', 'Informative', 'Ingenious', 'Inspiring',
+    #                     'Jaw-dropping', 'Persuasive'}
+    # negative_ratings = {'Confusing', 'Longwinded', 'OK', 'Obnoxious', 'Unconvincing'}
     df = pd.read_csv("../metadata/merged_metadata_popularity_features.csv")
-    cols = {'views', 'comments_per_view', *positive_ratings, *negative_ratings, 'negative_ratings'}
-    scores = {'target': [], 'type': [], 'score': []}
-    for col in cols:
-        print("="*16)
-        print(f"Predicting: {col}")
-        emb_cross_val_f1, post_cross_val_f1, baseline_cross_val_f1 = train_test(df, f"log_{col}_norm_cat")
+    # cols = {'views', 'comments_per_view', *positive_ratings, *negative_ratings, 'negative_ratings'}
+    # scores = {'target': [], 'type': [], 'score': []}
+    # for col in cols:
+    #     print("="*16)
+    #     print(f"Predicting: {col}")
+    #     emb_cross_val_f1, post_cross_val_f1, baseline_cross_val_f1 = train_test(df, f"log_{col}_norm_cat")
+    #
+    #     scores['target'].append(col)
+    #     scores['type'].append('embeddings')
+    #     scores['score'].append(emb_cross_val_f1)
+    #
+    #     scores['target'].append(col)
+    #     scores['type'].append('random baseline')
+    #     scores['score'].append(baseline_cross_val_f1)
+    #
+    #     scores['target'].append(col)
+    #     scores['type'].append('posteriors')
+    #     scores['score'].append(post_cross_val_f1)
+    #
+    # df = pd.DataFrame(scores)
+    # sorted_scores = df.sort_values(by="score")
+    # px.bar(sorted_scores, x="target", y="score", color="type", barmode='overlay').show()
 
-        scores['target'].append(col)
-        scores['type'].append('embeddings')
-        scores['score'].append(emb_cross_val_f1)
-
-        scores['target'].append(col)
-        scores['type'].append('random baseline')
-        scores['score'].append(baseline_cross_val_f1)
-
-        scores['target'].append(col)
-        scores['type'].append('posteriors')
-        scores['score'].append(post_cross_val_f1)
-
-    df = pd.DataFrame(scores)
-    sorted_scores = df.sort_values(by="score")
-    px.bar(sorted_scores, x="target", y="score", color="type", barmode='overlay').show()
-
-    # train_test(f"log_Informative_norm_cat", visualize=True)
+    train_test(df, f"log_Informative_norm_cat", visualize=True)
