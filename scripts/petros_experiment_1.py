@@ -43,6 +43,12 @@ def get_features(df):
     X_gen = np.array(df['gender_male_mean'].apply(lambda it: 1 if it > 0.5 else 0))
     X_gen = np.expand_dims(X_gen, axis=-1)
 
+    # Normalize
+    X_emb = (X_emb - X_emb.mean())/X_emb.std()
+    X_post = (X_post - X_post.mean())/X_post.std()
+    X_mfccs = (X_mfccs - X_mfccs.mean()) / X_mfccs.std()
+    X_gen = (X_gen - X_gen.mean()) / X_gen.std()
+
     return X_emb, X_post, X_mfccs, X_gen
 
 def get_train_test_sets(df, target_col_cat):
@@ -116,11 +122,11 @@ if __name__ == "__main__":
     positive_ratings = {'Courageous', 'Beautiful', 'Fascinating', 'Funny', 'Informative', 'Ingenious', 'Inspiring',
                         'Jaw-dropping', 'Persuasive'}
     negative_ratings = {'Confusing', 'Longwinded', 'OK', 'Obnoxious', 'Unconvincing'}
-    positive_ratings_views = {f"{r}_views" for r in positive_ratings}
-    negative_ratings_views = {f"{r}_views" for r in negative_ratings}
+    # positive_ratings_views = {f"{r}_views" for r in positive_ratings}
+    # negative_ratings_views = {f"{r}_views" for r in negative_ratings}
 
     df = pd.read_csv("../metadata/merged_metadata_popularity_features.csv")
-    cols = {'views', 'comments_per_view', *positive_ratings, *negative_ratings, *positive_ratings_views, *negative_ratings_views, 'negative_ratings'}
+    cols = {'views', 'comments_per_view', *positive_ratings, *negative_ratings, 'negative_ratings'}
     scores = {'target': [], 'type': [], 'score': []}
     X_emb, X_post, X_mfccs, X_gen = get_features(df)
     for col in cols:
