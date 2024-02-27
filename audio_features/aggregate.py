@@ -19,6 +19,7 @@ tasks = {
     'emotion': ['angry', 'happy', 'sad', 'neutral'],
     'strength': ['weak', 'neutral', 'strong'],
     'positivity': ['negative', 'neutral', 'positive'],
+    'gender': ['male', 'female']
     # TODO: add more classification tasks to be used here
 }
 

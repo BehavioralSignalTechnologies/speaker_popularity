@@ -15,49 +15,51 @@ from sklearn.metrics import confusion_matrix
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-def get_train_test_sets(df, target_col_cat):
+def get_features(df):
     X_emb_mean = df['features_embedding_mean'].apply(ast.literal_eval).tolist()  # Features
     X_emb_std = df['features_embedding_std'].apply(ast.literal_eval).tolist()  # Features
     X_emb = np.concatenate([X_emb_mean, X_emb_std], axis=-1)
 
     post_cols = ['emotion_angry_mean', 'emotion_angry_90p', 'emotion_angry_std',
-            'emotion_happy_mean', 'emotion_happy_90p', 'emotion_happy_std',
-            'emotion_sad_mean', 'emotion_sad_90p', 'emotion_sad_std',
-            'emotion_neutral_mean', 'emotion_neutral_90p', 'emotion_neutral_std',
-            'strength_weak_mean', 'strength_weak_90p', 'strength_weak_std',
-            'strength_neutral_mean', 'strength_neutral_90p', 'strength_neutral_std',
-            'strength_strong_mean', 'strength_strong_90p', 'strength_strong_std',
-            'positivity_negative_mean', 'positivity_negative_90p',
-            'positivity_negative_std', 'positivity_neutral_mean',
-            'positivity_neutral_90p', 'positivity_neutral_std',
-            'positivity_positive_mean', 'positivity_positive_90p',
-            'positivity_positive_std', 'pauses_mean', 'pauses_std', 'pauses_10p',
-            'pauses_90p', 'turn_durations_mean', 'turn_durations_std',
-            'turn_durations_10p', 'turn_durations_90p']
+                 'emotion_happy_mean', 'emotion_happy_90p', 'emotion_happy_std',
+                 'emotion_sad_mean', 'emotion_sad_90p', 'emotion_sad_std',
+                 'emotion_neutral_mean', 'emotion_neutral_90p', 'emotion_neutral_std',
+                 'strength_weak_mean', 'strength_weak_90p', 'strength_weak_std',
+                 'strength_neutral_mean', 'strength_neutral_90p', 'strength_neutral_std',
+                 'strength_strong_mean', 'strength_strong_90p', 'strength_strong_std',
+                 'positivity_negative_mean', 'positivity_negative_90p',
+                 'positivity_negative_std', 'positivity_neutral_mean',
+                 'positivity_neutral_90p', 'positivity_neutral_std',
+                 'positivity_positive_mean', 'positivity_positive_90p',
+                 'positivity_positive_std', 'pauses_mean', 'pauses_std', 'pauses_10p',
+                 'pauses_90p', 'turn_durations_mean', 'turn_durations_std',
+                 'turn_durations_10p', 'turn_durations_90p']
     X_post = df[post_cols]  # Features
-
 
     X_mfccs_mean = df['mfccs_mean'].apply(ast.literal_eval).tolist()  # Features
     X_mfccs_std = df['mfccs_std'].apply(ast.literal_eval).tolist()  # Features
     X_mfccs = np.concatenate([X_mfccs_mean, X_mfccs_std], axis=-1)
 
+    X_gen = np.array(df['gender_male_mean'].apply(lambda it: 1 if it > 0.5 else 0))
+    X_gen = np.expand_dims(X_gen, axis=-1)
+
+    return X_emb, X_post, X_mfccs, X_gen
+
+def get_train_test_sets(df, target_col_cat):
+    X_emb, X_post, X_mfccs, X_gen = get_features(df)
+
     y_cat = df[target_col_cat]
     print(Counter(y_cat).most_common())
 
-    X_emb_train, X_emb_test, X_post_train, X_post_test, X_mfccs_train, X_mfccs_test, y_train_cat, y_test_cat = train_test_split(X_emb, X_post, X_mfccs, y_cat, test_size=0.2, random_state=42)
-    return X_emb, X_post, X_mfccs, y_cat, X_emb_train, X_emb_test, X_post_train, X_post_test, X_mfccs_train, X_mfccs_test, y_train_cat, y_test_cat
+    X_emb_train, X_emb_test, X_post_train, X_post_test, X_mfccs_train, X_mfccs_test, X_gen_train, X_gen_test, y_train_cat, y_test_cat = train_test_split(X_emb, X_post, X_mfccs, X_gen, y_cat, test_size=0.2, random_state=42)
+    return X_emb, X_post, X_mfccs, X_gen, y_cat, X_emb_train, X_emb_test, X_post_train, X_post_test, X_mfccs_train, X_mfccs_test, X_gen_train, X_gen_test, y_train_cat, y_test_cat
 
 
-
-def train_test(df, target_col_cat='log_views_norm_cat', visualize=False):
-    X_emb, X_post, X_mfccs, y_cat, X_emb_train, X_emb_test, X_post_train, X_post_test, X_mfccs_train, X_mfccs_test, y_train_cat, y_test_cat = get_train_test_sets(df, target_col_cat)
+def cross_validation(X_emb, X_post, X_mfccs, X_gen, y_cat, visualize=False):
+    X_post_gen = np.concatenate([X_post, X_gen], axis=-1)
 
     # Embeddings classifier
     emb_classifier = SVC(C=200)
-    # emb_classifier.fit(X_emb_train, y_train_cat)
-    # y_pred = emb_classifier.predict(X_emb_test)
-    # accuracy = accuracy_score(y_test_cat, y_pred)
-    # f1 = f1_score(y_test_cat, y_pred, average="weighted")
     emb_scores = cross_val_score(emb_classifier, X_emb, y_cat, cv=5, scoring='f1_weighted')
     print(f"Embeddings Cross-validated F1: {emb_scores.mean()}")
 
@@ -65,6 +67,16 @@ def train_test(df, target_col_cat='log_views_norm_cat', visualize=False):
     post_classifier = RandomForestClassifier()
     post_scores = cross_val_score(post_classifier, X_post, y_cat, cv=5, scoring='f1_weighted')
     print(f"Posteriors Cross-validated F1: {post_scores.mean()}")
+
+    # Gender classifier
+    gen_classifier = RandomForestClassifier()
+    gen_scores = cross_val_score(gen_classifier, X_gen, y_cat, cv=5, scoring='f1_weighted')
+    print(f"Gender Cross-validated F1: {gen_scores.mean()}")
+
+    # Posterior w/ gender
+    post_gen_classifier = RandomForestClassifier()
+    post_gen_scores = cross_val_score(post_gen_classifier, X_post_gen, y_cat, cv=5, scoring='f1_weighted')
+    print(f"Posteriors+gender Cross-validated F1: {post_gen_scores.mean()}")
 
     # MFCC classifier
     mfcc_classifier = SVC(C=200)
@@ -76,33 +88,49 @@ def train_test(df, target_col_cat='log_views_norm_cat', visualize=False):
     dummy_scores = cross_val_score(dummy_clf, X_emb, y_cat, cv=5, scoring='f1_weighted')
     print(f"Baseline Cross-validated F1: {dummy_scores.mean()}")
 
-    if visualize:
-        # Assuming 'y_test' contains the true class labels and 'y_pred' contains the predicted class labels
-        emb_classifier.fit(X_emb_train, y_train_cat)
-        y_pred = emb_classifier.predict(X_emb_test)
-        cm = confusion_matrix(y_test_cat, y_pred)
+    return emb_scores.mean(), post_scores.mean(), gen_scores.mean(), post_gen_scores.mean(), mfcc_scores.mean(), dummy_scores.mean()
 
-        # Plotting the confusion matrix as a heatmap
-        plt.figure(figsize=(10, 7))
-        sns.heatmap(cm, annot=True, fmt='g', cmap='Blues', xticklabels=True, yticklabels=True)
-        plt.xlabel('Predicted labels')
-        plt.ylabel('True labels')
-        plt.title('Confusion Matrix')
-        plt.show()
+def train_test(df, target):
+    X_emb, X_post, X_mfccs, X_gen, y_cat, X_emb_train, X_emb_test, X_post_train, X_post_test, X_mfccs_train, X_mfccs_test, X_gen_train, X_gen_test, y_train_cat, y_test_cat = get_train_test_sets(df, target)
 
-    return emb_scores.mean(), post_scores.mean(), mfcc_scores.mean(), dummy_scores.mean()
+    # Assuming 'y_test' contains the true class labels and 'y_pred' contains the predicted class labels
+    emb_classifier = SVC(C=200)
+    emb_classifier.fit(X_emb_train, y_train_cat)
+    y_pred = emb_classifier.predict(X_emb_test)
+    cm = confusion_matrix(y_test_cat, y_pred)
+
+    # emb_classifier.fit(X_emb_train, y_train_cat)
+    accuracy = accuracy_score(y_test_cat, y_pred)
+    f1 = f1_score(y_test_cat, y_pred, average="weighted")
+    print(f"Accuracy: {accuracy}, F1: {f1}")
+
+    # Plotting the confusion matrix as a heatmap
+    plt.figure(figsize=(10, 7))
+    sns.heatmap(cm, annot=True, fmt='g', cmap='Blues', xticklabels=True, yticklabels=True)
+    plt.xlabel('Predicted labels')
+    plt.ylabel('True labels')
+    plt.title('Confusion Matrix')
+    plt.show()
 
 if __name__ == "__main__":
     positive_ratings = {'Courageous', 'Beautiful', 'Fascinating', 'Funny', 'Informative', 'Ingenious', 'Inspiring',
                         'Jaw-dropping', 'Persuasive'}
     negative_ratings = {'Confusing', 'Longwinded', 'OK', 'Obnoxious', 'Unconvincing'}
+    positive_ratings_views = {f"{r}_views" for r in positive_ratings}
+    negative_ratings_views = {f"{r}_views" for r in negative_ratings}
+
     df = pd.read_csv("../metadata/merged_metadata_popularity_features.csv")
-    cols = {'views', 'comments_per_view', *positive_ratings, *negative_ratings, 'negative_ratings'}
+    cols = {'views', 'comments_per_view', *positive_ratings, *negative_ratings, *positive_ratings_views, *negative_ratings_views, 'negative_ratings'}
     scores = {'target': [], 'type': [], 'score': []}
+    X_emb, X_post, X_mfccs, X_gen = get_features(df)
     for col in cols:
         print("="*16)
         print(f"Predicting: {col}")
-        emb_cross_val_f1, post_cross_val_f1, mfcc_cross_val_f1, baseline_cross_val_f1 = train_test(df, f"log_{col}_norm_cat")
+
+        y_cat = df[f"log_{col}_norm_cat"]
+        print(Counter(y_cat).most_common())
+
+        emb_cross_val_f1, post_cross_val_f1, gen_cross_val_f1, post_gen_cross_val_f1, mfcc_cross_val_f1, baseline_cross_val_f1 = cross_validation(X_emb, X_post, X_mfccs, X_gen, y_cat)
 
         scores['target'].append(col)
         scores['type'].append('embeddings')
@@ -120,8 +148,19 @@ if __name__ == "__main__":
         scores['type'].append('mfcc')
         scores['score'].append(mfcc_cross_val_f1)
 
-    df = pd.DataFrame(scores)
-    sorted_scores = df.sort_values(by="score")
+        scores['target'].append(col)
+        scores['type'].append('gender')
+        scores['score'].append(gen_cross_val_f1)
+
+        scores['target'].append(col)
+        scores['type'].append('posteriors w/ gender')
+        scores['score'].append(post_gen_cross_val_f1)
+
+
+    scores = pd.DataFrame(scores)
+    scores.to_csv("scores.csv")
+    sorted_scores = scores.sort_values(by="score")
     px.bar(sorted_scores, x="target", y="score", color="type", barmode='overlay').show()
 
-    train_test(df, f"log_Informative_norm_cat", visualize=True)
+    train_test(df, 'log_Beautiful_norm_cat')
+
