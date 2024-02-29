@@ -23,8 +23,8 @@ def generate_summary(examples, description, text):
                                           f"The text belongs to a TED talk with a single speaker on a given topic. Annotations in text like '(Laughter)' means that the audience was laughing. \n"
               f"Annotation labels:\n"
               f"1. Talk topic \n"
-              f"2. I want you to choose from the following label list the labels which describe the talk. The list should be sorted by relevance. Choose a maximum of 3 labels. Please take care to"
-              f"not select conflicting labels simultaneously like 'Persuasive' and 'Unconvincing'. Labels : {', '.join(ratings)} \n"
+              f"2. I want you to choose ONLY from the following label list the labels which describe the talk. The list should be sorted by relevance. Choose a maximum of 3 labels. Please take care to"
+              f"NOT select conflicting labels simultaneously like 'Persuasive' and 'Unconvincing'. Labels : {', '.join(ratings)} \n"
               f"3. Sentiment: [Negative, Neutral, Positive] depending on the sentiment of the words used in the topic\n"
               f"4. Description versus content relevant -1 for deceptive, 0 for not relevant, 1 for relevant\n"
               f"5. Describe the speaker by using at most 3 personality trait labels, for example 'arrogant' or 'disrespectful', 'fair'\n"},
@@ -94,5 +94,5 @@ if __name__ == '__main__':
                 responses[filename] = generate_summary(examples, description, text)
     except (Exception, KeyboardInterrupt) as e:
         print("Exception occured", e)
-    with open(output_file, 'w+') as file:
+    with open(output_file, 'a+') as file:
         json.dump(responses, file)
