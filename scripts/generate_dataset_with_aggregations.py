@@ -13,7 +13,7 @@ import tqdm
 sys.path.append("..")
 from audio_features.aggregate import run_aggregation, run_embedding_aggregation
 
-merged_metadata_df = pd.read_csv("../metadata/merged_metadata_popularity.csv")
+merged_metadata_df = pd.read_csv("../metadata/merged_metadata_popularity_std.csv")
 
 
 def get_acoustic_features(result):
@@ -22,14 +22,12 @@ def get_acoustic_features(result):
     return res['arr_0'], res['arr_1']
 
 def get_related_result(row):
-    for entry in os.listdir('../modeling_api_results_embeddings'):
-        if not entry.endswith(".wav.json"):
-            continue
-
-        if entry.split(".wav.json")[0] == row['filename'].split(".wav")[0]:
-            with open(os.path.join('../modeling_api_results_embeddings', entry)) as f:
-                return json.load(f)
-
+    entry = row['filename']+".json"
+    try:
+        with open(os.path.join('../modeling_api_results_embeddings', entry)) as f:
+            return json.load(f)
+    except Exception as e:
+        print(e)
     print(f"File {row['url']} not found in modeling_api_results")
     return None
 
@@ -72,4 +70,4 @@ for idx, row in tqdm.tqdm(merged_metadata_df.iterrows(), total=len(merged_metada
 
 features_metadata_df = pd.DataFrame(features_metadata)
 print(f"Length of generated dataset: {len(features_metadata_df)}")
-features_metadata_df.to_csv("../metadata/merged_metadata_popularity_features.csv")
+features_metadata_df.to_csv("../metadata/merged_metadata_popularity_features_std.csv")
