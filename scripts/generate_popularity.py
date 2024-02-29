@@ -30,6 +30,9 @@ comments_mapping_3 = partial(map_to_label,
                              ranges=[[-np.inf, -0.5], [-0.5, 0.5], [0.5, np.inf]],
                              labels=["low", "medium", "high"])
 
+views_mapping_3_std = partial(map_to_label,
+                          ranges=[[-np.inf, -1], [-1, 1], [1, np.inf]],
+                          labels=["low", "medium", "high"])
 
 if __name__ == '__main__':
 
@@ -49,6 +52,9 @@ if __name__ == '__main__':
     df = df.loc[(df['film_year'] >= 2010) & (df['film_year'] <= 2016), :]
     # Num_speakers == 1
     df = df.loc[df['num_speaker'] == 1, :]
+    # Tags associated with dance, live music and visual content
+    bad_tags = ['dance', 'photography', 'performance', 'vocals', 'piano', 'guitar', 'live music']
+    df = df.loc[df['tags'].apply(ast.literal_eval).apply(lambda tags: len(set(tags).intersection(bad_tags)) == 0), :]
 
     # Replace nan occupation with ""
     df['speaker_occupation']: pd.Series = df['speaker_occupation'].fillna("")
@@ -58,14 +64,14 @@ if __name__ == '__main__':
     views = df['views']
     df['log_views_norm'] = (log_views - log_views.mean()) / log_views.std()
     df['views_norm'] = (views - views.mean()) / views.std()
-    df['log_views_norm_cat'] = df['log_views_norm'].apply(views_mapping_3)
+    df['log_views_norm_cat'] = df['log_views_norm'].apply(views_mapping_3_std)
 
     # Generate comments target set
     log_comments = np.log(df['comments'])
     comments = df['comments']
     df['log_comments_norm'] = (log_comments - log_comments.mean()) / log_comments.std()
     df['comments_norm'] = (comments - comments.mean()) / comments.std()
-    df['log_comments_norm_cat'] = df['log_comments_norm'].apply(views_mapping_3)
+    df['log_comments_norm_cat'] = df['log_comments_norm'].apply(views_mapping_3_std)
 
     # Generate comments/views set
     comments_per_view = df['comments'] / df['views']
@@ -73,7 +79,15 @@ if __name__ == '__main__':
 
     log_comments_per_view = np.log(comments_per_view)
     df['log_comments_per_view_norm'] = (log_comments_per_view - log_comments_per_view.mean()) / log_comments_per_view.std()
-    df['log_comments_per_view_norm_cat'] = df['log_comments_per_view_norm'].apply(comments_mapping_3)
+    df['log_comments_per_view_norm_cat'] = df['log_comments_per_view_norm'].apply(views_mapping_3_std)
+    df["ratings_ast"] = df['ratings'].apply(ast.literal_eval)
+    df['ratings_sum'] = df["ratings_ast"].apply(lambda x: np.sum([tag['count'] for tag in x]))
+    ratings_views =  np.log(df['ratings_sum'] / df['views'])
+    df['log_ratings_views_norm'] = (ratings_views - ratings_views.mean()) / ratings_views.std()
+    df['log_ratings_views_norm_cat'] = df['log_ratings_views_norm'].apply(views_mapping_3_std)
+    # import plotly.express as px
+    # px.histogram(df['log_ratings_views_norm_cat']).write_image("ratings-view-cat.png")
+    # breakpoint()
 
 
     # Add sentiment
@@ -107,12 +121,12 @@ if __name__ == '__main__':
         df[rat] = df['ratings'].apply(lambda ratings: normalize_rating(ratings, rat))
         df[f'log_{rat}'] = np.log(df[f'{rat}']+0.001)
         df[f'log_{rat}_norm'] = (df[f'log_{rat}'] - df[f'log_{rat}'].mean()) / df[f'log_{rat}'].std()
-        df[f'log_{rat}_norm_cat'] = df[f'log_{rat}_norm'].apply(views_mapping_3)
+        df[f'log_{rat}_norm_cat'] = df[f'log_{rat}_norm'].apply(views_mapping_3_std)
 
         df[f"{rat}_views"] = df[rat]*np.log(df['views'])
         df[f"log_{rat}_views"] = np.log(df[f"{rat}_views"]+0.001)
         df[f'log_{rat}_views_norm'] = (df[f'log_{rat}_views'] - df[f'log_{rat}_views'].mean()) / df[f'log_{rat}_views'].std()
-        df[f'log_{rat}_views_norm_cat'] = df[f'log_{rat}_views_norm'].apply(views_mapping_3)
+        df[f'log_{rat}_views_norm_cat'] = df[f'log_{rat}_views_norm'].apply(views_mapping_3_std)
 
     # Add total negative ratings
     negative_count = []
@@ -127,7 +141,7 @@ if __name__ == '__main__':
     df['negative_ratings'] = np.array(negative_count)
     df['log_negative_ratings'] = np.log(df['negative_ratings']+0.001)
     df['log_negative_ratings_norm'] = (df['log_negative_ratings'] - df['log_negative_ratings'].mean()) / df['log_negative_ratings'].std()
-    df['log_negative_ratings_norm_cat'] = df['log_negative_ratings_norm'].apply(views_mapping_3)
+    df['log_negative_ratings_norm_cat'] = df['log_negative_ratings_norm'].apply(views_mapping_3_std)
 
     print(df)
-    df.to_csv("../metadata/merged_metadata_popularity.csv", index=False)
+    df.to_csv("../metadata/merged_metadata_popularity_std.csv", index=False)
