@@ -52,9 +52,9 @@ if __name__ == '__main__':
     df = df.loc[(df['film_year'] >= 2010) & (df['film_year'] <= 2016), :]
     # Num_speakers == 1
     df = df.loc[df['num_speaker'] == 1, :]
-    # Tags associated with dance, live music and visual content
-    bad_tags = ['dance', 'photography', 'performance', 'vocals', 'piano', 'guitar', 'live music']
-    df = df.loc[df['tags'].apply(ast.literal_eval).apply(lambda tags: len(set(tags).intersection(bad_tags)) == 0), :]
+    # # Tags associated with dance, live music and visual content
+    # bad_tags = ['dance', 'photography', 'performance', 'vocals', 'piano', 'guitar', 'live music']
+    # df = df.loc[df['tags'].apply(ast.literal_eval).apply(lambda tags: len(set(tags).intersection(bad_tags)) == 0), :]
 
     # Replace nan occupation with ""
     df['speaker_occupation']: pd.Series = df['speaker_occupation'].fillna("")
