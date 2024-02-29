@@ -19,9 +19,13 @@ def get_features(df):
     X_emb_mean = df['features_embedding_mean'].apply(ast.literal_eval).tolist()  # Features
     X_emb_std = df['features_embedding_std'].apply(ast.literal_eval).tolist()  # Features
     X_emb = np.concatenate([X_emb_mean, X_emb_std], axis=-1)
+    # X_emb = np.array(X_emb_mean)
 
     X_emb_transcript = np.array(df['embeddings'].apply(ast.literal_eval).tolist())  # Features
     X_emb_asr_annotated = np.array(df['embedding_emotion'].apply(ast.literal_eval).tolist())  # Features
+
+    # print(X_emb.shape)
+    # print(X_emb_transcript.shape)
 
     post_cols = ['emotion_angry_mean', 'emotion_angry_90p', 'emotion_angry_std',
                  'emotion_happy_mean', 'emotion_happy_90p', 'emotion_happy_std',
@@ -177,8 +181,8 @@ if __name__ == "__main__":
     # negative_ratings_views = {f"{r}_views" for r in negative_ratings}
 
     df_1 = pd.read_csv("../metadata/merged_metadata_popularity_features_std.csv")
-    df_2 = pd.read_csv("../metadata/asr_annotated_embeddings.csv")
-    df_3 = pd.read_csv("../metadata/asr_embeddings.csv")
+    df_2 = pd.read_csv("../metadata/asr_annotated_full_embeddings.csv")
+    df_3 = pd.read_csv("../metadata/asr_embeddings_2.csv")
     df_1['url'] = df_1['url'].astype(str).apply(str.strip)
     df_2['url'] = df_2['url'].astype(str).apply(str.strip)
     df_3['url'] = df_3['url'].astype(str).apply(str.strip)
@@ -187,7 +191,7 @@ if __name__ == "__main__":
     df = pd.merge(df, df_3, on="url")
     df = df.dropna()
 
-    train_test(df, 'log_Beautiful_norm_cat')
+    # train_test(df, 'log_Beautiful_norm_cat')
 
     cols = {'ratings_views', 'views', 'comments_per_view', *positive_ratings, *negative_ratings, 'negative_ratings'}
     scores = {'target': [], 'type': [], 'score': []}
