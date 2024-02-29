@@ -109,6 +109,10 @@ if __name__ == '__main__':
         df[f'log_{rat}_norm'] = (df[f'log_{rat}'] - df[f'log_{rat}'].mean()) / df[f'log_{rat}'].std()
         df[f'log_{rat}_norm_cat'] = df[f'log_{rat}_norm'].apply(views_mapping_3)
 
+        df[f"{rat}_views"] = df[rat]*np.log(df['views'])
+        df[f"log_{rat}_views"] = np.log(df[f"{rat}_views"]+0.001)
+        df[f'log_{rat}_views_norm'] = (df[f'log_{rat}_views'] - df[f'log_{rat}_views'].mean()) / df[f'log_{rat}_views'].std()
+        df[f'log_{rat}_views_norm_cat'] = df[f'log_{rat}_views_norm'].apply(views_mapping_3)
 
     # Add total negative ratings
     negative_count = []
