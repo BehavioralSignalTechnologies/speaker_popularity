@@ -1,5 +1,6 @@
 import ast
 import concurrent
+import os
 from collections import Counter
 import tabulate
 from tqdm import tqdm
@@ -12,7 +13,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score, roc_auc_score, make_scorer
 from sklearn.svm import SVC
 from sklearn.model_selection import KFold
-from sklearn.preprocessing import label_binarize
+from sklearn.preprocessing import label_binarize, StandardScaler
 from sklearn.exceptions import UndefinedMetricWarning
 import warnings
 warnings.filterwarnings("ignore", category=UndefinedMetricWarning)
@@ -44,6 +45,7 @@ def get_features(df):
                  'pauses_90p', 'turn_durations_mean', 'turn_durations_std',
                  'turn_durations_10p', 'turn_durations_90p']
     X_post = df[post_cols].to_numpy()  # Features
+    print(X_post.shape)
 
     X_mfccs_mean = df['mfccs_mean'].apply(ast.literal_eval).tolist()  # Features
     X_mfccs_std = df['mfccs_std'].apply(ast.literal_eval).tolist()  # Features
@@ -51,13 +53,6 @@ def get_features(df):
 
     X_gen = np.array(df['gender_male_mean'].apply(lambda it: 1 if it > 0.5 else 0))
     X_gen = np.expand_dims(X_gen, axis=-1)
-
-    # Normalize
-    X_emb = (X_emb - X_emb.mean())/X_emb.std()
-    X_emb_transcript = (X_emb_transcript - X_emb_transcript.mean())/X_emb_transcript.std()
-    X_post = (X_post - X_post.mean())/X_post.std()
-    X_mfccs = (X_mfccs - X_mfccs.mean()) / X_mfccs.std()
-    X_gen = (X_gen - X_gen.mean()) / X_gen.std()
 
     return X_emb, X_post, X_mfccs, X_gen, X_emb_transcript
 
@@ -86,22 +81,42 @@ def extreme_errors(y_true, y_pred):
     return accuracy_score(y_true_hl, y_pred_hl)
 
 
-def calculate_scores(name, clf, X, y, classes):
+def calculate_scores(col, name, clf, X, y, classes):
     cv = KFold(n_splits=5, shuffle=True, random_state=42)
     precision = {cls: [] for cls in classes}
     recall = {cls: [] for cls in classes}
     auc = {cls: [] for cls in classes}
     f1_macro = []
+    f1_weighted = []
     ext_err = []
 
-    for train_index, test_index in cv.split(X):
+    for idx, (train_index, test_index) in enumerate(cv.split(X)):
         X_train, X_test = X[train_index], X[test_index]
         y_train, y_test = y[train_index], y[test_index]
-        clf.fit(X_train, y_train)
-        y_pred = clf.predict(X_test)
-        y_prob = clf.predict_proba(X_test)
+
+        # Standardize fold
+        scaler = StandardScaler()
+        X_train_scaled = scaler.fit_transform(X_train)
+        X_test_scaled = scaler.transform(X_test)
+
+        clf.fit(X_train_scaled, y_train)
+
+        y_pred = clf.predict(X_test_scaled)
+        y_prob = clf.predict_proba(X_test_scaled)
+
+        if idx == 0:
+            # Confusion matrix
+            cm = confusion_matrix(y_test, y_pred, labels=["low", "medium", "high"])
+            plt.figure(figsize=(10, 7))
+            sns.heatmap(cm, annot=True, fmt='g', cmap='Blues', xticklabels=True, yticklabels=True)
+            plt.xlabel('Predicted labels')
+            plt.ylabel('True labels')
+            plt.title('Confusion Matrix')
+            plt.savefig(f"../results/cm_{col}_{name}.png")
+            plt.close()
 
         f1_macro.append(f1_score(y_test, y_pred, average="macro"))
+        f1_weighted.append(f1_score(y_test, y_pred, average="weighted"))
         ext_err.append(extreme_errors(y_test, y_pred))
 
         aucs = roc_auc_score(y_test, y_prob, multi_class='ovr', average=None, labels=classes)
@@ -111,18 +126,20 @@ def calculate_scores(name, clf, X, y, classes):
             precision[cls].append(precision_score(y_test, y_pred, labels=[cls], average=None))
             recall[cls].append(recall_score(y_test, y_pred, labels=[cls], average=None))
 
+
     # Average the scores across folds for each class
     averaged_scores = {
         **{f"precision_{cls}": np.mean(precision[cls]) for cls in classes},
         **{f"recall_{cls}": np.mean(recall[cls]) for cls in classes},
         **{f"auc_{cls}": np.mean(auc[cls]) for cls in auc},
         'f1_macro': np.mean(f1_macro),
+        'f1_weighted': np.mean(f1_weighted),
         'extreme_errors': np.mean(ext_err)
     }
     return averaged_scores
 
 
-def evaluate_classifier(name, X, y, classes):
+def evaluate_classifier(col, name, X, y, classes):
     if name in ['Embeddings', 'MFCC', 'Text', 'Audio-Text']:
         clf = SVC(C=200, probability=True)
     elif name == 'Baseline':
@@ -130,12 +147,11 @@ def evaluate_classifier(name, X, y, classes):
     else:
         clf = RandomForestClassifier()
 
-    scores = calculate_scores(name, clf, X, y, classes)
+    scores = calculate_scores(col, name, clf, X, y, classes)
     return scores
 
 
-def cross_validation_with_kfold_split_and_class_metrics(X_emb, X_post, X_mfccs, X_gen, X_emb_transcript, y_cat,
-                                                        visualize=False):
+def cross_validation_with_kfold_split_and_class_metrics(X_emb, X_post, X_mfccs, X_gen, X_emb_transcript, cols):
 
     # Helper function to calculate scores
     X_post_gen = np.concatenate([X_post, X_gen], axis=-1)
@@ -152,18 +168,36 @@ def cross_validation_with_kfold_split_and_class_metrics(X_emb, X_post, X_mfccs, 
         'Baseline': X_emb
     }
 
-    # Assuming y_cat contains the class labels as integers
-    classes = np.unique(y_cat)
+    results = {col: {} for col in cols}
+    print(f"Running on {os.cpu_count()} cores")
 
-    results = {}
-    with concurrent.futures.ProcessPoolExecutor(max_workers=8) as executor:
-        futures = {executor.submit(evaluate_classifier, name, X_data[name], y_cat, classes): name for name in X_data}
+    with concurrent.futures.ProcessPoolExecutor(max_workers=os.cpu_count()) as executor:
+        futures = {}
+        for col in cols:
+            print("=" * 16)
+            print(f"Predicting: {col}")
+
+            y_cat = df[f"log_{col}_norm_cat"].to_numpy()
+            print(Counter(y_cat).most_common())
+
+            # Assuming y_cat contains the class labels as integers
+            classes = np.unique(y_cat)
+
+            for name in X_data:
+                futures[executor.submit(evaluate_classifier, col, name, X_data[name], y_cat, classes)] = f"{col}__{name}"
+
+        # Initialize the tqdm progress bar
+        pbar = tqdm(total=len(futures), desc="Classifying")
+
         for future in concurrent.futures.as_completed(futures):
-            name = futures[future]
+            col, name = futures[future].split("__")
             try:
-                results[name] = future.result()
+                results[col][name] = future.result()
             except Exception as exc:
                 print('%r generated an exception: %s' % (name, exc))
+            finally:
+                # Manually update the progress bar
+                pbar.update(1)
 
     return results
 
@@ -212,28 +246,21 @@ if __name__ == "__main__":
     scores = {'target': [], 'type': [], 'metric': [], 'value': []}
     X_emb, X_post, X_mfccs, X_gen, X_emb_transcript = get_features(df)
     print_dict = {}
-    for col in tqdm(cols):
-        print("="*16)
-        print(f"Predicting: {col}")
+    results_cross_val = cross_validation_with_kfold_split_and_class_metrics(X_emb, X_post, X_mfccs, X_gen, X_emb_transcript, cols)
 
-        y_cat = df[f"log_{col}_norm_cat"].to_numpy()
-        print(Counter(y_cat).most_common())
-
-        results_cross_val = cross_validation_with_kfold_split_and_class_metrics(X_emb, X_post, X_mfccs, X_gen, X_emb_transcript, y_cat)
-        print(results_cross_val)
-
-        for name, results in results_cross_val.items():
-            scores['target'].append(col)
-            scores['type'].append(name)
+    for col in results_cross_val.keys():
+        for name, results in results_cross_val[col].items():
             for metric, value in results.items():
+                scores['target'].append(col)
+                scores['type'].append(name)
                 scores['metric'].append(metric)
                 scores['value'].append(value)
 
 
     scores = pd.DataFrame(scores)
-    scores.to_csv("scores.csv")
+    scores.to_csv("../results/scores.csv")
     sorted_scores = scores.sort_values(by="value")
-    px.bar(sorted_scores, x="target", y="value", color="type", facet_col="metric", barmode='overlay').show()
+    px.bar(sorted_scores, x="target", y="value", color="type", facet_row="metric", barmode='overlay').show()
 
-    train_test(df, 'log_Beautiful_norm_cat')
+    # train_test(df, 'log_Beautiful_norm_cat')
 
