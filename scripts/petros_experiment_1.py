@@ -1,24 +1,33 @@
 import ast
+import concurrent
 from collections import Counter
-
+import tabulate
+from tqdm import tqdm
 import numpy as np
 import pandas as pd
 import plotly.express as px
-import xgboost as xgb
 from sklearn.dummy import DummyClassifier
-from sklearn.model_selection import train_test_split, cross_val_score
-from sklearn.ensemble import RandomForestRegressor, RandomForestClassifier
-from sklearn.metrics import mean_squared_error, accuracy_score, f1_score
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score, roc_auc_score, make_scorer
 from sklearn.svm import SVC
+from sklearn.model_selection import KFold
+from sklearn.preprocessing import label_binarize
+from sklearn.exceptions import UndefinedMetricWarning
+import warnings
+warnings.filterwarnings("ignore", category=UndefinedMetricWarning)
 
 from sklearn.metrics import confusion_matrix
 import seaborn as sns
 import matplotlib.pyplot as plt
 
+
 def get_features(df):
     X_emb_mean = df['features_embedding_mean'].apply(ast.literal_eval).tolist()  # Features
     X_emb_std = df['features_embedding_std'].apply(ast.literal_eval).tolist()  # Features
     X_emb = np.concatenate([X_emb_mean, X_emb_std], axis=-1)
+
+    X_emb_transcript = np.array(df['embeddings'].apply(ast.literal_eval).tolist())  # Features
 
     post_cols = ['emotion_angry_mean', 'emotion_angry_90p', 'emotion_angry_std',
                  'emotion_happy_mean', 'emotion_happy_90p', 'emotion_happy_std',
@@ -34,7 +43,7 @@ def get_features(df):
                  'positivity_positive_std', 'pauses_mean', 'pauses_std', 'pauses_10p',
                  'pauses_90p', 'turn_durations_mean', 'turn_durations_std',
                  'turn_durations_10p', 'turn_durations_90p']
-    X_post = df[post_cols]  # Features
+    X_post = df[post_cols].to_numpy()  # Features
 
     X_mfccs_mean = df['mfccs_mean'].apply(ast.literal_eval).tolist()  # Features
     X_mfccs_std = df['mfccs_std'].apply(ast.literal_eval).tolist()  # Features
@@ -45,59 +54,123 @@ def get_features(df):
 
     # Normalize
     X_emb = (X_emb - X_emb.mean())/X_emb.std()
+    X_emb_transcript = (X_emb_transcript - X_emb_transcript.mean())/X_emb_transcript.std()
     X_post = (X_post - X_post.mean())/X_post.std()
     X_mfccs = (X_mfccs - X_mfccs.mean()) / X_mfccs.std()
     X_gen = (X_gen - X_gen.mean()) / X_gen.std()
 
-    return X_emb, X_post, X_mfccs, X_gen
+    return X_emb, X_post, X_mfccs, X_gen, X_emb_transcript
 
 def get_train_test_sets(df, target_col_cat):
-    X_emb, X_post, X_mfccs, X_gen = get_features(df)
+    X_emb, X_post, X_mfccs, X_gen, X_emb_transcript = get_features(df)
 
     y_cat = df[target_col_cat]
     print(Counter(y_cat).most_common())
 
-    X_emb_train, X_emb_test, X_post_train, X_post_test, X_mfccs_train, X_mfccs_test, X_gen_train, X_gen_test, y_train_cat, y_test_cat = train_test_split(X_emb, X_post, X_mfccs, X_gen, y_cat, test_size=0.2, random_state=42)
-    return X_emb, X_post, X_mfccs, X_gen, y_cat, X_emb_train, X_emb_test, X_post_train, X_post_test, X_mfccs_train, X_mfccs_test, X_gen_train, X_gen_test, y_train_cat, y_test_cat
+    (X_emb_train, X_emb_test, X_post_train, X_post_test, X_mfccs_train, X_mfccs_test, X_gen_train, X_gen_test, X_emb_transcript_train, X_emb_transcript_test,
+     y_train_cat, y_test_cat) = train_test_split(X_emb, X_post, X_mfccs, X_gen, X_emb_transcript, y_cat, test_size=0.2, random_state=42)
+    return X_emb, X_post, X_mfccs, X_gen, y_cat, X_emb_train, X_emb_test, X_post_train, X_post_test, X_mfccs_train, X_mfccs_test, X_gen_train, X_gen_test, X_emb_transcript_train, X_emb_transcript_test, y_train_cat, y_test_cat
 
 
-def cross_validation(X_emb, X_post, X_mfccs, X_gen, y_cat, visualize=False):
+def extreme_errors(y_true, y_pred):
+    y_true_ids = set(np.where(y_true != "medium")[0])
+    y_pred_ids = set(np.where(y_pred != "medium")[0])
+    ids = np.array(list(y_true_ids.intersection(y_pred_ids)))
+
+    if len(ids) == 0:
+        return 0.0
+
+    y_pred_hl = y_pred[ids]
+    y_true_hl = y_true[ids]
+
+    return accuracy_score(y_true_hl, y_pred_hl)
+
+
+def calculate_scores(name, clf, X, y, classes):
+    cv = KFold(n_splits=5, shuffle=True, random_state=42)
+    precision = {cls: [] for cls in classes}
+    recall = {cls: [] for cls in classes}
+    auc = {cls: [] for cls in classes}
+    f1_macro = []
+    ext_err = []
+
+    for train_index, test_index in cv.split(X):
+        X_train, X_test = X[train_index], X[test_index]
+        y_train, y_test = y[train_index], y[test_index]
+        clf.fit(X_train, y_train)
+        y_pred = clf.predict(X_test)
+        y_prob = clf.predict_proba(X_test)
+
+        f1_macro.append(f1_score(y_test, y_pred, average="macro"))
+        ext_err.append(extreme_errors(y_test, y_pred))
+
+        aucs = roc_auc_score(y_test, y_prob, multi_class='ovr', average=None, labels=classes)
+
+        for idx, cls in enumerate(classes):
+            auc[cls].append(aucs[idx])
+            precision[cls].append(precision_score(y_test, y_pred, labels=[cls], average=None))
+            recall[cls].append(recall_score(y_test, y_pred, labels=[cls], average=None))
+
+    # Average the scores across folds for each class
+    averaged_scores = {
+        **{f"precision_{cls}": np.mean(precision[cls]) for cls in classes},
+        **{f"recall_{cls}": np.mean(recall[cls]) for cls in classes},
+        **{f"auc_{cls}": np.mean(auc[cls]) for cls in auc},
+        'f1_macro': np.mean(f1_macro),
+        'extreme_errors': np.mean(ext_err)
+    }
+    return averaged_scores
+
+
+def evaluate_classifier(name, X, y, classes):
+    if name in ['Embeddings', 'MFCC', 'Text', 'Audio-Text']:
+        clf = SVC(C=200, probability=True)
+    elif name == 'Baseline':
+        clf = DummyClassifier(strategy='stratified')
+    else:
+        clf = RandomForestClassifier()
+
+    scores = calculate_scores(name, clf, X, y, classes)
+    return scores
+
+
+def cross_validation_with_kfold_split_and_class_metrics(X_emb, X_post, X_mfccs, X_gen, X_emb_transcript, y_cat,
+                                                        visualize=False):
+
+    # Helper function to calculate scores
     X_post_gen = np.concatenate([X_post, X_gen], axis=-1)
+    audio_text_embeddings = np.concatenate([X_emb, X_emb_transcript], axis=-1)
 
-    # Embeddings classifier
-    emb_classifier = SVC(C=200)
-    emb_scores = cross_val_score(emb_classifier, X_emb, y_cat, cv=5, scoring='f1_weighted')
-    print(f"Embeddings Cross-validated F1: {emb_scores.mean()}")
+    X_data = {
+        'Embeddings': X_emb,
+        'Posteriors': X_post,
+        'Gender': X_gen,
+        'Posteriors+gender': X_post_gen,
+        'MFCC': X_mfccs,
+        'Text': X_emb_transcript,
+        'Audio-Text': audio_text_embeddings,
+        'Baseline': X_emb
+    }
 
-    # Posterior classifier
-    post_classifier = RandomForestClassifier()
-    post_scores = cross_val_score(post_classifier, X_post, y_cat, cv=5, scoring='f1_weighted')
-    print(f"Posteriors Cross-validated F1: {post_scores.mean()}")
+    # Assuming y_cat contains the class labels as integers
+    classes = np.unique(y_cat)
 
-    # Gender classifier
-    gen_classifier = RandomForestClassifier()
-    gen_scores = cross_val_score(gen_classifier, X_gen, y_cat, cv=5, scoring='f1_weighted')
-    print(f"Gender Cross-validated F1: {gen_scores.mean()}")
+    results = {}
+    with concurrent.futures.ProcessPoolExecutor(max_workers=8) as executor:
+        futures = {executor.submit(evaluate_classifier, name, X_data[name], y_cat, classes): name for name in X_data}
+        for future in concurrent.futures.as_completed(futures):
+            name = futures[future]
+            try:
+                results[name] = future.result()
+            except Exception as exc:
+                print('%r generated an exception: %s' % (name, exc))
 
-    # Posterior w/ gender
-    post_gen_classifier = RandomForestClassifier()
-    post_gen_scores = cross_val_score(post_gen_classifier, X_post_gen, y_cat, cv=5, scoring='f1_weighted')
-    print(f"Posteriors+gender Cross-validated F1: {post_gen_scores.mean()}")
+    return results
 
-    # MFCC classifier
-    mfcc_classifier = SVC(C=200)
-    mfcc_scores = cross_val_score(mfcc_classifier, X_mfccs, y_cat, cv=5, scoring='f1_weighted')
-    print(f"MFCC Cross-validated F1: {mfcc_scores.mean()}")
-
-    # Dummy classifier
-    dummy_clf = DummyClassifier(strategy='stratified')
-    dummy_scores = cross_val_score(dummy_clf, X_emb, y_cat, cv=5, scoring='f1_weighted')
-    print(f"Baseline Cross-validated F1: {dummy_scores.mean()}")
-
-    return emb_scores.mean(), post_scores.mean(), gen_scores.mean(), post_gen_scores.mean(), mfcc_scores.mean(), dummy_scores.mean()
 
 def train_test(df, target):
-    X_emb, X_post, X_mfccs, X_gen, y_cat, X_emb_train, X_emb_test, X_post_train, X_post_test, X_mfccs_train, X_mfccs_test, X_gen_train, X_gen_test, y_train_cat, y_test_cat = get_train_test_sets(df, target)
+    (X_emb, X_post, X_mfccs, X_gen, y_cat, X_emb_train, X_emb_test, X_post_train, X_post_test, X_mfccs_train, X_mfccs_test, X_gen_train,
+     X_gen_test, X_emb_transcript_train, X_emb_transcript_test, y_train_cat, y_test_cat) = get_train_test_sets(df, target)
 
     # Assuming 'y_test' contains the true class labels and 'y_pred' contains the predicted class labels
     emb_classifier = SVC(C=200)
@@ -118,6 +191,7 @@ def train_test(df, target):
     plt.title('Confusion Matrix')
     plt.show()
 
+
 if __name__ == "__main__":
     positive_ratings = {'Courageous', 'Beautiful', 'Fascinating', 'Funny', 'Informative', 'Ingenious', 'Inspiring',
                         'Jaw-dropping', 'Persuasive'}
@@ -125,48 +199,41 @@ if __name__ == "__main__":
     # positive_ratings_views = {f"{r}_views" for r in positive_ratings}
     # negative_ratings_views = {f"{r}_views" for r in negative_ratings}
 
-    df = pd.read_csv("../metadata/merged_metadata_popularity_features.csv")
-    cols = {'views', 'comments_per_view', *positive_ratings, *negative_ratings, 'negative_ratings'}
-    scores = {'target': [], 'type': [], 'score': []}
-    X_emb, X_post, X_mfccs, X_gen = get_features(df)
-    for col in cols:
+    df_1 = pd.read_csv("../metadata/merged_metadata_popularity_features_std.csv")
+    df_2 = pd.read_csv("../metadata/embeddings_transcript_clean.csv")
+    df_1['url'] = df_1['url'].astype(str).apply(str.strip)
+    df_2['url'] = df_2['url'].astype(str).apply(str.strip)
+
+    df = pd.merge(df_1, df_2, on="url")
+    df = df.dropna()
+
+
+    cols = {'ratings_views', 'views', 'comments_per_view', *positive_ratings, *negative_ratings, 'negative_ratings'}
+    scores = {'target': [], 'type': [], 'metric': [], 'value': []}
+    X_emb, X_post, X_mfccs, X_gen, X_emb_transcript = get_features(df)
+    print_dict = {}
+    for col in tqdm(cols):
         print("="*16)
         print(f"Predicting: {col}")
 
-        y_cat = df[f"log_{col}_norm_cat"]
+        y_cat = df[f"log_{col}_norm_cat"].to_numpy()
         print(Counter(y_cat).most_common())
 
-        emb_cross_val_f1, post_cross_val_f1, gen_cross_val_f1, post_gen_cross_val_f1, mfcc_cross_val_f1, baseline_cross_val_f1 = cross_validation(X_emb, X_post, X_mfccs, X_gen, y_cat)
+        results_cross_val = cross_validation_with_kfold_split_and_class_metrics(X_emb, X_post, X_mfccs, X_gen, X_emb_transcript, y_cat)
+        print(results_cross_val)
 
-        scores['target'].append(col)
-        scores['type'].append('embeddings')
-        scores['score'].append(emb_cross_val_f1)
-
-        scores['target'].append(col)
-        scores['type'].append('random baseline')
-        scores['score'].append(baseline_cross_val_f1)
-
-        scores['target'].append(col)
-        scores['type'].append('posteriors')
-        scores['score'].append(post_cross_val_f1)
-
-        scores['target'].append(col)
-        scores['type'].append('mfcc')
-        scores['score'].append(mfcc_cross_val_f1)
-
-        scores['target'].append(col)
-        scores['type'].append('gender')
-        scores['score'].append(gen_cross_val_f1)
-
-        scores['target'].append(col)
-        scores['type'].append('posteriors w/ gender')
-        scores['score'].append(post_gen_cross_val_f1)
+        for name, results in results_cross_val.items():
+            scores['target'].append(col)
+            scores['type'].append(name)
+            for metric, value in results.items():
+                scores['metric'].append(metric)
+                scores['value'].append(value)
 
 
     scores = pd.DataFrame(scores)
     scores.to_csv("scores.csv")
-    sorted_scores = scores.sort_values(by="score")
-    px.bar(sorted_scores, x="target", y="score", color="type", barmode='overlay').show()
+    sorted_scores = scores.sort_values(by="value")
+    px.bar(sorted_scores, x="target", y="value", color="type", facet_col="metric", barmode='overlay').show()
 
     train_test(df, 'log_Beautiful_norm_cat')
 
