@@ -10,7 +10,7 @@ if __name__ == '__main__':
     df = pd.read_csv("../metadata/merged_metadata_popularity.csv")
     for idx, row in df.iterrows():
         filename = row["filename"]
-        json_summary_file = os.path.join("../modeling_api_results", filename + "_summary.json")
+        json_summary_file = os.path.join("../modeling_api_results_embeddings", filename + "_summary.json")
         if not os.path.exists(json_summary_file):
             continue
         with open(json_summary_file, 'r') as f:
