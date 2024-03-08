@@ -42,3 +42,4 @@ to visualize and explore the results (`results/scores.csv`)
 
 * visualize_target_set: Contains visualization regarding the distributions of the popularity and ratings metrics
 * eda: Various graphs and aggregations used as part of data exploration
+* get_correlations: Prints the correlation matrix between target labels and features
