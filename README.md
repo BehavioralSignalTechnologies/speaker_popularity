@@ -31,6 +31,11 @@ pip3 install -r requirements.txt
 Unzip `modeling_api_results_embeddings/emb_part_1.zip` and `modeling_api_results_embeddings/emb_part_2.zip`
 and place all files under the `modeling_api_results_embeddings` directory
 
+```
+unzip modeling_api_results_embeddings/emb_part_1.zip -d modeling_api_results_embeddings/
+unzip modeling_api_results_embeddings/emb_part_2.zip -d modeling_api_results_embeddings/
+```
+
 ## How to run:
 
 1. Generate the dataset including the target labels (popularity + ratings). 
