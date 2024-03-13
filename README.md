@@ -17,13 +17,19 @@ Automatically assessing public speakers popularity: A use-case for ted-talks
 
 ## Install dependencies and environment
 
-Create a virtual environment (python 3.8) and install the required dependencies
+Make sure you have git lfs installed.
+Clone the repo and create a virtual environment (python 3.8) and install the required dependencies
 
 ```shell
+git clone https://github.com/BehavioralSignalTechnologies/speaker_popularity.git
+cd speaker_popularity
 virtualenv -p python3 venv
 source venv/bin/activate
 pip3 install -r requirements.txt
 ```
+
+Unzip `modeling_api_results_embeddings/emb_part_1.zip` and `modeling_api_results_embeddings/emb_part_2.zip`
+and place all files under the `modeling_api_results_embeddings` directory
 
 ## How to run:
 
