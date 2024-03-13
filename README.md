@@ -5,10 +5,25 @@ Automatically assessing public speakers popularity: A use-case for ted-talks
 
 * audio_features: folder containing code for extracting high-level aggregations of the behavioral posteriors
 * metadata: folder containing all generated datasets
+  * ted_main.csv: The original TED talks dataset
+  * merged_metadata.csv: The above dataset merged with the transcripts
+  * merged_metadata_popularity_std.csv: The dataset enriched with the target metrics (popularity + ratings)
+  * merged_metadata_popularity_features_std.csv: The dataset enriched with target metrics and features used in classifiers
+  * embeddings_transcript_clean.csv: The embeddings of the transcripts
 * mfccs: The mfccs per file, calculated with librosa
 * modeling_api_results_embeddings: The responses of our API for each file, containing the behavioral embeddings and posteriors
 * results: The directory where experiments results are saved
 * scripts: Various scripts that are used by the process (explained below)
+
+## Install dependencies and environment
+
+Create a virtual environment (python 3.8) and install the required dependencies
+
+```shell
+virtualenv -p python3 venv
+source venv/bin/activate
+pip3 install -r requirements.txt
+```
 
 ## How to run:
 

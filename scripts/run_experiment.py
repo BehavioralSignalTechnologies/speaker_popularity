@@ -2,7 +2,6 @@ import ast
 import concurrent
 import os
 from collections import Counter
-import tabulate
 from tqdm import tqdm
 import numpy as np
 import pandas as pd
@@ -13,7 +12,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score, roc_auc_score, make_scorer
 from sklearn.svm import SVC
 from sklearn.model_selection import KFold
-from sklearn.preprocessing import label_binarize, StandardScaler
+from sklearn.preprocessing import StandardScaler
 from sklearn.exceptions import UndefinedMetricWarning
 import warnings
 warnings.filterwarnings("ignore", category=UndefinedMetricWarning)
@@ -230,8 +229,6 @@ if __name__ == "__main__":
     positive_ratings = {'Courageous', 'Beautiful', 'Fascinating', 'Funny', 'Informative', 'Ingenious', 'Inspiring',
                         'Jaw-dropping', 'Persuasive'}
     negative_ratings = {'Confusing', 'Longwinded', 'OK', 'Obnoxious', 'Unconvincing'}
-    # positive_ratings_views = {f"{r}_views" for r in positive_ratings}
-    # negative_ratings_views = {f"{r}_views" for r in negative_ratings}
 
     df_1 = pd.read_csv("../metadata/merged_metadata_popularity_features_std.csv")
     df_2 = pd.read_csv("../metadata/embeddings_transcript_clean.csv")
@@ -261,6 +258,3 @@ if __name__ == "__main__":
     scores.to_csv("../results/scores.csv")
     sorted_scores = scores.sort_values(by="value")
     px.bar(sorted_scores, x="target", y="value", color="type", facet_row="metric", barmode='overlay').show()
-
-    # train_test(df, 'log_Beautiful_norm_cat')
-

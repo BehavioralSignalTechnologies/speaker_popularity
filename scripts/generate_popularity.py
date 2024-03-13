@@ -1,6 +1,5 @@
 import ast
 import datetime
-from collections import Counter
 from functools import partial
 
 import numpy as np
@@ -17,18 +16,6 @@ def map_to_label(value, ranges, labels):
 
     raise ValueError(f"value {value} not located between ranges: {ranges}")
 
-
-views_mapping_5 = partial(map_to_label,
-                          ranges=[[-np.inf, -1.5], [-1.5, -0.5], [-0.5, 0.5], [0.5, 1.5], [1.5, np.inf]],
-                          labels=["very_low", "low", "medium", "high", "very_high"])
-
-views_mapping_3 = partial(map_to_label,
-                          ranges=[[-np.inf, -0.5], [-0.5, 0.5], [0.5, np.inf]],
-                          labels=["low", "medium", "high"])
-
-comments_mapping_3 = partial(map_to_label,
-                             ranges=[[-np.inf, -0.5], [-0.5, 0.5], [0.5, np.inf]],
-                             labels=["low", "medium", "high"])
 
 views_mapping_3_std = partial(map_to_label,
                           ranges=[[-np.inf, -1], [-1, 1], [1, np.inf]],
@@ -52,9 +39,6 @@ if __name__ == '__main__':
     df = df.loc[(df['film_year'] >= 2010) & (df['film_year'] <= 2016), :]
     # Num_speakers == 1
     df = df.loc[df['num_speaker'] == 1, :]
-    # # Tags associated with dance, live music and visual content
-    # bad_tags = ['dance', 'photography', 'performance', 'vocals', 'piano', 'guitar', 'live music']
-    # df = df.loc[df['tags'].apply(ast.literal_eval).apply(lambda tags: len(set(tags).intersection(bad_tags)) == 0), :]
 
     # Replace nan occupation with ""
     df['speaker_occupation']: pd.Series = df['speaker_occupation'].fillna("")
@@ -85,10 +69,6 @@ if __name__ == '__main__':
     ratings_views =  np.log(df['ratings_sum'] / df['views'])
     df['log_ratings_views_norm'] = (ratings_views - ratings_views.mean()) / ratings_views.std()
     df['log_ratings_views_norm_cat'] = df['log_ratings_views_norm'].apply(views_mapping_3_std)
-    # import plotly.express as px
-    # px.histogram(df['log_ratings_views_norm_cat']).write_image("ratings-view-cat.png")
-    # breakpoint()
-
 
     # Add sentiment
     positive_ratings = {'Courageous', 'Beautiful', 'Fascinating', 'Funny', 'Informative', 'Ingenious', 'Inspiring',
