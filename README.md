@@ -53,8 +53,9 @@ The generated dataset's name will be `metadata/merged_metadata_popularity_featur
 python3 generate_dataset_with_aggregations.py
 ```
 
-3. Generate the text embeddings of the transcripts by running the `clean_transcripts_embeddings` notebook. An OpenAI API key is required for this step.
-The generated embeddings dataset will be `metadata/embeddings_transcript_clean.csv`
+3. (Optionally) Generate the text embeddings of the transcripts by running the `clean_transcripts_embeddings` notebook. An OpenAI API key is required for this step.
+The generated embeddings dataset will be `metadata/embeddings_transcript_clean.csv`. You can find the already extracted embeddings in the repo,
+so this step is optional.
 
 4. Run the experiment.
 
