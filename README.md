@@ -23,7 +23,7 @@ Clone the repo and create a virtual environment (python 3.8) and install the req
 ```shell
 git clone https://github.com/BehavioralSignalTechnologies/speaker_popularity.git
 cd speaker_popularity
-virtualenv -p python3 venv
+virtualenv -p python3.8 venv
 source venv/bin/activate
 pip3 install -r requirements.txt
 ```
