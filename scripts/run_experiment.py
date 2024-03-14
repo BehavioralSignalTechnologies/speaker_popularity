@@ -21,6 +21,7 @@ from sklearn.metrics import confusion_matrix
 import seaborn as sns
 import matplotlib.pyplot as plt
 
+RESULT_PATH = "../results/"
 
 def get_features(df):
     X_emb_mean = df['features_embedding_mean'].apply(ast.literal_eval).tolist()  # Features
@@ -111,7 +112,7 @@ def calculate_scores(col, name, clf, X, y, classes):
             plt.xlabel('Predicted labels')
             plt.ylabel('True labels')
             plt.title('Confusion Matrix')
-            plt.savefig(f"../results/cm_{col}_{name}.png")
+            plt.savefig(f"{RESULT_PATH}cm_{col}_{name}.png")
             plt.close()
 
         f1_macro.append(f1_score(y_test, y_pred, average="macro"))
@@ -225,10 +226,13 @@ def train_test(df, target):
     plt.show()
 
 
+
 if __name__ == "__main__":
     positive_ratings = {'Courageous', 'Beautiful', 'Fascinating', 'Funny', 'Informative', 'Ingenious', 'Inspiring',
                         'Jaw-dropping', 'Persuasive'}
     negative_ratings = {'Confusing', 'Longwinded', 'OK', 'Obnoxious', 'Unconvincing'}
+
+    os.makedirs(RESULT_PATH, exist_ok=True)
 
     df_1 = pd.read_csv("../metadata/merged_metadata_popularity_features_std.csv")
     df_2 = pd.read_csv("../metadata/embeddings_transcript_clean.csv")
@@ -255,6 +259,6 @@ if __name__ == "__main__":
 
 
     scores = pd.DataFrame(scores)
-    scores.to_csv("../results/scores.csv")
+    scores.to_csv(f"{RESULT_PATH}scores.csv")
     sorted_scores = scores.sort_values(by="value")
     px.bar(sorted_scores, x="target", y="value", color="type", facet_row="metric", barmode='overlay').show()
