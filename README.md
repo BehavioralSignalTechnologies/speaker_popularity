@@ -21,7 +21,7 @@ Make sure you have git lfs installed.
 Clone the repo and create a virtual environment (python 3.8) and install the required dependencies
 
 ```shell
-git clone https://github.com/BehavioralSignalTechnologies/speaker_popularity.git
+git clone <URL_OF_REPO>
 cd speaker_popularity
 virtualenv -p python3.8 venv
 source venv/bin/activate
